@@ -1,0 +1,1624 @@
+
+# display current-configuration all
+
+#
+!Software Version V100R006C05
+ sysname demo03-615a.csr.jet.msk.su
+#
+ vlan batch 54 100 to 101 128 200 666 843 999 1094 2001 to 2010 3019
+ vlan batch 3168 to 3169 3171 to 3174 3177 3271 to 3275 3279
+#
+ stp edged-port default
+ stp mode rstp
+ stp bpdu-protection
+#
+ undo telnet server enable
+#
+lldp enable
+#
+observe-port 1 interface Ethernet0/0/10
+#
+ bfd
+#
+ rsa peer-public-key 10.31.175.5
+  public-key-code begin
+   30820109
+     02820100
+       B9602C01 D39FDE59 CF7DBD9D 0FEEF507 8387E0CA DC63BF57 73BD0802 C18FEBE4
+       4EA9A6F0 8CC71E86 36C86EAE F13FEB81 C147FBBC A94EDE03 19A77D84 104C420B
+       1459DA44 35B99DE9 E03B24CF D0E19FD6 56ADD854 64999DB9 8B7FFAD9 D20A183A
+       72780A36 6B57556A 5D3A2B3F 19BA4A3A F52518AD C411F61F B2F7688E 4A3DC13B
+       646ADFD3 56435AD0 B8F5989A 3E9325D5 83881099 3C8BC96F BD331EC2 FFA85231
+       0F127746 A1C5C523 9DFF8B4D 80C9B9F6 E5C511C0 4DC4F785 D254C61F 216A0A22
+       1E8A0A19 34A8C3FA EBBD3D9B 80197919 1D5637B0 1DEDA678 6E36493C 44F7180C
+       374ACAA5 48B09B18 BEB81F54 178C0D04 A96F2647 851BF36B 94908757 92CE18E3
+     0203
+       010001
+  public-key-code end
+ peer-public-key end
+#
+ rsa peer-public-key 10.31.70.10
+  public-key-code begin
+   30820109
+     02820100
+       B668B19E 16D1472D 96F7D06F AA6213C8 CF9DEE6F 4E99EB69 F2599204 65F436F5
+       949C43B2 6984B614 1AD909DD 83D2A74B 913AED03 8FECA9D4 283BED6B 8E01CB5C
+       DED6E27A 78FEE0F5 BA947C74 77E9D8B4 EECF86AC 9EA0E812 9889EB77 A9861F99
+       2975DEEF 5701BC3C 547BB07E A253DE57 91ACCBC3 8512FE6A 08915E18 231B9A65
+       7BBA472C 732D26E5 B0726CD5 0F02FF8C 9EEDCE03 1F93170E 4E207C0F 3BA98519
+       A59947D2 4DC03FBC 0E807C8E 2A9BBAE4 11350C0F E76D914C C36B72D5 6B40A78A
+       F502A7BF 33357E24 5F6A6583 8BEADB46 CA0E9A69 3FD153AF 3E3E848D CF18982F
+       902F5123 E8E18E53 0BB52D1D 83B06B77 62A0B0D3 0DF6248C 4C636DEA 88E0EF5D
+     0203
+       010001
+  public-key-code end
+ peer-public-key end
+#
+traffic classifier AllTraffic operator and
+ if-match any
+#
+traffic behavior BlockAll
+ deny
+#
+traffic policy BlockAll
+ classifier AllTraffic behavior BlockAll
+#
+vlan 54
+ description DMZ
+vlan 100
+ description VOEK L2TP
+vlan 128
+ description Service_Comm
+vlan 200
+ description VOEK L2TP
+vlan 666
+ description BlackHole
+ traffic-policy BlockAll inbound
+ mac-limit maximum 1
+vlan 843
+ description Internal_Comm
+vlan 999
+ description r642-Local-Staging
+vlan 1094
+ description North_Bond
+vlan 2001
+ description -=TanderSWAP=-
+vlan 2002
+ description -=TanderSWAP=-
+vlan 2003
+ description -=TanderSWAP=-
+vlan 2004
+ description -=TanderSWAP=-
+vlan 2005
+ description -=TanderSWAP=-
+vlan 2006
+ description -=TanderSWAP=-
+vlan 2007
+ description -=TanderSWAP=-
+vlan 2008
+ description -=TanderSWAP=-
+vlan 2009
+ description -=TanderSWAP=-
+vlan 2010
+ description -=TanderSWAP=-
+vlan 3168
+ description to VLAN_with_DHCP
+vlan 3169
+ description VLAN_MGMT
+vlan 3279
+ description Vl3279-InfraMGMT
+#
+aaa
+ authentication-scheme default
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+ domain default_admin
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+#
+ ntp-service unicast-server 10.31.69.1
+ ntp-service unicast-server 10.31.70.1
+#
+interface Vlanif1
+ description UNUSED
+ shutdown
+#
+interface Vlanif3169
+ ip address 10.31.69.203 255.255.255.0
+#
+interface Ethernet0/0/1
+ description Stand for RSA (ma.sverdlikov)
+ port link-type trunk
+ port trunk pvid vlan 3171
+ port trunk allow-pass vlan 54 3171
+ stp bpdu-filter enable
+ storm-control enable log
+#
+interface Ethernet0/0/2
+ description Stand for RSA (ma.sverdlikov)
+ shutdown
+ port link-type access
+ port default vlan 3171
+ stp bpdu-filter disable
+ port-security enable
+ port-security protect-action shutdown
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/3
+ port link-type access
+ port default vlan 3174
+ stp edged-port enable
+ port-security enable
+ port-security protect-action shutdown
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/4
+ port link-type access
+ port default vlan 3168
+ stp edged-port enable
+ port-security enable
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/5
+ port link-type access
+ port default vlan 3168
+ stp edged-port enable
+ port-security enable
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/6
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/7
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/8
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/9
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/10
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/11
+ port link-type access
+ port default vlan 54
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/12
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/13
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/14
+ description UNUSED
+ port link-type access
+ port default vlan 100
+ port-security enable
+ port-security protect-action shutdown
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/15
+ description Stand for RSA (ma.sverdlikov)
+ port link-type access
+ port default vlan 101
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/16
+ shutdown
+ port link-type access
+ port default vlan 100
+ stp bpdu-filter enable
+ stp edged-port enable
+ port-security enable
+ port-security protect-action shutdown
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/17
+ description Stand for RSA (ma.sverdlikov)
+ port link-type access
+ port default vlan 3168
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/18
+ description Stand for RSA (ma.sverdlikov)
+ port link-type access
+ port default vlan 3171
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/19
+ description VOEK L2TP
+ port link-type access
+ port default vlan 100
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/20
+ description VOEK L2TP
+ port link-type access
+ port default vlan 200
+ port-security enable
+ port-security protect-action shutdown
+ port-mirroring to observe-port 1 inbound
+ port-mirroring to observe-port 1 outbound
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/21
+ description VOEK L2TP
+ port link-type access
+ port default vlan 200
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/22
+ description VOEK L2TP
+ port link-type access
+ port default vlan 100
+ storm-control enable log
+#
+interface Ethernet0/0/23
+ description AR6140 L2TP
+ port link-type trunk
+ port trunk allow-pass vlan 54 101 3174
+ stp edged-port enable
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface Ethernet0/0/24
+ description 2801 L2TP
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+ storm-control broadcast min-rate 100 max-rate 1000
+ storm-control multicast min-rate 100 max-rate 1000
+ storm-control action block
+ storm-control enable log
+#
+interface GigabitEthernet0/0/1
+#
+interface GigabitEthernet0/0/2
+#
+interface GigabitEthernet0/0/3
+#
+interface GigabitEthernet0/0/4
+ description -= TO_demo01 --
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+#
+interface NULL0
+#
+ ip route-static 0.0.0.0 0.0.0.0 10.31.69.1
+#
+ stelnet server enable
+ ssh authentication-type default password
+ ssh client first-time enable
+ ssh client 10.31.175.5 assign rsa-key 10.31.175.5
+ ssh client 10.31.70.10 assign rsa-key 10.31.70.10
+#
+user-interface con 0
+ authentication-mode aaa
+ user privilege level 15
+user-interface vty 0 4
+ authentication-mode aaa
+ protocol inbound ssh
+#
+return
+
+# display version
+
+Huawei Versatile Routing Platform Software
+VRP (R) software, Version 5.70 (S3700 V100R006C05)
+Copyright (C) 2003-2013 HUAWEI TECH CO., LTD
+Quidway S3700-28TP-EI-AC Routing Switch uptime is 17 weeks, 2 days, 18 hours, 58 minutes
+
+EOFEA 0(Master) : uptime is 17 weeks, 2 days, 18 hours, 57 minutes
+128M bytes DDR Memory
+16M bytes FLASH
+Pcb      Version :  VER B
+Basic  BOOTROM  Version :  349 Compiled at Mar 15 2013, 11:00:55
+Software Version : VRP (R) Software, Version 5.70 (V100R006C05)
+
+# display device
+
+S3700-28TP-EI-AC's Device status:
+Slot  Sub Type         Online    Power      Register       Status     Role
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+0     -   3728F        Present   PowerOn    Registered     Normal     Master
+
+# display device manufacture-info
+
+                                           ^
+Error:Too many parameters found at '^' position.
+
+# display device power
+
+                                           ^
+Error:Too many parameters found at '^' position.
+
+# display power
+
+--------------------------------------------------------------------------
+ SlotID  PowerNo  Present  Mode   State      Power(W)   Voltage(V)
+--------------------------------------------------------------------------
+ 0       PWRI     NO       N/A    N/A        N/A        N/A
+ 0       PWRII    NO       N/A    N/A        N/A        N/A
+
+# display device temperature all
+
+                                           ^
+Error:Too many parameters found at '^' position.
+
+# display interface brief
+
+PHY: Physical
+*down: administratively down
+^down: standby
+(l): loopback
+(s): spoofing
+(b): BFD down
+(e): ETHOAM down
+(dl): DLDP down
+(d): Dampening Suppressed
+InUti/OutUti: input utility/output utility
+Interface                   PHY   Protocol InUti OutUti   inErrors  outErrors
+Ethernet0/0/1               up    up       0.01%  0.01%          0          0
+Ethernet0/0/2               *down down        0%     0%          0          0
+Ethernet0/0/3               down  down        0%     0%          0          0
+Ethernet0/0/4               down  down        0%     0%          0          0
+Ethernet0/0/5               up    up       0.01%  0.01%          0          0
+Ethernet0/0/6               down  down        0%     0%          0          0
+Ethernet0/0/7               down  down        0%     0%          0          0
+Ethernet0/0/8               down  down        0%     0%          0          0
+Ethernet0/0/9               down  down        0%     0%          0          0
+Ethernet0/0/10              down  down        0%     0%          0          0
+Ethernet0/0/11              down  down        0%     0%          0          0
+Ethernet0/0/12              down  down        0%     0%          0          0
+Ethernet0/0/13              down  down        0%     0%          0          0
+Ethernet0/0/14              down  down        0%     0%          0          0
+Ethernet0/0/15              down  down        0%     0%          0          0
+Ethernet0/0/16              *down down        0%     0%          0          0
+Ethernet0/0/17              up    up       0.01%  0.01%          0          0
+Ethernet0/0/18              down  down        0%     0%          0          0
+Ethernet0/0/19              down  down        0%     0%          0          0
+Ethernet0/0/20              down  down        0%     0%          0          0
+Ethernet0/0/21              down  down        0%     0%          0          0
+Ethernet0/0/22              down  down        0%     0%          0          0
+Ethernet0/0/23              down  down        0%     0%          0          0
+Ethernet0/0/24              down  down        0%     0%          0          0
+GigabitEthernet0/0/1        down  down        0%     0%          0          0
+GigabitEthernet0/0/2        down  down        0%     0%          0          0
+GigabitEthernet0/0/3        down  down        0%     0%          0          0
+GigabitEthernet0/0/4        up    up       0.01%  0.01%     451909          0
+NULL0                       up    up(s)       0%     0%          0          0
+Vlanif1                     *down down        --     --          0          0
+Vlanif3169                  up    up          --     --          0          0
+
+# display interface description
+
+PHY: Physical
+*down: administratively down
+^down: standby
+(l): loopback
+(s): spoofing
+(b): BFD down
+(e): ETHOAM down
+(d): Dampening Suppressed
+Interface                     PHY     Protocol Description
+Eth0/0/1                      up      up       Stand for RSA (ma.sverdlikov)
+Eth0/0/2                      *down   down     Stand for RSA (ma.sverdlikov)
+Eth0/0/3                      down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/3 Interface
+Eth0/0/4                      down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/4 Interface
+Eth0/0/5                      up      up       HUAWEI, Quidway Series, Ethernet0
+                                               /0/5 Interface
+Eth0/0/6                      down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/6 Interface
+Eth0/0/7                      down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/7 Interface
+Eth0/0/8                      down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/8 Interface
+Eth0/0/9                      down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/9 Interface
+Eth0/0/10                     down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/10 Interface
+Eth0/0/11                     down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/11 Interface
+Eth0/0/12                     down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/12 Interface
+Eth0/0/13                     down    down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/13 Interface
+Eth0/0/14                     down    down     UNUSED
+Eth0/0/15                     down    down     Stand for RSA (ma.sverdlikov)
+Eth0/0/16                     *down   down     HUAWEI, Quidway Series, Ethernet0
+                                               /0/16 Interface
+Eth0/0/17                     up      up       Stand for RSA (ma.sverdlikov)
+Eth0/0/18                     down    down     Stand for RSA (ma.sverdlikov)
+Eth0/0/19                     down    down     VOEK L2TP
+Eth0/0/20                     down    down     VOEK L2TP
+Eth0/0/21                     down    down     VOEK L2TP
+Eth0/0/22                     down    down     VOEK L2TP
+Eth0/0/23                     down    down     AR6140 L2TP
+Eth0/0/24                     down    down     2801 L2TP
+GE0/0/1                       down    down     HUAWEI, Quidway Series, GigabitEt
+                                               hernet0/0/1 Interface
+GE0/0/2                       down    down     HUAWEI, Quidway Series, GigabitEt
+                                               hernet0/0/2 Interface
+GE0/0/3                       down    down     HUAWEI, Quidway Series, GigabitEt
+                                               hernet0/0/3 Interface
+GE0/0/4                       up      up       -= TO_demo01 --
+NULL0                         up      up(s)    HUAWEI, Quidway Series, NULL0 Int
+                                               erface
+Vlanif1                       *down   down     UNUSED
+Vlanif3169                    up      up       HUAWEI, Quidway Series, Vlanif316
+                                               9 Interface
+
+# display interface transceiver
+
+                                              ^
+Error: Wrong parameter found at '^' position.
+
+# display interface troubleshooting
+
+                                              ^
+Error: Wrong parameter found at '^' position.
+
+# display transceiver
+
+Port Ethernet0/0/1 :Valid only on optical interface.
+
+Port Ethernet0/0/2 :Valid only on optical interface.
+
+Port Ethernet0/0/3 :Valid only on optical interface.
+
+Port Ethernet0/0/4 :Valid only on optical interface.
+
+Port Ethernet0/0/5 :Valid only on optical interface.
+
+Port Ethernet0/0/6 :Valid only on optical interface.
+
+Port Ethernet0/0/7 :Valid only on optical interface.
+
+Port Ethernet0/0/8 :Valid only on optical interface.
+
+Port Ethernet0/0/9 :Valid only on optical interface.
+
+Port Ethernet0/0/10 :Valid only on optical interface.
+
+Port Ethernet0/0/11 :Valid only on optical interface.
+
+Port Ethernet0/0/12 :Valid only on optical interface.
+
+Port Ethernet0/0/13 :Valid only on optical interface.
+
+Port Ethernet0/0/14 :Valid only on optical interface.
+
+Port Ethernet0/0/15 :Valid only on optical interface.
+
+Port Ethernet0/0/16 :Valid only on optical interface.
+
+Port Ethernet0/0/17 :Valid only on optical interface.
+
+Port Ethernet0/0/18 :Valid only on optical interface.
+
+Port Ethernet0/0/19 :Valid only on optical interface.
+
+Port Ethernet0/0/20 :Valid only on optical interface.
+
+Port Ethernet0/0/21 :Valid only on optical interface.
+
+Port Ethernet0/0/22 :Valid only on optical interface.
+
+Port Ethernet0/0/23 :Valid only on optical interface.
+
+Port Ethernet0/0/24 :Valid only on optical interface.
+
+Port GigabitEthernet0/0/1 : transceiver is absent.
+
+Port GigabitEthernet0/0/2 : transceiver is absent.
+
+Port GigabitEthernet0/0/3 :Valid only on optical interface.
+
+Port GigabitEthernet0/0/4 :Valid only on optical interface.
+
+# display interface transceiver
+
+                                              ^
+Error: Wrong parameter found at '^' position.
+
+# display stp active
+
+                                        ^
+Error:Too many parameters found at '^' position.
+
+# display stp brief
+
+ MSTID  Port                        Role  STP State     Protection
+   0    Ethernet0/0/1               DESI  FORWARDING      BPDU
+   0    Ethernet0/0/5               DESI  FORWARDING      BPDU
+   0    Ethernet0/0/17              DESI  FORWARDING      BPDU
+   0    GigabitEthernet0/0/4        DESI  FORWARDING      BPDU
+
+# display stp global
+
+                                        ^
+Error:Too many parameters found at '^' position.
+
+# display stp bridge local
+
+                                        ^
+Error:Too many parameters found at '^' position.
+
+# display stp bridge root
+
+                                        ^
+Error:Too many parameters found at '^' position.
+
+# display port-group all
+
+                                        ^
+Error:Too many parameters found at '^' position.
+
+# dis eth-trunk
+
+Info: No valid trunk in the system.
+
+# display eth-trunk troubleshooting
+
+                                              ^
+Error: Wrong parameter found at '^' position.
+
+# display eth-trunk brief
+
+                                              ^
+Error: Wrong parameter found at '^' position.
+
+# display lacp brief
+
+                                         ^
+Error: Unrecognized command found at '^' position.
+
+# display mac-address
+
+-------------------------------------------------------------------------------
+MAC Address    VLAN/VSI                          Learned-From        Type
+-------------------------------------------------------------------------------
+0001-0002-0003 1/-                               GE0/0/4             dynamic
+0050-56b2-14ba 54/-                              GE0/0/4             dynamic
+247e-128d-6d80 54/-                              GE0/0/4             dynamic
+6073-5c29-17f4 54/-                              GE0/0/4             dynamic
+8c16-458a-11cc 54/-                              GE0/0/4             dynamic
+a4be-2b15-67f0 54/-                              GE0/0/4             dynamic
+e8ed-f3f8-8f19 128/-                             GE0/0/4             dynamic
+e8ed-f3f8-8f19 843/-                             GE0/0/4             dynamic
+e8ed-f3f8-8f19 1094/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2001/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2002/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2003/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2004/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2005/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2006/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2007/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2008/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2009/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 2010/-                            GE0/0/4             dynamic
+0050-56b4-3cd0 3168/-                            GE0/0/4             dynamic
+00e0-4c01-b7ea 3168/-                            Eth0/0/17           dynamic
+00e0-4c01-bbe4 3168/-                            Eth0/0/5            security
+48d5-39f3-16a4 3168/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 3168/-                            GE0/0/4             dynamic
+0001-0002-0005 3169/-                            GE0/0/4             dynamic
+000c-29cc-9414 3169/-                            GE0/0/4             dynamic
+0050-56a2-ca5f 3169/-                            GE0/0/4             dynamic
+0050-56b4-1fde 3169/-                            GE0/0/4             dynamic
+0050-56b4-4746 3169/-                            GE0/0/4             dynamic
+0050-56b4-6420 3169/-                            GE0/0/4             dynamic
+0050-56b4-a2d0 3169/-                            GE0/0/4             dynamic
+0050-56b4-c3ad 3169/-                            GE0/0/4             dynamic
+48d5-39f3-16a5 3169/-                            GE0/0/4             dynamic
+9ce3-74ff-8470 3169/-                            GE0/0/4             dynamic
+9ce3-74ff-84a0 3169/-                            GE0/0/4             dynamic
+a0f4-7917-2993 3169/-                            GE0/0/4             dynamic
+a0f4-7917-29e7 3169/-                            GE0/0/4             dynamic
+a4be-2b83-b6ff 3169/-                            GE0/0/4             dynamic
+b8ca-3a6a-d2cc 3169/-                            GE0/0/4             dynamic
+b8ca-3a6a-d664 3169/-                            GE0/0/4             dynamic
+ccd7-3c9f-9480 3169/-                            GE0/0/4             dynamic
+ccd7-3c9f-9485 3169/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 3169/-                            GE0/0/4             dynamic
+001d-5020-3f2f 3171/-                            GE0/0/4             dynamic
+0050-5684-a05a 3171/-                            GE0/0/4             dynamic
+0050-56b4-6367 3171/-                            GE0/0/4             dynamic
+0050-56b4-ad54 3171/-                            GE0/0/4             dynamic
+0050-56b4-ba81 3171/-                            GE0/0/4             dynamic
+0050-56b4-f591 3171/-                            GE0/0/4             dynamic
+1051-72f1-4e51 3171/-                            Eth0/0/1            dynamic
+48d5-39f3-16a7 3171/-                            GE0/0/4             dynamic
+5ca4-8a60-d698 3171/-                            GE0/0/4             dynamic
+fa16-3e03-672b 3171/-                            GE0/0/4             dynamic
+fa16-3e07-0b4a 3171/-                            GE0/0/4             dynamic
+fa16-3e45-b582 3171/-                            GE0/0/4             dynamic
+fa16-3e80-8cfc 3171/-                            GE0/0/4             dynamic
+fa16-3e98-6aca 3171/-                            GE0/0/4             dynamic
+fa16-3ea3-c1cd 3171/-                            GE0/0/4             dynamic
+fa16-3eb6-8a41 3171/-                            GE0/0/4             dynamic
+0050-56b4-6f0d 3172/-                            GE0/0/4             dynamic
+08f1-ea78-fff2 3172/-                            GE0/0/4             dynamic
+08f1-ea79-5116 3172/-                            GE0/0/4             dynamic
+48d5-39f3-16a8 3172/-                            GE0/0/4             dynamic
+5ca4-8a60-d698 3172/-                            GE0/0/4             dynamic
+a0f4-7915-62b0 3172/-                            GE0/0/4             dynamic
+a0f4-7947-e7f0 3172/-                            GE0/0/4             dynamic
+a4be-2b15-6a70 3172/-                            GE0/0/4             dynamic
+b47a-f154-619c 3172/-                            GE0/0/4             dynamic
+e49d-730a-355a 3172/-                            GE0/0/4             dynamic
+e49d-738f-eef0 3172/-                            GE0/0/4             dynamic
+0050-5684-85b4 3173/-                            GE0/0/4             dynamic
+0050-5684-b57b 3173/-                            GE0/0/4             dynamic
+0050-5698-0b2a 3173/-                            GE0/0/4             dynamic
+0050-56b4-d18e 3173/-                            GE0/0/4             dynamic
+48d5-39f3-16a9 3173/-                            GE0/0/4             dynamic
+5ca4-8a60-d698 3173/-                            GE0/0/4             dynamic
+000c-2910-2703 3174/-                            GE0/0/4             dynamic
+000c-29b3-e7ca 3174/-                            GE0/0/4             dynamic
+0014-4f9e-f112 3174/-                            GE0/0/4             dynamic
+001f-ce61-cfbd 3174/-                            GE0/0/4             dynamic
+001f-ce61-e20c 3174/-                            GE0/0/4             dynamic
+001f-ce61-e224 3174/-                            GE0/0/4             dynamic
+0050-5684-3cd9 3174/-                            GE0/0/4             dynamic
+0050-5684-69a0 3174/-                            GE0/0/4             dynamic
+0050-5684-6bf3 3174/-                            GE0/0/4             dynamic
+0050-56b4-0ece 3174/-                            GE0/0/4             dynamic
+0050-56b4-4f34 3174/-                            GE0/0/4             dynamic
+0050-56b4-5226 3174/-                            GE0/0/4             dynamic
+0050-56b4-5ee5 3174/-                            GE0/0/4             dynamic
+0050-56b4-6b12 3174/-                            GE0/0/4             dynamic
+0050-56b4-6bda 3174/-                            GE0/0/4             dynamic
+0050-56b4-7cfd 3174/-                            GE0/0/4             dynamic
+0050-56b4-8208 3174/-                            GE0/0/4             dynamic
+0050-56b4-9715 3174/-                            GE0/0/4             dynamic
+0050-56b4-a62b 3174/-                            GE0/0/4             dynamic
+0050-56b4-aaef 3174/-                            GE0/0/4             dynamic
+0050-56b4-ba9b 3174/-                            GE0/0/4             dynamic
+0050-56b4-d44a 3174/-                            GE0/0/4             dynamic
+0050-56b4-f51a 3174/-                            GE0/0/4             dynamic
+0050-56b4-faa4 3174/-                            GE0/0/4             dynamic
+08c6-b3f0-27fe 3174/-                            GE0/0/4             dynamic
+48d5-39f3-16aa 3174/-                            GE0/0/4             dynamic
+5254-00dd-56d8 3174/-                            GE0/0/4             dynamic
+5ca4-8a60-d698 3174/-                            GE0/0/4             dynamic
+bc60-6b36-1c1b 3174/-                            GE0/0/4             dynamic
+bc60-6b47-0bdf 3174/-                            GE0/0/4             dynamic
+fa16-3e4e-280a 3174/-                            GE0/0/4             dynamic
+0003-d603-d49f 3177/-                            GE0/0/4             dynamic
+0015-656b-22c4 3177/-                            GE0/0/4             dynamic
+001e-be90-f7a9 3177/-                            GE0/0/4             dynamic
+001e-c9b8-2cf1 3177/-                            GE0/0/4             dynamic
+0050-5684-b161 3177/-                            GE0/0/4             dynamic
+0050-5684-dc7a 3177/-                            GE0/0/4             dynamic
+0050-5698-87b2 3177/-                            GE0/0/4             dynamic
+0050-5698-ec36 3177/-                            GE0/0/4             dynamic
+0050-56b2-1de9 3177/-                            GE0/0/4             dynamic
+0050-56b2-207b 3177/-                            GE0/0/4             dynamic
+0050-56b2-24b7 3177/-                            GE0/0/4             dynamic
+0050-56b2-3b9e 3177/-                            GE0/0/4             dynamic
+0050-56b2-42d1 3177/-                            GE0/0/4             dynamic
+0050-56b2-54cc 3177/-                            GE0/0/4             dynamic
+0050-56b2-5523 3177/-                            GE0/0/4             dynamic
+0050-56b2-77f3 3177/-                            GE0/0/4             dynamic
+0050-56b2-aefb 3177/-                            GE0/0/4             dynamic
+0050-56b4-4081 3177/-                            GE0/0/4             dynamic
+0050-56b4-42dd 3177/-                            GE0/0/4             dynamic
+0050-56b4-6cf1 3177/-                            GE0/0/4             dynamic
+0050-56b4-c959 3177/-                            GE0/0/4             dynamic
+0050-56b4-cd3f 3177/-                            GE0/0/4             dynamic
+0050-56b4-e81f 3177/-                            GE0/0/4             dynamic
+0050-56b4-f264 3177/-                            GE0/0/4             dynamic
+0050-56b4-ff34 3177/-                            GE0/0/4             dynamic
+1845-1647-1e34 3177/-                            GE0/0/4             dynamic
+2834-a26c-3280 3177/-                            GE0/0/4             dynamic
+2cc5-4806-03e8 3177/-                            GE0/0/4             dynamic
+44a6-4219-8e68 3177/-                            GE0/0/4             dynamic
+48d5-39f3-16ad 3177/-                            GE0/0/4             dynamic
+6c03-09ae-c634 3177/-                            GE0/0/4             dynamic
+805e-c0d3-781d 3177/-                            GE0/0/4             dynamic
+805e-c0d8-3261 3177/-                            GE0/0/4             dynamic
+805e-c0d9-5b7d 3177/-                            GE0/0/4             dynamic
+9ca2-f4b6-1e61 3177/-                            GE0/0/4             dynamic
+9cb6-54f2-3a62 3177/-                            GE0/0/4             dynamic
+a4be-2b15-67f0 3177/-                            GE0/0/4             dynamic
+c81f-eace-15d0 3177/-                            GE0/0/4             dynamic
+0050-56b4-8545 3272/-                            GE0/0/4             dynamic
+0050-56b4-c17c 3272/-                            GE0/0/4             dynamic
+0050-56b4-f3bb 3272/-                            GE0/0/4             dynamic
+4403-a734-931c 3272/-                            GE0/0/4             dynamic
+48d5-39f3-16a3 3272/-                            GE0/0/4             dynamic
+4c4e-350d-3ed5 3272/-                            GE0/0/4             dynamic
+a0ec-f92d-86ac 3272/-                            GE0/0/4             dynamic
+a89d-2184-d7b0 3272/-                            GE0/0/4             dynamic
+a89d-218d-5e6c 3272/-                            GE0/0/4             dynamic
+a89d-2199-57f0 3272/-                            GE0/0/4             dynamic
+e001-a619-51e3 3272/-                            GE0/0/4             dynamic
+e001-a619-51f2 3272/-                            GE0/0/4             dynamic
+f875-888b-f04b 3272/-                            GE0/0/4             dynamic
+203d-b26f-e919 3275/-                            GE0/0/4             dynamic
+48d5-39f3-16a6 3275/-                            GE0/0/4             dynamic
+e02f-6d7c-4444 3275/-                            GE0/0/4             dynamic
+48d5-39f3-16aa 3279/-                            GE0/0/4             dynamic
+e8ed-f3f8-8f19 3279/-                            GE0/0/4             dynamic
+
+-------------------------------------------------------------------------------
+Total items displayed = 163
+
+# display arp all
+
+IP ADDRESS      MAC ADDRESS     EXPIRE(M) TYPE INTERFACE      VPN-INSTANCE
+                                          VLAN
+------------------------------------------------------------------------------
+10.31.69.203    c81f-be0d-59f5            I -  Vlanif3169
+10.31.69.1      48d5-39f3-16a5  15        D-0  GE0/0/4
+                                          3169
+------------------------------------------------------------------------------
+Total:2         Dynamic:1       Static:0    Interface:1
+
+# display arp snooping all
+
+                                        ^
+Error:Too many parameters found at '^' position.
+
+# display vrrp brief
+
+Info: No VRRP backup group is configured with a virtual IPv4 address.
+
+# display vrrp verbose
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ip interface brief
+
+*down: administratively down
+(l): loopback
+(s): spoofing
+
+The number of interface that is UP in Physical is 2
+The number of interface that is DOWN in Physical is 1
+The number of interface that is UP in Protocol is 2
+The number of interface that is DOWN in Protocol is 1
+
+Interface                         IP Address/Mask      Physical   Protocol
+NULL0                             unassigned           up         up(s)
+Vlanif1                           unassigned           *down      down
+Vlanif3169                        10.31.69.203/24      up         up
+
+# display lldp neighbor
+
+Ethernet0/0/1 has 1 neighbors:
+
+
+Neighbor index : 1
+Chassis type   :macAddress
+Chassis ID     :1051-72f1-4e50
+Port ID type   :interfaceName
+Port ID        :GigabitEthernet0/0/0
+Port description    :** to ASR 01 COLO **
+System name         :AR-1
+System description  :Huawei AR2220 Huawei Versatile Routing Platform Software  VRP (R) software,Version 5.170 (AR2200 V200R009C00SPC500) Copyright (C) 2011-2018 Huawei Technologies Co., Ltd
+System capabilities supported   :bridge
+System capabilities enabled     :bridge
+Management address type  :ipV4
+Management address       : 172.17.100.200
+Expired time   :114s
+
+
+Port VLAN ID(PVID)  :0
+Protocol identity   :LACP
+
+Auto-negotiation supported    :Yes
+Auto-negotiation enabled      :Yes
+OperMau   :speed(100)/duplex(Full)
+
+Power port class         :PD
+PSE power supported      :No
+PSE power enabled        :No
+PSE pairs control ability:No
+Power pairs              :Unknown
+Port power classification:Unknown
+
+Link aggregation supported:Yes
+Link aggregation enabled :No
+Aggregation port ID      :0
+Maximum frame Size       :9202
+
+MED Device information
+Device class   :Network Connectivity
+
+HardwareRev       :AR01SRU2A VER.B
+FirmwareRev       :963
+SoftwareRev       :V200R009C00SPC500
+SerialNum         :NA
+Manufacturer name :HUAWEI TECH CO., LTD
+Model name        :NA
+Asset tracking identifier :NA
+
+Media policy type   :Unknown
+Unknown Policy      :Yes
+VLAN tagged         :No
+Media policy VlanID      :0
+Media policy L2 priority :0
+Media policy Dscp        :0
+
+Power Type               :Unknown
+PoE PSE power source     :Unknown
+Port PSE Priority        :Unknown
+Port Available power value:0.2(w)
+Ethernet0/0/2 has 0 neighbors
+
+Ethernet0/0/3 has 0 neighbors
+
+Ethernet0/0/4 has 0 neighbors
+
+Ethernet0/0/5 has 0 neighbors
+
+Ethernet0/0/6 has 0 neighbors
+
+Ethernet0/0/7 has 0 neighbors
+
+Ethernet0/0/8 has 0 neighbors
+
+Ethernet0/0/9 has 0 neighbors
+
+Ethernet0/0/10 has 0 neighbors
+
+Ethernet0/0/11 has 0 neighbors
+
+Ethernet0/0/12 has 0 neighbors
+
+Ethernet0/0/13 has 0 neighbors
+
+Ethernet0/0/14 has 0 neighbors
+
+Ethernet0/0/15 has 0 neighbors
+
+Ethernet0/0/16 has 0 neighbors
+
+Ethernet0/0/17 has 0 neighbors
+
+Ethernet0/0/18 has 0 neighbors
+
+Ethernet0/0/19 has 0 neighbors
+
+Ethernet0/0/20 has 0 neighbors
+
+Ethernet0/0/21 has 0 neighbors
+
+Ethernet0/0/22 has 0 neighbors
+
+Ethernet0/0/23 has 0 neighbors
+
+Ethernet0/0/24 has 0 neighbors
+
+GigabitEthernet0/0/1 has 0 neighbors
+
+GigabitEthernet0/0/2 has 0 neighbors
+
+GigabitEthernet0/0/3 has 0 neighbors
+
+GigabitEthernet0/0/4 has 1 neighbors:
+
+
+Neighbor index : 1
+Chassis type   :macAddress
+Chassis ID     :0001-0002-0003
+Port ID type   :interfaceName
+Port ID        :GigabitEthernet0/0/47
+Port description    :GigabitEthernet0/0/47
+System name         :demo01-615a.csr.jet.msk.su
+System description  :Huawei Switch S5720-52X-PWR-SI-AC
+Huawei Versatile Routing Platform Software
+VRP (R) software, Version 5.170 (S5720 V200R019C10SPC500)
+Copyright (C) 2000-2020 HUAWEI TECH Co., Ltd.
+System capabilities supported   :bridge router
+System capabilities enabled     :bridge router
+Management address type  :ipV4
+Management address       : 10.1.128.251
+Expired time   :105s
+
+
+Port VLAN ID(PVID)  :1
+VLAN name of VLAN  1: VLAN 0001
+Protocol identity   :
+
+Auto-negotiation supported    :Yes
+Auto-negotiation enabled      :Yes
+OperMau   :speed(1000)/duplex(Full)
+
+Power port class         :PSE
+PSE power supported      :Yes
+PSE power enabled        :Yes
+PSE pairs control ability:Yes
+Power pairs              :Signal
+Port power classification:Unknown
+
+Link aggregation supported:Yes
+Link aggregation enabled :No
+Aggregation port ID      :0
+Maximum frame Size       :9216
+
+MED Device information
+Device class   :Network Connectivity
+
+HardwareRev       :VER.B
+FirmwareRev       :0213.0000
+SoftwareRev       :Version 5.170 V200R019C10SPC500
+SerialNum         :NA
+Manufacturer name :HUAWEI TECH CO., LTD
+Model name        :NA
+Asset tracking identifier :NA
+
+Media policy type   :Unknown
+Unknown Policy      :Yes
+VLAN tagged         :No
+Media policy VlanID      :0
+Media policy L2 priority :0
+Media policy Dscp        :0
+
+Power Type               :PSE
+PoE PSE power source     :PSE
+Port PSE Priority        :Low
+Port Available power value:0.2(w)
+
+# display lldp neighbor brief
+
+Local Intf   Neighbor Dev             Neighbor Intf             Exptime
+Eth0/0/1     AR-1                     GE0/0/0                   113
+GE0/0/4      demo01-615a.csr.jet.m... GE0/0/47                  104
+
+# display dhcp snooping
+
+                                                  ^
+Error:Incomplete command found at '^' position.
+
+# display logbuffer
+
+Logging buffer configuration and contents : enabled
+Allowed max buffer size : 1024
+Actual buffer size : 512
+Channel number : 4 , Channel name : logbuffer
+Dropped messages : 0
+Overwritten messages : 0
+Current messages : 52
+
+Mar 23 2023 09:27:45-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[0]:Exit from configure mode.
+Mar  9 2023 07:13:40-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[1]:Exit from configure mode.
+Mar  9 2023 06:21:43-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[2]:Exit from configure mode.
+Mar  9 2023 06:02:50-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[3]:Exit from configure mode.
+Mar  9 2023 05:58:18-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[4]:Interface Ethernet0/0/1 has turned into UP state.
+Mar  9 2023 05:58:11-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[5]:Interface Ethernet0/0/1 has turned into DOWN state.
+Mar  9 2023 05:56:52-05:13 demo03-615a.csr.jet.msk.su %%01CFM/4/SAVE(l)[6]:The user chose Y when deciding whether to save the configuration to the device.
+Mar  9 2023 05:55:25-05:13 demo03-615a.csr.jet.msk.su %%01NTP/4/PEER_SELE(l)[7]:The peer selected by the system is 10.31.69.1.
+Mar  9 2023 05:55:25-05:13 demo03-615a.csr.jet.msk.su %%01NTP/4/STRATUM_CHANGE(l)[8]:System stratum changes from 16 to 4 after clock update.
+Mar  9 2023 05:55:25-05:13 demo03-615a.csr.jet.msk.su %%01NTP/4/LEAP_CHANGE(l)[9]:System leap changes from 3 to 0 after clock update.
+Apr 16 2008 20:29:56-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[10]:Interface Ethernet0/0/1 has turned into UP state.
+Apr 14 2008 19:09:03-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[11]:Exit from configure mode.
+Apr 14 2008 18:56:12-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[12]:Exit from configure mode.
+Jan  1 2008 00:14:42-05:13 demo03-615a.csr.jet.msk.su %%01HWCM/4/EXIT(l)[13]:Exit from configure mode.
+Jan  1 2008 00:02:22-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[14]:Interface Ethernet0/0/17 has turned into UP state.
+Jan  1 2008 00:02:22-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[15]:Interface Ethernet0/0/5 has turned into UP state.
+Jan  1 2008 00:02:21-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/LINKNO_STATE(l)[16]:The line protocol on the interface Vlanif3169 has entered the UP state.
+Jan  1 2008 00:02:21-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[17]:Interface Vlanif3169 has turned into UP state.
+Jan  1 2008 00:02:21-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[18]:Interface GigabitEthernet0/0/4 has turned into UP state.
+Jan  1 2008 00:02:19-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[19]:Interface Ethernet0/0/16 has turned into DOWN state.
+Jan  1 2008 00:02:19-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_STATE(l)[20]:Interface Ethernet0/0/2 has turned into DOWN state.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[21]:Interface GigabitEthernet0/0/4 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[22]:Interface GigabitEthernet0/0/3 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[23]:Interface GigabitEthernet0/0/2 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[24]:Interface GigabitEthernet0/0/1 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[25]:Interface Ethernet0/0/24 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[26]:Interface Ethernet0/0/23 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[27]:Interface Ethernet0/0/22 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[28]:Interface Ethernet0/0/21 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[29]:Interface Ethernet0/0/20 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[30]:Interface Ethernet0/0/19 has been available.
+Jan  1 2008 00:01:44-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[31]:Interface Ethernet0/0/18 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[32]:Interface Ethernet0/0/17 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[33]:Interface Ethernet0/0/16 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[34]:Interface Ethernet0/0/15 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[35]:Interface Ethernet0/0/14 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[36]:Interface Ethernet0/0/13 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[37]:Interface Ethernet0/0/12 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[38]:Interface Ethernet0/0/11 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[39]:Interface Ethernet0/0/10 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[40]:Interface Ethernet0/0/9 has been available.
+Jan  1 2008 00:01:43-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[41]:Interface Ethernet0/0/8 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[42]:Interface Ethernet0/0/7 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[43]:Interface Ethernet0/0/6 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[44]:Interface Ethernet0/0/5 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[45]:Interface Ethernet0/0/4 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[46]:Interface Ethernet0/0/3 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[47]:Interface Ethernet0/0/2 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/IF_ENABLE(l)[48]:Interface Ethernet0/0/1 has been available.
+Jan  1 2008 00:01:42-05:13 demo03-615a.csr.jet.msk.su %%01IFNET/4/BOARD_ENABLE(l)[49]:Board 0 has been available.
+Jan  1 2008 00:01:37-05:13 demo03-615a.csr.jet.msk.su %%01ALML/4/PUBLISH_EVENT(l)[50]:Publish event. (Slot=0, Event ID=BOARD_SERVICE_REGISTER).
+Jan  1 2008 00:00:52-05:13 demo03-615a.csr.jet.msk.su %%01SNMP/4/AR_PAF_FAILED(l)[51]:Failed to read PAF or License.
+
+# display vlan
+
+The total number of vlans is : 34
+--------------------------------------------------------------------------------
+U: Up;         D: Down;         TG: Tagged;         UT: Untagged;
+MP: Vlan-mapping;               ST: Vlan-stacking;
+#: ProtocolTransparent-vlan;    *: Management-vlan;
+--------------------------------------------------------------------------------
+
+VID  Type    Ports
+--------------------------------------------------------------------------------
+1    common  UT:Eth0/0/6(D)     Eth0/0/7(D)     Eth0/0/8(D)     Eth0/0/9(D)
+                Eth0/0/10(D)    Eth0/0/12(D)    Eth0/0/13(D)    Eth0/0/23(D)
+                Eth0/0/24(D)    GE0/0/1(D)      GE0/0/2(D)      GE0/0/3(D)
+                GE0/0/4(U)
+             TG:Eth0/0/1(U)
+54   common  UT:Eth0/0/11(D)
+             TG:Eth0/0/1(U)     Eth0/0/23(D)    Eth0/0/24(D)    GE0/0/4(U)
+100  common  UT:Eth0/0/14(D)    Eth0/0/16(D)    Eth0/0/19(D)    Eth0/0/22(D)
+             TG:Eth0/0/24(D)    GE0/0/4(U)
+101  common  UT:Eth0/0/15(D)
+             TG:Eth0/0/23(D)    Eth0/0/24(D)    GE0/0/4(U)
+128  common  TG:Eth0/0/24(D)    GE0/0/4(U)
+200  common  UT:Eth0/0/20(D)    Eth0/0/21(D)
+             TG:Eth0/0/24(D)    GE0/0/4(U)
+666  common  TG:Eth0/0/24(D)    GE0/0/4(U)
+843  common  TG:Eth0/0/24(D)    GE0/0/4(U)
+999  common  TG:Eth0/0/24(D)    GE0/0/4(U)
+1094 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2001 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2002 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2003 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2004 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2005 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2006 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2007 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2008 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2009 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+2010 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3019 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3168 common  UT:Eth0/0/4(D)     Eth0/0/5(U)     Eth0/0/17(U)
+             TG:Eth0/0/24(D)    GE0/0/4(U)
+3169 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3171 common  UT:Eth0/0/1(U)     Eth0/0/2(D)     Eth0/0/18(D)
+             TG:Eth0/0/24(D)    GE0/0/4(U)
+3172 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3173 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3174 common  UT:Eth0/0/3(D)
+             TG:Eth0/0/23(D)    Eth0/0/24(D)    GE0/0/4(U)
+3177 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3271 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3272 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3273 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3274 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3275 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+3279 common  TG:Eth0/0/24(D)    GE0/0/4(U)
+
+VID  Status  Property      MAC-LRN Statistics Description
+--------------------------------------------------------------------------------
+1    enable  default       enable  disable    VLAN 0001
+54   enable  default       enable  disable    DMZ
+100  enable  default       enable  disable    VOEK L2TP
+101  enable  default       enable  disable    VLAN 0101
+128  enable  default       enable  disable    Service_Comm
+200  enable  default       enable  disable    VOEK L2TP
+666  enable  default       enable  disable    BlackHole
+843  enable  default       enable  disable    Internal_Comm
+999  enable  default       enable  disable    r642-Local-Staging
+1094 enable  default       enable  disable    North_Bond
+2001 enable  default       enable  disable    -=TanderSWAP=-
+2002 enable  default       enable  disable    -=TanderSWAP=-
+2003 enable  default       enable  disable    -=TanderSWAP=-
+2004 enable  default       enable  disable    -=TanderSWAP=-
+2005 enable  default       enable  disable    -=TanderSWAP=-
+2006 enable  default       enable  disable    -=TanderSWAP=-
+2007 enable  default       enable  disable    -=TanderSWAP=-
+2008 enable  default       enable  disable    -=TanderSWAP=-
+2009 enable  default       enable  disable    -=TanderSWAP=-
+2010 enable  default       enable  disable    -=TanderSWAP=-
+3019 enable  default       enable  disable    VLAN 3019
+3168 enable  default       enable  disable    to VLAN_with_DHCP
+3169 enable  default       enable  disable    VLAN_MGMT
+3171 enable  default       enable  disable    VLAN 3171
+3172 enable  default       enable  disable    VLAN 3172
+3173 enable  default       enable  disable    VLAN 3173
+3174 enable  default       enable  disable    VLAN 3174
+3177 enable  default       enable  disable    VLAN 3177
+3271 enable  default       enable  disable    VLAN 3271
+3272 enable  default       enable  disable    VLAN 3272
+3273 enable  default       enable  disable    VLAN 3273
+3274 enable  default       enable  disable    VLAN 3274
+3275 enable  default       enable  disable    VLAN 3275
+3279 enable  default       enable  disable    Vl3279-InfraMGMT
+
+# display vlan summary
+
+static vlan:
+Total 34 static vlan.
+  1 54 100 to 101 128 200 666 843 999
+  1094 2001 to 2010 3019 3168 to 3169
+  3171 to 3174 3177 3271 to 3275 3279
+
+dynamic vlan:
+Total 0 dynamic vlan.
+
+reserved vlan:
+Total 0 reserved vlan.
+
+# display ip routing-table
+
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+	Destinations : 5	Routes : 5
+
+Destination/Mask    Proto  Pre  Cost       Flags NextHop         Interface
+
+        0.0.0.0/0   Static 60   0           RD   10.31.69.1      Vlanif3169
+     10.31.69.0/24  Direct 0    0            D   10.31.69.203    Vlanif3169
+   10.31.69.203/32  Direct 0    0            D   127.0.0.1       InLoopBack0
+      127.0.0.0/8   Direct 0    0            D   127.0.0.1       InLoopBack0
+      127.0.0.1/32  Direct 0    0            D   127.0.0.1       InLoopBack0
+
+# display ip routing-table all-routes
+
+                                                     ^
+Error: Wrong parameter found at '^' position.
+
+# display ip routing-table all-vpn-instance
+
+                                                                      ^
+Error:Incomplete command found at '^' position.
+
+# display ip routing-table all-vpn-instance statistics
+
+Summary Prefixes : 0
+Proto     total      active      added        deleted      freed
+          routes     routes      routes       routes       routes
+DIRECT    0          0           0            0            0
+STATIC    0          0           0            0            0
+RIP       0          0           0            0            0
+OSPF      0          0           0            0            0
+IS-IS     0          0           0            0            0
+BGP       0          0           0            0            0
+Total     0          0           0            0            0
+
+# display ospf brief
+
+Summary Prefixes : 0
+Proto     total      active      added        deleted      freed
+          routes     routes      routes       routes       routes
+DIRECT    0          0           0            0            0
+STATIC    0          0           0            0            0
+RIP       0          0           0            0            0
+OSPF      0          0           0            0            0
+IS-IS     0          0           0            0            0
+BGP       0          0           0            0            0
+Total     0          0           0            0            0
+
+# display ospf global-statistics brief
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ospf peer
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ospf peer brief
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ospf interface all
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ospf asbr-summary
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ospf nexthop
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display ospf routing
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display bgp peer verbose
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display bgp group
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display bgp network
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display bgp routing-table
+
+                                         ^
+Error: Wrong parameter found at '^' position.
+
+# display bgp routing-table verbose
+
+                                                      ^
+Error: Wrong parameter found at '^' position.
+
+# display bgp vpnv4 all brief
+
+                                              ^
+Error: Unrecognized command found at '^' position.
+
+# display bgp vpnv4 all routing-table
+
+                                              ^
+Error: Unrecognized command found at '^' position.
+
+# display bgp vpnv4 all peer
+
+                                              ^
+Error: Unrecognized command found at '^' position.
+
+# display bgp vpnv4 all paths
+
+                                              ^
+Error: Unrecognized command found at '^' position.
+
+# display ntp-service status
+
+ clock status: synchronized
+ clock stratum: 4
+ reference clock ID: 10.31.69.1
+ nominal frequency: 60.0002 Hz
+ actual frequency: 60.0003 Hz
+ clock precision: 2^17
+ clock offset: 6.1734 ms
+ root delay: 46.52 ms
+ root dispersion: 99.87 ms
+ peer dispersion: 63.46 ms
+ reference time: 09:23:41.134 UTC Mar 24 2023(E7C7EA9D.2286B591)
+
+# display ntp-service trace
+
+ server 127.0.0.1 ,stratum 4, offset 0.006361, synch distance 0.12312
+ server 10.31.69.1 ,stratum 3, offset 0.004955, synch distance 0.06451
+ server 193.203.100.134 ,stratum 2, offset 0.012703, synch distance 0.02950
+ server 91.209.94.10 ,stratum 1, offset 0.014085, synch distance 0.00002
+ refid 71.80.83.0
+
+# display cpu-usage
+
+CPU Usage Stat. Cycle: 60 (Second)
+CPU Usage            : 10% Max: 93%
+CPU Usage Stat. Time : 2023-03-24  04:18:35
+CPU utilization for five seconds: 10%: one minute: 8%: five minutes: 7%.
+
+TaskName             CPU  Runtime(CPU Tick High/Tick Low)  Task Explanation
+BOX                   0%         0/  5169ba       BOX Output
+_TIL                  0%         0/       0       Infinite loop event task
+_EXC                  0%         0/       0       Exception Agent Task
+VIDL                 90%         1/ac149f7e       DOPRA IDLE
+TICK                  0%         0/ 1e3b6e3
+bcmRX                 0%         0/  f90aa5       bcmRX
+STND                  0%         0/  12de12       STNDStandby task
+LOAD                  0%         0/   2efd7       LOAD Load Software
+FSP                   0%         0/   f71f8       FSP  Stacking
+DEV                   0%         0/       0       DEV  Device Management
+FCAT                  0%         0/   2111c       FCAT Catch Packets for
+                                                  debugging
+DELM                  0%         0/    c055       DELMAC FOR STP
+FTS                   0%         0/ 10bd7be       FTS
+RTMR                  0%         0/  60ba74       RTMR
+IPCQ                  0%         0/  20aebd       IPCQIPC task for single queue
+IPCR                  0%         0/       0       IPCR Receive packets of IPC
+VP                    0%         0/    10ec       VP  Virtual path task
+VPRE                  0%         0/       0       VPRE Receive packets of VP
+RPCQ                  0%         0/   87093       RPCQRemote procedure call
+XMON                  0%         0/       0       XMONVxworks system monitor
+VFSD                  0%         0/       0       VFSDVFS flash task for delete
+                                                  file block
+VFS                   0%         0/       0       VFS Virtual file system
+VMON                  0%         0/       0       VMONSystem monitor
+HACK                  0%         0/       0       HACKtask for HA ACK
+PNGI                  0%         0/    d8b8       PNGI
+WT1                   0%         0/  8e3ca3       WT1
+BFDS                  0%         0/   266b3       BFDS
+1AGAGT                0%         0/       0       1AGAGT
+tExcTask              0%         0/    1cb4       tS00
+tLogTask              0%         0/       0       tS01
+root                  0%         0/       0       tS02
+bcmDPC                0%         0/       0       tS08
+bcmCNTR.0             0%         0/ 15925a8       tS09
+bcmTX                 0%         0/   7bf51       tS0a
+soft_learn            0%         0/  73842f       tS0b
+bcmL2X.0              0%         0/ 31cca77       tS0c
+frag_add              0%         0/ 1a653da       tS0d
+frag_del              0%         0/       0       tS0e
+linkscan              0%         0/ 2ef0ca9       tS0f
+INFO                  0%         0/   38ab3       INFOInformation center
+SAPP                  0%         0/   29de6       SAPP
+NQAC                  0%         0/       0       NQAC
+NQAS                  0%         0/       0       NQAS
+ALM                   0%         0/       0       ALM  Alarm
+SRM                   0%         0/   935d5       SRM  System Resource Manage
+VT0                   0%         0/ 1d537cc       VT0 Line user's task
+FIB6                  0%         0/       0       FIB6IPv6 FIB
+BFD                   0%         0/  3465bd       BFD Bidirection Forwarding
+                                                  Detect
+SNPG                  0%         0/  4352a3       SNPG Multicast Snooping
+OAM1                  0%         0/       0       OAM1 EOAM Adapter
+EOAM                  0%         0/   2820d       EOAMEthernet OAM 802.1ag
+1731                  0%         0/   347e0       1731Ethernet OAM Y1731
+MCSW                  0%         0/       0       MCSW Mulitcast Switch Adapter
+L3M4                  0%         0/       0       L3M4 MPU Manage IPv4 unicast
+                                                  FDB
+L3I4                  0%         0/       0       L3I4 LPU Manage IPv4 unicast
+                                                  FDB
+NDMB                  0%         0/       0       NDMB MPU Manage IPv6 unicast
+                                                  FDB
+NDIO                  0%         0/       0       NDIO LPU Manage IPv6 unicast
+                                                  FDB
+L3MB                  0%         0/       0       L3MB MPU Process urpf, vrrp
+                                                  etc.
+L3IO                  0%         0/       0       L3IO LPU Process urpf, vrrp
+                                                  etc.
+PNGM                  0%         0/       0       PNGM MPU Process icmp reply
+                                                  fast
+FECD                  0%         0/   3d2eb       FECD Mod Manage Task
+PPI                   0%         0/  47acc6       PPI Product Process Interface
+IFPD                  1%         0/ 5e6b38c       IFPD Ifnet Product Adapt
+STFW                  0%         0/       0       STFW Super task forward
+QOSA                  0%         0/  4b2855       QOSA Quality of Service Adp
+SMLK                  0%         0/  1c168d       SMLK Smart Link Protocol
+CDM                   0%         0/   59948       CDM
+SOCK                  0%         0/  4b1088       SOCKPacket schedule and
+                                                  process
+FIB                   0%         0/       0       FIB Forward Information Base
+MFIB                  0%         0/    b209       MFIBMulticast forward info
+IFNT                  0%         0/       0       IFNTIfnet task
+WT2                   0%         0/  99f906       WT2
+VTYD                  1%         0/ 52a6624       VTYDVirtual terminal
+RSA                   0%         0/       0       RSA RSA public-key algorithms
+AGNT                  0%         0/  41f56e       AGNTSNMP agent task
+TRAP                  0%         0/  8fa5b2       TRAPSNMP trap task
+NTPT                  0%         0/ 38c369e       NTPTNetwork time protocol
+                                                  task
+CFM                   0%         0/       0       CFM Configuration file
+                                                  management
+HS2M                  0%         0/       0       HS2MHigh available task
+WEBS                  0%         0/ 16ac9ca       WEBSERVER
+ACLA                  0%         0/   15bae       ACLA Access Control List Adp
+SECE                  0%         0/ 131d94e       SECE Security
+DEFD                  0%         0/    3ca3       DEFD CPU Defend
+STRA                  0%         0/    2ec7       STRA Source Track
+MFF                   0%         0/   35805       MFF MAC-Forced Forwarding
+LDT                   0%         0/  8a4d17       LDT  Loopback Detect
+BFDA                  0%         0/     f6f       BFDA BFD Adapter
+MSYN                  0%         0/  1bcafb       MSYN Mac Synchronization
+UCM                   0%         0/   21339       UCM  User Control Management
+AM                    0%         0/   439a7       AM   Address Management
+DHCP                  0%         0/   38fce       DHCP Dynamic Host Config
+                                                  Protocol
+AAA                   0%         0/   18446       AAA  Authen Account Authorize
+TM                    0%         0/       0       TM   Transmission Management
+RDS                   0%         0/       0       RDS  Radius
+TACH                  0%         0/  2464b0       TACHWTACACS
+WEB                   0%         0/    2557       WEB  Web
+PTAL                  0%         0/       0       PTAL Portal
+EAP                   0%         0/   19d00       EAP  Extensible Authen
+                                                  protocol
+SAM                   0%         0/     b8d       SAM  Service Agent Module
+POE+                  0%         0/       0       POE+ PPP Over Ethernet Plus
+POE                   0%         0/   2909d       POE  Power Over Ethernet
+SMAG                  0%         0/       0       SMAG Smart Link Agent
+GVRP                  0%         0/       0       GVRP Protocol
+DLDP                  0%         0/   2b418       DLDP Protocol
+LLDP                  0%         0/   d5940       LLDP Protocol
+BPDU                  0%         0/    5c82       BPDU Adapter
+EFMT                  0%         0/       0       EFMTEST 802.3AH Test
+ADPT                  0%         0/       0       ADPT Adapter
+WT3                   0%         0/  7b7d3a       WT3
+U 34                  0%         0/    2290       U 34 user command process
+                                                  task
+ARPA                  0%         0/       0       ARPA ARP Adapter
+ALS                   0%         0/  847201       ALS  Loss of Signal
+ROUT                  0%         0/ 1842ed5       ROUTRoute task
+UTSK                  0%         0/       0       UTSK
+APP                   0%         0/       0       APP
+IP                    0%         0/  48f591       IP
+LINK                  0%         0/  111277       LINK
+STP                   0%         0/  ad704b       STP
+VRPT                  0%         0/   4bad2       VRPT
+HOTT                  0%         0/       0       HOTT
+TNQA                  0%         0/   3ad32       TNQAC
+TTNQ                  0%         0/       0       TTNQAS
+TARP                  0%         0/       0       TARPING
+L2                    0%         0/  29c5be       L2
+VRRP                  0%         0/ 1c394f3       VRRP
+L2_P                  0%         0/  379de7       L2_PR
+ARP                   0%         0/       0       ARP
+LACP                  0%         0/   8a2ce       LACPAGENT
+SRMT                  0%         0/ 24a06ae       SRMT System Resource Manage
+                                                  Timer
+SRMI                  0%         0/       0       SRMI External Interrupt
+RMON                  0%         0/   31dd8       RMONRemote monitoring
+VT                    0%         0/       0       VT   Virtual Transfer
+OS                    8%         0/260d35ff       Operation System
+
+# display memory-usage
+
+ Memory utilization statistics at 2023-03-24 04:18:36 500 ms
+ System Total Memory Is: 75312648 bytes
+ Total Memory Used Is: 53129856 bytes
+ Memory Using Percentage Is: 70%
+
+# display dot1x
+
+  Global 802.1x is Disabled
+
+# display dot1x statistics
+
+  Global 802.1x is Disabled
+
+# display dhcp snooping
+
+                                                  ^
+Error:Incomplete command found at '^' position.
+
+# display dhcp server configuration
+
+                                                ^
+Error: Unrecognized command found at '^' position.
+
+# display dhcp relay configuration
+
+                                               ^
+Error: Unrecognized command found at '^' position.
+
+# display dhcp relay all
+
+                                               ^
+Error: Unrecognized command found at '^' position.
+
+# display rip
+
+                                               ^
+Error: Unrecognized command found at '^' position.
+
+# display ripng
+
+                                               ^
+Error: Unrecognized command found at '^' position.
+
+# display ip vpn-instance
+
+                                               ^
+Error: Unrecognized command found at '^' position.
+
+# display ip vpn-instance interface
+
+Info: The IPv4 VPN instance does not exist.
+
+# display mpls ldp all
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display mpls ldp interface all
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display mpls ldp peer all
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display mpls ldp adjacency all
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display mpls interface verbose
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display mpls lsp verbose
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display m-lag troubleshooting current
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display port-security
+
+                                    ^
+Error: Unrecognized command found at '^' position.
+
+# display radius current-status
+                                    ^
+Error:Ambiguous command found at '^' position.
