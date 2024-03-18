@@ -1,0 +1,4711 @@
+
+# show running-config all
+
+Building configuration...
+
+Current configuration with default configurations exposed : 41093 bytes
+!
+! Last configuration change at 14:52:39 MSK Fri Jan 27 2023 by jet
+!
+version 15.0
+parser cache
+parser config partition
+parser command serializer
+parser maximum utilization 100
+parser maximum latency 40
+downward-compatible-config 15.0
+no service log backtrace
+no service config
+no service exec-callback
+no service nagle
+service slave-log
+no service slave-coredump
+no service pad to-xot
+no service pad from-xot
+no service pad cmns
+no service pad
+no service telnet-zeroidle
+no service tcp-keepalives-in
+no service tcp-keepalives-out
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+no service exec-wait
+no service linenumber
+no service internal
+no service scripting
+no service compress-config
+service prompt config
+no service old-slip-prompts
+no service pt-vty-logging
+no service disable-ip-fast-frag
+no service sequence-numbers
+service counters max age 0
+service dhcp
+!
+hostname demo02-615a.csr.jet.msk.su
+!
+boot-start-marker
+boot-end-marker
+!
+shell processing
+no logging discriminator
+logging exception 4096
+no logging count
+no logging message-counter log
+no logging message-counter debug
+logging message-counter syslog
+no logging snmp-authfail
+no logging userinfo
+logging buginf
+logging queue-limit 100
+logging queue-limit esm 0
+logging queue-limit trap 100
+logging buffered 4096 debugging
+logging reload message-limit 1000 notifications
+no logging persistent
+logging console guaranteed
+logging console debugging
+logging monitor debugging
+logging cns-events informational
+logging on
+enable secret 5 XXX
+!
+username XXX priviledge 15 password XXX
+spd extended-headroom 10
+spd headroom 100
+spd enable
+no aaa new-model
+ipc holdq threshold upper 0
+ipc holdq threshold lower 0
+ipc header-cache permanent 1000 100
+ipc buffers max-free 8
+ipc buffers min-free 1
+ipc buffers permanent 2
+process cpu extended history 12
+process cpu autoprofile hog
+clock timezone MSK 3 0
+clock save interval 0
+clock initialize nvram
+psp arp pps 0
+psp dhcp pps 0
+psp igmp pps 0
+system mtu routing 1500
+system cpu-hol enable
+vtp mode off
+authentication mac-move deny
+authentication logging verbose
+authentication critical recovery delay 100
+nmsp notification interval attachment 30
+nmsp notification interval location 30
+ip subnet-zero
+ip source-route
+ip arp poll queue 1000
+ip arp poll rate 1000
+no ip arp proxy disable
+ip arp gleaning tftp
+ip arp gleaning udp
+ip arp incomplete retry 20
+ip arp incomplete entries 5000
+ip arp incomplete enable
+ip sticky-arp
+ip gratuitous-arps non-local
+ip icmp redirect subnet
+ip spd queue max-threshold 74
+ip spd queue min-threshold 73
+ip dhcp relay information policy replace
+ip dhcp relay information check
+ip dhcp relay override giaddr link-selection
+ip dhcp use class
+ip dhcp use vrf connected
+ip dhcp binding cleanup interval 120
+ip dhcp conflict logging
+ip dhcp ping packets 2
+ip dhcp ping timeout 500
+!
+!
+no ip dhcp snooping information option allow-untrusted
+ip dhcp snooping information option
+no ip dhcp snooping database
+ip dhcp snooping database write-delay 300
+ip dhcp snooping database timeout 300
+ip dhcp snooping verify mac-address
+ip dhcp snooping verify no-relay-agent-address
+no ip domain-lookup
+ip domain-name demo02-615a
+ ip dhcp-client broadcast-flag
+ip dhcp-client default-router distance 254
+ip device tracking probe count 3
+ip device tracking probe interval 30
+ip device tracking probe use-svi
+ip device tracking probe delay 0
+no ip device tracking
+ip accounting-threshold 512
+ip igmp snooping report-suppression
+no ip igmp snooping tcn query solicit
+ip igmp snooping tcn flood query count 2
+ip igmp snooping robustness-variable 2
+ip igmp snooping last-member-query-count 2
+ip igmp snooping last-member-query-interval 1000
+ip igmp snooping querier version 2
+ip igmp snooping querier query-interval 60
+ip igmp snooping querier max-response-time 10
+ip igmp snooping querier timer expiry 120
+ip igmp snooping querier tcn query count 2
+ip igmp snooping querier tcn query interval 10
+no ip igmp snooping querier
+ip igmp snooping
+ntp max-associations 100
+ cluster run
+!
+vmps reconfirm 60
+vmps retry 3
+no mab request format attribute 1
+no mab request format attribute 2
+no mab request format attribute 32
+
+mls qos rewrite ip dscp
+device-sensor notify new-tlvs
+setup express
+scripting tcl low-memory 3808565
+!
+crypto pki trustpoint TP-self-signed-4093153024
+ enrollment retry count 10
+ enrollment retry period 1
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4093153024
+ revocation-check none
+ rsakeypair TP-self-signed-4093153024
+ hash sha1
+!
+crypto pki crl cache size 64
+!
+crypto pki certificate chain TP-self-signed-4093153024
+ certificate self-signed 01
+  30820251 308201BA A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 34303933 31353330 3234301E 170D3933 30333031 30303030
+  35375A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 30393331
+  35333032 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100B5BB 9E92BB06 2FEFBA28 937F5450 4FDC2BEE FCE2E108 E0D14D0C C791C701
+  BB776F66 20184535 F2CBB2A8 699394AB 44B09340 98B28DE8 1194A434 2FC596E1
+  EFBD580B 7F435875 70EB1B08 51AA2CC5 8F2C729C 81CC660A 0798D45E B90DADFE
+  D1223183 71A5B234 3768E3E4 E7F3F067 48A23720 B1032FFB A4D5B8BF 59DDF582
+  E69F0203 010001A3 79307730 0F060355 1D130101 FF040530 030101FF 30240603
+  551D1104 1D301B82 194D474D 5430322E 696E6672 612E6373 722E4D47 4D54322D
+  7377301F 0603551D 23041830 16801497 35BCA1C5 6EF1B773 A28CF72C BDD185A9
+  E22F5C30 1D060355 1D0E0416 04149735 BCA1C56E F1B773A2 8CF72CBD D185A9E2
+  2F5C300D 06092A86 4886F70D 01010405 00038181 00964078 6E17541D 80799C5E
+  69BAC43E E3D0AB40 D4EB6485 344702D5 0248970A 19BDBA12 8F3003D7 7610123E
+  340BC612 9DE11199 0B7CC996 7ACF0E9E 2FD28A23 97177389 E6650336 4CE194D5
+  38039AEC EBA909AD 7A758E70 FFF8D4A0 B8099F07 EE6A5F50 57507419 7B2CAEB4
+  D02905F6 6CFD946B DE364357 5B0B194C E8C1A61E 98
+  	quit
+dot1x system-auth-control
+dot1x logging verbose
+dot1x auth-fail eapol
+no dot1x supplicant force-multicast
+no dot1x supplicant controlled
+no dot1x critical eapol
+lacp system-priority 32768
+location prefer static weight 0
+location prefer lldp-med weight 2
+location prefer cdp weight 1
+!
+!
+!
+!
+!
+port-channel load-balance src-mac
+power inline consumption default 15400
+memory check-interval 60
+memory statistics history table 24
+memory validate-checksum 60
+memory lite
+memory chunk siblings threshold 10000
+file verify auto
+!
+spanning-tree mode rapid-pvst
+no spanning-tree dispute
+spanning-tree transmit hold-count 6
+spanning-tree optimize bpdu transmission
+spanning-tree queue maxsize 12288
+spanning-tree etherchannel guard misconfig
+spanning-tree extend system-id
+spanning-tree uplinkfast max-update-rate 202
+spanning-tree pathcost method short
+!
+process-max-time 50
+vlan internal allocation policy ascending
+!
+vlan 34
+ name NTP_for_iMaster
+!
+vlan 128
+ name iMaster-Int-mgmt
+!
+vlan 843
+ name iMaster-Int-Comm
+!
+vlan 1094
+ name iMaster-Ext-mgmt
+!
+vlan 2001
+ name -=TanderSWAP=-
+!
+vlan 2002
+ name -=TanderSWAP-2002=-
+!
+vlan 2003
+ name -=TanderSWAP-2003=-
+!
+vlan 2004
+ name -=TanderSWAP-2004=-
+!
+vlan 2005
+ name -=TanderSWAP-2005=-
+!
+vlan 2006
+ name -=TanderSWAP-2006=-
+!
+vlan 2007
+ name -=TanderSWAP-2007=-
+!
+vlan 2008
+ name -=TanderSWAP-2008=-
+!
+vlan 2009
+ name -=TanderSWAP-2009=-
+!
+vlan 2010
+ name -=TanderSWAP-2010=-
+!
+vlan 3168
+ name VLAN_wtih_DHCP
+!
+vlan 3169
+ name VLAN_MGMT3169
+!
+vlan 3170-3174,3177,3179,3279
+lldp run
+!
+no ip finger
+no ip tcp selective-ack
+no ip tcp timestamp
+ip tcp delayed-ack
+ip tcp chunk-size 0
+ip tcp mss 0
+ip tcp window-size 4128
+ip tcp queuemax 20
+ip tcp synwait-time 30
+no ip tcp path-mtu-discovery
+ip tcp async-mobility server
+ip telnet tos C0
+ip telnet quiet
+ip telnet hidden hostnames
+ip telnet hidden addresses
+no ip telnet comport enable
+ip telnet comport flow level 16
+ip telnet comport receive window 4128
+ip telnet comport disconnect delay 0
+ip ftp passive
+no ip tftp claim-netascii
+ip ssh time-out 120
+ip ssh authentication-retries 3
+ip ssh break-string ~break
+ip ssh version 2
+ip ssh dh min size 1024
+no ip ssh rekey time
+no ip ssh rekey volume
+!
+buffers element permanent 500
+buffers element minimum 100
+buffers small permanent 25
+buffers small max-free 60
+buffers small min-free 20
+buffers small initial 0
+buffers middle permanent 15
+buffers middle max-free 30
+buffers middle min-free 10
+buffers middle initial 0
+buffers big permanent 50
+buffers big max-free 150
+buffers big min-free 5
+buffers big initial 0
+buffers verybig permanent 10
+buffers verybig max-free 100
+buffers verybig min-free 0
+buffers verybig initial 0
+buffers large permanent 0
+buffers large max-free 5
+buffers large min-free 0
+buffers large initial 0
+buffers huge permanent 0
+buffers huge max-free 2
+buffers huge min-free 0
+buffers huge size 18024
+buffers huge initial 0
+no buffers tune automatic
+!
+!
+macro auto monitor
+!
+interface FastEthernet0/1
+ switchport
+ switchport access vlan 3172
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/2
+ switchport
+ switchport access vlan 3172
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/3
+ switchport
+ switchport access vlan 3171
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/4
+ switchport
+ switchport access vlan 3172
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/5
+ switchport
+ switchport access vlan 3171
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/6
+ switchport
+ switchport access vlan 3172
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/7
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/8
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree portfast disable
+ spanning-tree portfast trunk
+ spanning-tree portfast
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/9
+ switchport
+ switchport access vlan 3171
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ no vtp
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/10
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/11
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/12
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/13
+ switchport
+ switchport access vlan 128
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/14
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/15
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ speed 10
+ duplex full
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/16
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/17
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/18
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/19
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/20
+ switchport
+ switchport access vlan 3173
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/21
+ switchport
+ switchport access vlan 3168
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/22
+ switchport
+ switchport access vlan 3168
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/23
+ switchport
+ switchport access vlan 3172
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface FastEthernet0/24
+ switchport
+ switchport access vlan 3171
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode access
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security maximum 65535 vlan
+ switchport port-security maximum 65535 vlan access
+ switchport port-security maximum 65535 vlan voice
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet0/1
+ switchport
+ switchport access vlan 1
+ switchport trunk allowed vlan 128,843,1094,2001-2010,3168-3177,3279
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface GigabitEthernet0/2
+ switchport
+ switchport access vlan 1
+ switchport private-vlan trunk encapsulation dot1q
+ switchport private-vlan trunk native vlan tag
+ switchport mode trunk
+ no switchport nonegotiate
+ no switchport protected
+ no switchport block multicast
+ no switchport block unicast
+ switchport port-security maximum 1
+ switchport port-security violation shutdown
+ no switchport port-security mac-address sticky
+ switchport port-security aging time 0
+ switchport port-security aging type absolute
+ no switchport port-security aging static
+ no switchport port-security
+ load-interval 300
+ no mab
+ mls qos cos 0
+ snmp trap mac-notification change added
+ snmp trap mac-notification change removed
+ snmp trap link-status
+ cdp tlv location
+ cdp tlv server-location
+ cdp tlv app
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+ ip igmp snooping tcn flood
+!
+interface Vlan1
+ no ip address
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ shutdown
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface Vlan34
+ ip address 10.1.1.2 255.255.255.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ shutdown
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface Vlan128
+ ip address 10.1.128.251 255.255.255.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ shutdown
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface Vlan843
+ ip address 172.31.128.1 255.255.255.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ shutdown
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface Vlan1094
+ ip address 10.190.94.251 255.255.255.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ shutdown
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface Vlan3169
+ ip address 10.31.69.202 255.255.255.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+interface Vlan3279
+ ip address 10.31.179.11 255.255.255.0
+ ip redirects
+ ip unreachables
+ ip proxy-arp
+ ip mtu 1500
+ no ip route-cache
+ load-interval 300
+ snmp trap link-status
+ arp arpa
+ arp timeout 14400
+ spanning-tree port-priority 128
+ spanning-tree cost 0
+ hold-queue 75 in
+ hold-queue 0 out
+!
+ip default-gateway 10.31.179.1
+ip http server
+ip http port 80
+ip http authentication enable
+ip http secure-server
+ip http secure-port 443
+ip http secure-active-session-modules all
+ip http max-connections 16
+ip http timeout-policy idle 180 life 180 requests 25
+ip http active-session-modules all
+ip http client cache memory pool 100
+ip http client cache memory file 2
+ip http client cache ager interval 5
+ip http client connection timeout 10
+ip http client connection retry 1
+ip http client connection idle timeout 30
+ip http client response timeout 30
+ip http path flash:html
+logging esm config
+logging history size 1
+logging history warnings
+logging trap informational
+logging delimiter tcp
+no logging origin-id
+logging facility local7
+no logging source-interface
+logging server-arp
+cdp run
+cdp tlv location
+cdp tlv app
+snmp-server inform retries 3 timeout 15 pending 25
+snmp mib notification-log globalsize 500
+snmp mib notification-log globalageout 15
+tacacs-server cache expiry 24 enforce hours
+!
+vstack join-window mode auto
+vstack
+alias exec h help
+alias exec lo logout
+alias exec p ping
+alias exec r resume
+alias exec s show
+alias exec u undebug
+alias exec un undebug
+alias exec w where
+default-value exec-character-bits 7
+default-value special-character-bits 7
+default-value data-character-bits 8
+!
+line con 0
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ length 24
+ width 80
+ history size 20
+ monitor
+ databits 8
+ stopbits 2
+ start-character 17
+ stop-character 19
+ speed 9600
+line vty 0 4
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ login local
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ length 24
+ width 80
+ history size 20
+ monitor
+ transport input ssh
+ start-character 17
+ stop-character 19
+line vty 5 15
+ exec-timeout 10 0
+ timeout login response 30
+ privilege level 1
+ login
+ modem answer-timeout 15
+ modem dtr-delay 5
+ data-character-bits 8
+ exec-character-bits 7
+ special-character-bits 7
+ length 24
+ width 80
+ history size 20
+ monitor
+ start-character 17
+ stop-character 19
+!
+exception-slave core-file demo02-615a.csr.jet.msk.su-core
+exception-slave protocol tftp
+exception protocol tftp
+exception region-size 131072
+monitor event-trace stacktrace
+no monitor event-trace sequence-number
+monitor event-trace timestamps datetime msec
+scheduler max-task-time 2000
+scheduler process-watchdog normal
+ntp maxdistance 8
+ntp broadcastdelay 0
+ntp master 2
+ntp server 10.31.69.1
+ntp server 10.31.70.1
+cns id hostname
+cns id hostname event
+cns id hostname image
+cns image retry 60
+mac address-table notification change interval 1
+mac address-table notification change history-size 1
+mac address-table notification change
+wsma id hostname
+end
+
+# show version
+
+Cisco IOS Software, C2960 Software (C2960-LANLITEK9-M), Version 15.0(2)SE11, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Sat 19-Aug-17 09:34 by prod_rel_team
+
+ROM: Bootstrap program is C2960 boot loader
+BOOTLDR: C2960 Boot Loader (C2960-HBOOT-M) Version 12.2(53r)SEY3, RELEASE SOFTWARE (fc1)
+
+demo02-615a.csr.jet.msk.su uptime is 16 weeks, 3 days, 23 hours, 44 minutes
+System returned to ROM by power-on
+System restarted at 12:36:50 MSK Mon Nov 28 2022
+System image file is "flash:/c2960-lanlitek9-mz.150-2.SE11.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960-24TC-S (PowerPC405) processor (revision P0) with 65536K bytes of memory.
+Processor board ID FCQ1734Y3PE
+Last reset from power-on
+7 Virtual Ethernet interfaces
+24 FastEthernet interfaces
+2 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+64K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : E8:ED:F3:F8:8F:00
+Motherboard assembly number     : 73-12601-06
+Power supply part number        : 341-0097-03
+Motherboard serial number       : FCQ17340CE3
+Power supply serial number      : DCA172780BC
+Model revision number           : P0
+Motherboard revision number     : A0
+Model number                    : WS-C2960-24TC-S
+System serial number            : FCQ1734Y3PE
+Top Assembly Part Number        : 800-32798-02
+Top Assembly Revision Number    : A0
+Version ID                      : V08
+CLEI Code Number                : COMSH00ARE
+Hardware Board Revision Number  : 0x0A
+
+
+Switch Ports Model              SW Version            SW Image
+------ ----- -----              ----------            ----------
+*    1 26    WS-C2960-24TC-S    15.0(2)SE11           C2960-LANLITEK9-M
+
+
+Configuration register is 0xF
+
+# show inventory
+
+NAME: "1", DESCR: "WS-C2960-24TC-S"
+PID: WS-C2960-24TC-S   , VID: V08  , SN: FCQ1734Y3PE
+
+# show module
+
+                                  ^
+% Invalid input detected at '^' marker.
+
+# show interfaces status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        notconnect   3172         auto   auto 10/100BaseTX
+Fa0/2                        notconnect   3172         auto   auto 10/100BaseTX
+Fa0/3                        notconnect   3171         auto   auto 10/100BaseTX
+Fa0/4                        notconnect   3172         auto   auto 10/100BaseTX
+Fa0/5                        notconnect   3171         auto   auto 10/100BaseTX
+Fa0/6                        notconnect   3172         auto   auto 10/100BaseTX
+Fa0/7                        notconnect   3173         auto   auto 10/100BaseTX
+Fa0/8                        notconnect   3173         auto   auto 10/100BaseTX
+Fa0/9                        notconnect   3171         auto   auto 10/100BaseTX
+Fa0/10                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/11                       notconnect   1            auto   auto 10/100BaseTX
+Fa0/12                       notconnect   1            auto   auto 10/100BaseTX
+Fa0/13                       notconnect   128          auto   auto 10/100BaseTX
+Fa0/14                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/15                       notconnect   3173         full     10 10/100BaseTX
+Fa0/16                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/17                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/18                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/19                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/20                       notconnect   3173         auto   auto 10/100BaseTX
+Fa0/21                       notconnect   3168         auto   auto 10/100BaseTX
+Fa0/22                       notconnect   3168         auto   auto 10/100BaseTX
+Fa0/23                       connected    3172       a-full  a-100 10/100BaseTX
+Fa0/24                       connected    3171       a-full  a-100 10/100BaseTX
+Gi0/1                        connected    trunk      a-full a-1000 10/100/1000BaseTX
+Gi0/2                        notconnect   1            auto   auto Not Present
+
+# show interfaces description
+
+Interface                      Status         Protocol Description
+Vl1                            admin down     down
+Vl34                           admin down     down
+Vl128                          admin down     down
+Vl843                          admin down     down
+Vl1094                         admin down     down
+Vl3169                         up             up
+Vl3279                         up             up
+Fa0/1                          down           down
+Fa0/2                          down           down
+Fa0/3                          down           down
+Fa0/4                          down           down
+Fa0/5                          down           down
+Fa0/6                          down           down
+Fa0/7                          down           down
+Fa0/8                          down           down
+Fa0/9                          down           down
+Fa0/10                         down           down
+Fa0/11                         down           down
+Fa0/12                         down           down
+Fa0/13                         down           down
+Fa0/14                         down           down
+Fa0/15                         down           down
+Fa0/16                         down           down
+Fa0/17                         down           down
+Fa0/18                         down           down
+Fa0/19                         down           down
+Fa0/20                         down           down
+Fa0/21                         down           down
+Fa0/22                         down           down
+Fa0/23                         up             up
+Fa0/24                         up             up
+Gi0/1                          up             up
+Gi0/2                          down           down
+
+# show interfaces switchport
+
+Name: Fa0/1
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3172 (VLAN3172)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/2
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3172 (VLAN3172)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/3
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3171 (VLAN3171)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/4
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3172 (VLAN3172)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/5
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3171 (VLAN3171)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/6
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3172 (VLAN3172)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/7
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/8
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/9
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3171 (VLAN3171)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/10
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/11
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/12
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/13
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 128 (iMaster-Int-mgmt)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/14
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/15
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/16
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/17
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/18
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/19
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/20
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3173 (VLAN3173)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/21
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3168 (VLAN_wtih_DHCP)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/22
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: Off
+Access Mode VLAN: 3168 (VLAN_wtih_DHCP)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/23
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
+Access Mode VLAN: 3172 (VLAN3172)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Fa0/24
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: Off
+Access Mode VLAN: 3171 (VLAN3171)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Gi0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 128,843,1094,2001-2010,3168-3177,3279
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+Name: Gi0/2
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+
+# show interfaces trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi0/1       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/1       128,843,1094,2001-2010,3168-3177,3279
+
+Port        Vlans allowed and active in management domain
+Gi0/1       128,843,1094,2001-2010,3168-3174,3177,3279
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi0/1       128,843,1094,2001-2010,3168-3174,3177,3279
+
+# show mac address-table
+
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+ All    0100.0ccc.cccc    STATIC      CPU
+ All    0100.0ccc.cccd    STATIC      CPU
+ All    0180.c200.0000    STATIC      CPU
+ All    0180.c200.0001    STATIC      CPU
+ All    0180.c200.0002    STATIC      CPU
+ All    0180.c200.0003    STATIC      CPU
+ All    0180.c200.0004    STATIC      CPU
+ All    0180.c200.0005    STATIC      CPU
+ All    0180.c200.0006    STATIC      CPU
+ All    0180.c200.0007    STATIC      CPU
+ All    0180.c200.0008    STATIC      CPU
+ All    0180.c200.0009    STATIC      CPU
+ All    0180.c200.000a    STATIC      CPU
+ All    0180.c200.000b    STATIC      CPU
+ All    0180.c200.000c    STATIC      CPU
+ All    0180.c200.000d    STATIC      CPU
+ All    0180.c200.000e    STATIC      CPU
+ All    0180.c200.000f    STATIC      CPU
+ All    0180.c200.0010    STATIC      CPU
+ All    ffff.ffff.ffff    STATIC      CPU
+3168    0050.56b4.3cd0    DYNAMIC     Gi0/1
+3169    0001.0002.0005    DYNAMIC     Gi0/1
+3169    000c.29cc.9414    DYNAMIC     Gi0/1
+3169    0050.56a2.ca5f    DYNAMIC     Gi0/1
+3169    0050.56b4.1fde    DYNAMIC     Gi0/1
+3169    0050.56b4.4746    DYNAMIC     Gi0/1
+3169    0050.56b4.6420    DYNAMIC     Gi0/1
+3169    0050.56b4.a2d0    DYNAMIC     Gi0/1
+3169    0050.56b4.c3ad    DYNAMIC     Gi0/1
+3169    48d5.39f3.16a5    DYNAMIC     Gi0/1
+3169    9ce3.74ff.8470    DYNAMIC     Gi0/1
+3169    9ce3.74ff.84a0    DYNAMIC     Gi0/1
+3169    a0f4.7917.2993    DYNAMIC     Gi0/1
+3169    a0f4.7917.29e7    DYNAMIC     Gi0/1
+3169    a4be.2b83.b6cf    DYNAMIC     Gi0/1
+3169    a4be.2b83.b6ff    DYNAMIC     Gi0/1
+3169    b8ca.3a6a.d2cc    DYNAMIC     Gi0/1
+3169    b8ca.3a6a.d664    DYNAMIC     Gi0/1
+3169    c81f.be0d.59f5    DYNAMIC     Gi0/1
+3169    ccd7.3c9f.9480    DYNAMIC     Gi0/1
+3169    ccd7.3c9f.9485    DYNAMIC     Gi0/1
+3171    0050.5684.a05a    DYNAMIC     Gi0/1
+3171    0050.56b4.2c28    DYNAMIC     Gi0/1
+3171    0050.56b4.6367    DYNAMIC     Gi0/1
+3171    0050.56b4.ad54    DYNAMIC     Gi0/1
+3171    0050.56b4.ba81    DYNAMIC     Gi0/1
+3171    0060.e08d.15db    DYNAMIC     Fa0/24
+3171    48d5.39f3.16a7    DYNAMIC     Gi0/1
+3171    5ca4.8a60.d698    DYNAMIC     Gi0/1
+3171    fa16.3e03.672b    DYNAMIC     Gi0/1
+3171    fa16.3e07.0b4a    DYNAMIC     Gi0/1
+3171    fa16.3e45.b582    DYNAMIC     Gi0/1
+3171    fa16.3e80.8cfc    DYNAMIC     Gi0/1
+3171    fa16.3e98.6aca    DYNAMIC     Gi0/1
+3171    fa16.3ea3.c1cd    DYNAMIC     Gi0/1
+3171    fa16.3eb6.8a41    DYNAMIC     Gi0/1
+3172    000e.d70b.1561    DYNAMIC     Gi0/1
+3172    0050.56b4.6f0d    DYNAMIC     Gi0/1
+3172    0050.56b4.c313    DYNAMIC     Gi0/1
+3172    0060.e08d.1551    DYNAMIC     Fa0/23
+3172    08f1.ea78.fff2    DYNAMIC     Gi0/1
+3172    08f1.ea79.5116    DYNAMIC     Gi0/1
+3172    48d5.39f3.16a8    DYNAMIC     Gi0/1
+3172    5ca4.8a60.d698    DYNAMIC     Gi0/1
+3172    a0f4.7915.62b0    DYNAMIC     Gi0/1
+3172    a0f4.7947.e7f0    DYNAMIC     Gi0/1
+3172    a4be.2b15.6a70    DYNAMIC     Gi0/1
+3172    b47a.f154.619c    DYNAMIC     Gi0/1
+3172    e49d.730a.355a    DYNAMIC     Gi0/1
+3173    0050.5684.85b4    DYNAMIC     Gi0/1
+3173    0050.5684.b57b    DYNAMIC     Gi0/1
+3173    0050.5698.0b2a    DYNAMIC     Gi0/1
+3173    0050.56b4.5328    DYNAMIC     Gi0/1
+3173    0050.56b4.d18e    DYNAMIC     Gi0/1
+3173    48d5.39f3.16a9    DYNAMIC     Gi0/1
+3173    5ca4.8a60.d698    DYNAMIC     Gi0/1
+3174    000c.2910.2703    DYNAMIC     Gi0/1
+3174    000c.29b3.e7ca    DYNAMIC     Gi0/1
+3174    001f.ce61.cfbd    DYNAMIC     Gi0/1
+3174    001f.ce61.e20c    DYNAMIC     Gi0/1
+3174    001f.ce61.e224    DYNAMIC     Gi0/1
+3174    0050.5684.3cd9    DYNAMIC     Gi0/1
+3174    0050.5684.69a0    DYNAMIC     Gi0/1
+3174    0050.5684.6bf3    DYNAMIC     Gi0/1
+3174    0050.56b4.06c1    DYNAMIC     Gi0/1
+3174    0050.56b4.0ece    DYNAMIC     Gi0/1
+3174    0050.56b4.3de1    DYNAMIC     Gi0/1
+3174    0050.56b4.5226    DYNAMIC     Gi0/1
+3174    0050.56b4.5ee5    DYNAMIC     Gi0/1
+3174    0050.56b4.6b12    DYNAMIC     Gi0/1
+3174    0050.56b4.6bda    DYNAMIC     Gi0/1
+3174    0050.56b4.7cfd    DYNAMIC     Gi0/1
+3174    0050.56b4.8208    DYNAMIC     Gi0/1
+3174    0050.56b4.9715    DYNAMIC     Gi0/1
+3174    0050.56b4.a62b    DYNAMIC     Gi0/1
+3174    0050.56b4.aaef    DYNAMIC     Gi0/1
+3174    0050.56b4.ba9b    DYNAMIC     Gi0/1
+3174    0050.56b4.d44a    DYNAMIC     Gi0/1
+3174    0050.56b4.f320    DYNAMIC     Gi0/1
+3174    0050.56b4.f51a    DYNAMIC     Gi0/1
+3174    0050.56b4.faa4    DYNAMIC     Gi0/1
+3174    08c6.b3f0.27fe    DYNAMIC     Gi0/1
+3174    48d5.39f3.16aa    DYNAMIC     Gi0/1
+3174    5ca4.8a60.d698    DYNAMIC     Gi0/1
+3174    fa16.3e4e.280a    DYNAMIC     Gi0/1
+3177    0003.d603.d49f    DYNAMIC     Gi0/1
+3177    001e.be90.f7a9    DYNAMIC     Gi0/1
+3177    0050.5684.b161    DYNAMIC     Gi0/1
+3177    0050.5684.dc7a    DYNAMIC     Gi0/1
+3177    0050.5698.87b2    DYNAMIC     Gi0/1
+3177    0050.5698.ec36    DYNAMIC     Gi0/1
+3177    0050.56b2.1de9    DYNAMIC     Gi0/1
+3177    0050.56b2.24b7    DYNAMIC     Gi0/1
+3177    0050.56b2.3b9e    DYNAMIC     Gi0/1
+3177    0050.56b2.42d1    DYNAMIC     Gi0/1
+3177    0050.56b2.5523    DYNAMIC     Gi0/1
+3177    0050.56b4.4081    DYNAMIC     Gi0/1
+3177    0050.56b4.42dd    DYNAMIC     Gi0/1
+3177    0050.56b4.6cf1    DYNAMIC     Gi0/1
+3177    0050.56b4.c959    DYNAMIC     Gi0/1
+3177    0050.56b4.cd3f    DYNAMIC     Gi0/1
+3177    0050.56b4.e81f    DYNAMIC     Gi0/1
+3177    0050.56b4.f264    DYNAMIC     Gi0/1
+3177    0050.56b4.ff34    DYNAMIC     Gi0/1
+3177    2834.a26c.3280    DYNAMIC     Gi0/1
+3177    2cc5.4806.03e8    DYNAMIC     Gi0/1
+3177    44a6.4219.8e68    DYNAMIC     Gi0/1
+3177    48d5.39f3.16ad    DYNAMIC     Gi0/1
+3177    6c03.09ae.c634    DYNAMIC     Gi0/1
+3177    805e.c0d3.781d    DYNAMIC     Gi0/1
+3177    805e.c0d8.3261    DYNAMIC     Gi0/1
+3177    805e.c0d9.5b7d    DYNAMIC     Gi0/1
+3177    9ca2.f4b6.1e61    DYNAMIC     Gi0/1
+3177    9cb6.54f2.3a62    DYNAMIC     Gi0/1
+3177    a4be.2b15.67f0    DYNAMIC     Gi0/1
+3279    0001.0002.000a    DYNAMIC     Gi0/1
+3279    48d5.39f3.16aa    DYNAMIC     Gi0/1
+Total Mac Addresses for this criterion: 137
+
+# show ip arp
+
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  10.31.69.1              0   48d5.39f3.16a5  ARPA   Vlan3169
+Internet  10.31.69.202            -   e8ed.f3f8.8f45  ARPA   Vlan3169
+Internet  10.31.179.1             4   48d5.39f3.16aa  ARPA   Vlan3279
+Internet  10.31.179.11            -   e8ed.f3f8.8f46  ARPA   Vlan3279
+
+# show vrrp
+
+                                 ^
+% Invalid input detected at '^' marker.
+
+# show hsrp
+
+                                 ^
+% Invalid input detected at '^' marker.
+
+# show ip interface brief
+
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES NVRAM  administratively down down
+Vlan34                 10.1.1.2        YES NVRAM  administratively down down
+Vlan128                10.1.128.251    YES NVRAM  administratively down down
+Vlan843                172.31.128.1    YES NVRAM  administratively down down
+Vlan1094               10.190.94.251   YES NVRAM  administratively down down
+Vlan3169               10.31.69.202    YES NVRAM  up                    up
+Vlan3279               10.31.179.11    YES NVRAM  up                    up
+FastEthernet0/1        unassigned      YES unset  down                  down
+FastEthernet0/2        unassigned      YES unset  down                  down
+FastEthernet0/3        unassigned      YES unset  down                  down
+FastEthernet0/4        unassigned      YES unset  down                  down
+FastEthernet0/5        unassigned      YES unset  down                  down
+FastEthernet0/6        unassigned      YES unset  down                  down
+FastEthernet0/7        unassigned      YES unset  down                  down
+FastEthernet0/8        unassigned      YES unset  down                  down
+FastEthernet0/9        unassigned      YES unset  down                  down
+FastEthernet0/10       unassigned      YES unset  down                  down
+FastEthernet0/11       unassigned      YES unset  down                  down
+FastEthernet0/12       unassigned      YES unset  down                  down
+FastEthernet0/13       unassigned      YES unset  down                  down
+FastEthernet0/14       unassigned      YES unset  down                  down
+FastEthernet0/15       unassigned      YES unset  down                  down
+FastEthernet0/16       unassigned      YES unset  down                  down
+FastEthernet0/17       unassigned      YES unset  down                  down
+FastEthernet0/18       unassigned      YES unset  down                  down
+FastEthernet0/19       unassigned      YES unset  down                  down
+FastEthernet0/20       unassigned      YES unset  down                  down
+FastEthernet0/21       unassigned      YES unset  down                  down
+FastEthernet0/22       unassigned      YES unset  down                  down
+FastEthernet0/23       unassigned      YES unset  up                    up
+FastEthernet0/24       unassigned      YES unset  up                    up
+GigabitEthernet0/1     unassigned      YES unset  up                    up
+GigabitEthernet0/2     unassigned      YES unset  down                  down
+
+# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone,
+                  D - Remote, C - CVTA, M - Two-port Mac Relay
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+
+# show cdp neighbors detail
+
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone,
+                  D - Remote, C - CVTA, M - Two-port Mac Relay
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+
+# show lldp neighbors
+
+Capability codes:
+    (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+    (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+
+Device ID           Local Intf     Hold-time  Capability      Port ID
+demo01-615a         Gi0/1          112        B,R             GigabitEthernet0/0/48
+
+Total entries displayed: 1
+
+# show ip dhcp snooping binding
+
+MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  --------------------
+Total number of bindings: 0
+
+# show logging
+
+Syslog logging: enabled (0 messages dropped, 0 messages rate-limited, 0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 208 messages logged, xml disabled,
+                     filtering disabled
+    Monitor logging: level debugging, 0 messages logged, xml disabled,
+                     filtering disabled
+    Buffer logging:  level debugging, 208 messages logged, xml disabled,
+                    filtering disabled
+    Exception Logging: size (4096 bytes)
+    Count and timestamp logging messages: disabled
+    File logging: disabled
+    Persistent logging: disabled
+
+No active filter modules.
+
+    Trap logging: level informational, 212 message lines logged
+        Logging Source-Interface:       VRF Name:
+
+Log Buffer (4096 bytes):
+
+Feb 14 11:54:53.370: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to down
+Feb 14 11:54:54.368: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to down
+Feb 14 11:54:56.390: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to up
+Feb 14 11:54:57.396: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to up
+Feb 14 11:56:09.573: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to down
+Feb 14 11:56:10.571: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to down
+Feb 14 11:56:18.750: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to up
+Feb 14 11:56:19.757: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to up
+Feb 14 12:42:16.077: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to down
+Feb 14 12:42:19.684: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to down
+Feb 14 12:42:22.897: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to up
+Feb 14 12:42:23.904: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to up
+Feb 14 12:42:25.800: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to down
+Feb 14 12:42:26.806: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to down
+Feb 14 12:42:29.138: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to up
+Feb 14 12:42:30.145: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to up
+Feb 14 12:43:42.321: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to down
+Feb 14 12:43:43.328: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to down
+Feb 14 12:43:51.423: %LINK-3-UPDOWN: Interface FastEthernet0/23, changed state to up
+Feb 14 12:43:52.430: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/23, changed state to up
+Feb 14 13:04:21.175: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to down
+Feb 14 13:04:24.782: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to down
+Feb 14 13:04:28.121: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to up
+Feb 14 13:04:29.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to up
+Feb 14 13:04:30.898: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to down
+Feb 14 13:04:31.904: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to down
+Feb 14 13:04:33.917: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to up
+Feb 14 13:04:34.924: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to up
+Feb 14 13:05:47.184: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to down
+Feb 14 13:05:48.183: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to down
+Feb 14 13:05:56.278: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to up
+Feb 14 13:05:57.285: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to up
+Feb 22 09:14:56.230: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to down
+Feb 22 09:14:57.228: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to down
+Feb 22 09:15:04.803: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to up
+Feb 22 09:15:05.810: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to up
+Feb 22 09:15:08.797: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to down
+Feb 22 09:15:10.801: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to up
+Feb 22 09:16:24.865: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to down
+Feb 22 09:16:25.872: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to down
+Feb 22 09:16:34.009: %LINK-3-UPDOWN: Interface FastEthernet0/24, changed state to up
+Feb 22 09:16:35.016: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed state to up
+
+# show spanning-tree
+
+VLAN0128
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    32896
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32896  (priority 32768 sys-id-ext 128)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN0843
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    33611
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    33611  (priority 32768 sys-id-ext 843)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN1094
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    33862
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    33862  (priority 32768 sys-id-ext 1094)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34769
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34769  (priority 32768 sys-id-ext 2001)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2002
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34770
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34770  (priority 32768 sys-id-ext 2002)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2003
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34771
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34771  (priority 32768 sys-id-ext 2003)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2004
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34772
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34772  (priority 32768 sys-id-ext 2004)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2005
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34773
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34773  (priority 32768 sys-id-ext 2005)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2006
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34774
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34774  (priority 32768 sys-id-ext 2006)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2007
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34775
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34775  (priority 32768 sys-id-ext 2007)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2008
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34776
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34776  (priority 32768 sys-id-ext 2008)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2009
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34777
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34777  (priority 32768 sys-id-ext 2009)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2010
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34778
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34778  (priority 32768 sys-id-ext 2010)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3168
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35936
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35936  (priority 32768 sys-id-ext 3168)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3169
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35937
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35937  (priority 32768 sys-id-ext 3169)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3170
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35938
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35938  (priority 32768 sys-id-ext 3170)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3171
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35939
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35939  (priority 32768 sys-id-ext 3171)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Fa0/24              Desg FWD 19        128.24   P2p
+Gi0/1               Root FWD 4         128.25   P2p
+
+
+
+VLAN3172
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35940
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35940  (priority 32768 sys-id-ext 3172)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Fa0/23              Desg FWD 19        128.23   P2p
+Gi0/1               Root FWD 4         128.25   P2p
+
+
+
+VLAN3173
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35941
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35941  (priority 32768 sys-id-ext 3173)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Root FWD 4         128.25   P2p Peer(STP)
+
+
+
+VLAN3174
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35942
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35942  (priority 32768 sys-id-ext 3174)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Root FWD 4         128.25   P2p
+
+
+
+VLAN3177
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35945
+             Address     2834.a26c.3280
+             Cost        1004
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35945  (priority 32768 sys-id-ext 3177)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Root FWD 4         128.25   P2p Peer(STP)
+
+
+
+VLAN3279
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    36047
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    36047  (priority 32768 sys-id-ext 3279)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+# show spanning-tree bridge
+
+                                                   Hello  Max  Fwd
+Vlan                         Bridge ID              Time  Age  Dly  Protocol
+---------------- --------------------------------- -----  ---  ---  --------
+VLAN0128         32896 (32768, 128) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN0843         33611 (32768, 843) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN1094         33862 (32768,1094) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2001         34769 (32768,2001) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2002         34770 (32768,2002) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2003         34771 (32768,2003) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2004         34772 (32768,2004) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2005         34773 (32768,2005) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2006         34774 (32768,2006) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2007         34775 (32768,2007) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2008         34776 (32768,2008) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2009         34777 (32768,2009) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN2010         34778 (32768,2010) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3168         35936 (32768,3168) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3169         35937 (32768,3169) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3170         35938 (32768,3170) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3171         35939 (32768,3171) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3172         35940 (32768,3172) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3173         35941 (32768,3173) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3174         35942 (32768,3174) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3177         35945 (32768,3177) e8ed.f3f8.8f00    2    20   15  rstp
+VLAN3279         36047 (32768,3279) e8ed.f3f8.8f00    2    20   15  rstp
+
+# show spanning-tree active
+
+VLAN0128
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    32896
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32896  (priority 32768 sys-id-ext 128)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN0843
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    33611
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    33611  (priority 32768 sys-id-ext 843)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN1094
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    33862
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    33862  (priority 32768 sys-id-ext 1094)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2001
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34769
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34769  (priority 32768 sys-id-ext 2001)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2002
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34770
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34770  (priority 32768 sys-id-ext 2002)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2003
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34771
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34771  (priority 32768 sys-id-ext 2003)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2004
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34772
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34772  (priority 32768 sys-id-ext 2004)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2005
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34773
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34773  (priority 32768 sys-id-ext 2005)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2006
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34774
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34774  (priority 32768 sys-id-ext 2006)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2007
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34775
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34775  (priority 32768 sys-id-ext 2007)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2008
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34776
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34776  (priority 32768 sys-id-ext 2008)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2009
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34777
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34777  (priority 32768 sys-id-ext 2009)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN2010
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    34778
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    34778  (priority 32768 sys-id-ext 2010)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3168
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35936
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35936  (priority 32768 sys-id-ext 3168)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3169
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35937
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35937  (priority 32768 sys-id-ext 3169)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3170
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35938
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35938  (priority 32768 sys-id-ext 3170)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+
+
+VLAN3171
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35939
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35939  (priority 32768 sys-id-ext 3171)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Fa0/24              Desg FWD 19        128.24   P2p
+Gi0/1               Root FWD 4         128.25   P2p
+
+
+
+VLAN3172
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35940
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35940  (priority 32768 sys-id-ext 3172)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Fa0/23              Desg FWD 19        128.23   P2p
+Gi0/1               Root FWD 4         128.25   P2p
+
+
+
+VLAN3173
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35941
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35941  (priority 32768 sys-id-ext 3173)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Root FWD 4         128.25   P2p Peer(STP)
+
+
+
+VLAN3174
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35942
+             Address     5ca4.8a60.d680
+             Cost        4
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35942  (priority 32768 sys-id-ext 3174)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Root FWD 4         128.25   P2p
+
+
+
+VLAN3177
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    35945
+             Address     2834.a26c.3280
+             Cost        1004
+             Port        25 (GigabitEthernet0/1)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    35945  (priority 32768 sys-id-ext 3177)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Root FWD 4         128.25   P2p Peer(STP)
+
+
+
+VLAN3279
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    36047
+             Address     e8ed.f3f8.8f00
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    36047  (priority 32768 sys-id-ext 3279)
+             Address     e8ed.f3f8.8f00
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Gi0/1               Desg FWD 4         128.25   P2p
+
+# show switch detail
+
+                                 ^
+% Invalid input detected at '^' marker.
+
+# show env all
+
+FAN is OK
+SYSTEM TEMPERATURE is OK
+
+POWER is OK
+
+# show etherchannel summary
+
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 0
+Number of aggregators:           0
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+
+# show port-channel summary
+
+                                     ^
+% Invalid input detected at '^' marker.
+
+# show interfaces transceiver
+
+No transceiver present
+
+# show vlan
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/11, Fa0/12, Gi0/2
+34   NTP_for_iMaster                  active
+128  iMaster-Int-mgmt                 active    Fa0/13
+843  iMaster-Int-Comm                 active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+1094 iMaster-Ext-mgmt                 active
+2001 -=TanderSWAP=-                   active
+2002 -=TanderSWAP-2002=-              active
+2003 -=TanderSWAP-2003=-              active
+2004 -=TanderSWAP-2004=-              active
+2005 -=TanderSWAP-2005=-              active
+2006 -=TanderSWAP-2006=-              active
+2007 -=TanderSWAP-2007=-              active
+2008 -=TanderSWAP-2008=-              active
+2009 -=TanderSWAP-2009=-              active
+2010 -=TanderSWAP-2010=-              active
+3168 VLAN_wtih_DHCP                   active    Fa0/21, Fa0/22
+3169 VLAN_MGMT3169                    active
+3170 VLAN3170                         active
+3171 VLAN3171                         active    Fa0/3, Fa0/5, Fa0/9, Fa0/24
+3172 VLAN3172                         active    Fa0/1, Fa0/2, Fa0/4, Fa0/6, Fa0/23
+3173 VLAN3173                         active    Fa0/7, Fa0/8, Fa0/10, Fa0/14, Fa0/15, Fa0/16, Fa0/17, Fa0/18, Fa0/19, Fa0/20
+3174 VLAN3174                         active
+3177 VLAN3177                         active
+3179 VLAN3179                         active
+3279 VLAN3279                         active
+
+VLAN Type  SAID       MTU   Parent RingNo BridgeNo Stp  BrdgMode Trans1 Trans2
+---- ----- ---------- ----- ------ ------ -------- ---- -------- ------ ------
+1    enet  100001     1500  -      -      -        -    -        0      0
+34   enet  100034     1500  -      -      -        -    -        0      0
+128  enet  100128     1500  -      -      -        -    -        0      0
+843  enet  100843     1500  -      -      -        -    -        0      0
+1002 fddi  101002     1500  -      -      -        -    -        0      0
+1003 tr    101003     1500  -      -      -        -    -        0      0
+1004 fdnet 101004     1500  -      -      -        ieee -        0      0
+1005 trnet 101005     1500  -      -      -        ibm  -        0      0
+1094 enet  101094     1500  -      -      -        -    -        0      0
+2001 enet  102001     1500  -      -      -        -    -        0      0
+2002 enet  102002     1500  -      -      -        -    -        0      0
+2003 enet  102003     1500  -      -      -        -    -        0      0
+2004 enet  102004     1500  -      -      -        -    -        0      0
+2005 enet  102005     1500  -      -      -        -    -        0      0
+2006 enet  102006     1500  -      -      -        -    -        0      0
+2007 enet  102007     1500  -      -      -        -    -        0      0
+2008 enet  102008     1500  -      -      -        -    -        0      0
+2009 enet  102009     1500  -      -      -        -    -        0      0
+2010 enet  102010     1500  -      -      -        -    -        0      0
+3168 enet  103168     1500  -      -      -        -    -        0      0
+3169 enet  103169     1500  -      -      -        -    -        0      0
+3170 enet  103170     1500  -      -      -        -    -        0      0
+3171 enet  103171     1500  -      -      -        -    -        0      0
+3172 enet  103172     1500  -      -      -        -    -        0      0
+3173 enet  103173     1500  -      -      -        -    -        0      0
+3174 enet  103174     1500  -      -      -        -    -        0      0
+3177 enet  103177     1500  -      -      -        -    -        0      0
+3179 enet  103179     1500  -      -      -        -    -        0      0
+3279 enet  103279     1500  -      -      -        -    -        0      0
+
+Primary Secondary Type              Ports
+------- --------- ----------------- ------------------------------------------
+
+# show vtp status
+
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 :
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : e8ed.f3f8.8f00
+Configuration last modified by 0.0.0.0 at 0-0-00 00:00:00
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Off
+Maximum VLANs supported locally   : 64
+Number of existing VLANs          : 8
+Configuration Revision            : 0
+MD5 digest                        : 0xD7 0x21 0x63 0x3C 0x18 0x74 0xB6 0x2F
+                                    0x5D 0xE4 0x4F 0xB5 0x34 0x5F 0xEC 0xC5
+
+# show protocols
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip protocols
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip route
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip route all
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip route summary
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf neighbor
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf interface brief
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf border-routers
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf database router self-originate
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf database external self-originate
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp summary
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp vpnv4 all summary
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ntp status
+
+Clock is synchronized, stratum 4, reference is 10.31.69.1
+nominal freq is 119.2092 Hz, actual freq is 119.2077 Hz, precision is 2**17
+reference time is E7C7EAA3.CF161524 (12:23:47.808 MSK Fri Mar 24 2023)
+clock offset is 0.3102 msec, root delay is 37.69 msec
+root dispersion is 97.27 msec, peer dispersion is 14.84 msec
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is 0.000013100 s/s
+system poll interval is 1024, last update was 176 sec ago.
+
+# show ntp associations
+
+  address         ref clock       st   when   poll reach  delay  offset   disp
+ ~127.127.1.1     .LOCL.           1      3     16   377  0.000   0.000  0.233
+*~10.31.69.1      193.203.100.13   3    175   1024   377  2.353   0.310 14.847
++~10.31.70.1      193.203.100.13   3    153   1024   377  2.357  10.232 14.843
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+
+# show ntp peer-status
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show processes cpu sorted
+
+CPU utilization for five seconds: 13%/0%; one minute: 6%; five minutes: 6%
+ PID Runtime(ms)     Invoked      uSecs   5Sec   1Min   5Min TTY Process
+   4    74330420     4090462      18171  7.36%  0.97%  0.74%   0 Check heaps
+  12     4558144    17127283        266  0.31%  0.12%  0.10%   0 ARP Input
+ 240      207459     1013105        204  0.15%  0.02%  0.00%   0 LLDP Protocol
+   2         384     2004287          0  0.00%  0.00%  0.00%   0 Load Meter
+   3           0           1          0  0.00%  0.00%  0.00%   0 Connection Mgr
+   5      227348      167025       1361  0.00%  0.00%  0.00%   0 Pool Manager
+   6           0           1          0  0.00%  0.00%  0.00%   0 DiscardQ Backgro
+   7           0           2          0  0.00%  0.00%  0.00%   0 Timers
+   8           9        2151          4  0.00%  0.00%  0.00%   0 WATCH_AFS
+   9        3583         342      10476  0.00%  0.00%  0.00%   0 crypto sw pk pro
+  10           0           1          0  0.00%  0.00%  0.00%   0 Crash writer
+  11           0           1          0  0.00%  0.00%  0.00%   0 Exception contro
+  13        1230    10400316          0  0.00%  0.00%  0.00%   0 ARP Background
+  14           0           1          0  0.00%  0.00%  0.00%   0 AAA_SERVER_DEADT
+  15           0           1          0  0.00%  0.00%  0.00%   0 Policy Manager
+  16          24           5       4800  0.00%  0.00%  0.00%   0 Entity MIB API
+  17           0           1          0  0.00%  0.00%  0.00%   0 IFS Agent Manage
+  18         370     2001079          0  0.00%  0.00%  0.00%   0 IPC Event Notifi
+  19         500     9738045          0  0.00%  0.00%  0.00%   0 IPC Mcast Pendin
+  20           0      167014          0  0.00%  0.00%  0.00%   0 IPC Dynamic Cach
+  21           0           1          0  0.00%  0.00%  0.00%   0 IPC Session Serv
+  22           0           1          0  0.00%  0.00%  0.00%   0 IPC Zone Manager
+  23         660     9738045          0  0.00%  0.00%  0.00%   0 IPC Periodic Tim
+  24         662     9738045          0  0.00%  0.00%  0.00%   0 IPC Deferred Por
+  25           0           1          0  0.00%  0.00%  0.00%   0 IPC Process leve
+  26           0           1          0  0.00%  0.00%  0.00%   0 IPC Seat Manager
+  27          40      572424          0  0.00%  0.00%  0.00%   0 IPC Check Queue
+  28           0           1          0  0.00%  0.00%  0.00%   0 IPC Seat RX Cont
+  29           0           1          0  0.00%  0.00%  0.00%   0 IPC Seat TX Cont
+   1          25          78        320  0.00%  0.00%  0.00%   0 Chunk Manager
+  31         408     2001121          0  0.00%  0.00%  0.00%   0 IPC Loadometer
+  32           0           3          0  0.00%  0.00%  0.00%   0 PrstVbl
+  33           0           2          0  0.00%  0.00%  0.00%   0 XML Proxy Client
+  34           0           1          0  0.00%  0.00%  0.00%   0 ARP Snoop
+  35           0           2          0  0.00%  0.00%  0.00%   0 SMART
+  36         564    10021431          0  0.00%  0.00%  0.00%   0 GraphIt
+  37           0           1          0  0.00%  0.00%  0.00%   0 Critical Bkgnd
+  38       23131     1122837         20  0.00%  0.00%  0.00%   0 Net Background
+  39           0           1          0  0.00%  0.00%  0.00%   0 IDB Work
+  40           0         236          0  0.00%  0.00%  0.00%   0 Logger
+  41         911     9954682          0  0.00%  0.00%  0.00%   0 TTY Background
+  42           8           6       1333  0.00%  0.00%  0.00%   0 IF-MGR control p
+  43           0         101          0  0.00%  0.00%  0.00%   0 IF-MGR event pro
+  44       11621      169046         68  0.00%  0.00%  0.00%   0 Net Input
+  45        3358     2004290          1  0.00%  0.00%  0.00%   0 Compute load avg
+  46     2919860      334115       8739  0.00%  0.03%  0.00%   0 Per-minute Jobs
+  47        2578    10021491          0  0.00%  0.00%  0.00%   0 Per-Second Jobs
+  48           0           1          0  0.00%  0.00%  0.00%   0 AggMgr Process
+  49           0         212          0  0.00%  0.00%  0.00%   0 Transport Port A
+  50        9307     2999891          3  0.00%  0.00%  0.00%   0 HC Counter Timer
+  51           0           1          0  0.00%  0.00%  0.00%   0 SFF8472
+  52       17022   198866148          0  0.00%  0.00%  0.00%   0 DownWhenLooped
+  53           0           1          0  0.00%  0.00%  0.00%   0 HULC ACL Tcam Me
+  54           0           1          0  0.00%  0.00%  0.00%   0 HRPC lpip reques
+  55           0           2          0  0.00%  0.00%  0.00%   0 HLPIP Sync Proce
+  56           0           1          0  0.00%  0.00%  0.00%   0 HRPC EnergyWise
+  57           0           1          0  0.00%  0.00%  0.00%   0 HRPC actual powe
+  58          34      333981          0  0.00%  0.00%  0.00%   0 PSP Timer
+  30          17     1002147          0  0.00%  0.00%  0.00%   0 IPC Keep Alive M
+  59           0           1          0  0.00%  0.00%  0.00%   0 HULC QM Tcam Mem
+  61           0          23          0  0.00%  0.00%  0.00%   0 EEM ED Identity
+  62           0          45          0  0.00%  0.00%  0.00%   0 EEM ED MAT
+  63           8           5       1600  0.00%  0.00%  0.00%   0 HL2MCM
+  64           9           5       1800  0.00%  0.00%  0.00%   0 HL2MCM
+  65           0           1          0  0.00%  0.00%  0.00%   0 HRPC asic-stats
+  66           0           1          0  0.00%  0.00%  0.00%   0 HRPC hsm request
+  67           0           7          0  0.00%  0.00%  0.00%   0 Stack Mgr
+  68         150           8      18750  0.00%  0.00%  0.00%   0 Stack Mgr Notifi
+  69      119942   533450911          0  0.00%  0.00%  0.00%   0 Fifo Error Detec
+  70           0           3          0  0.00%  0.00%  0.00%   0 Adjust Regions
+  71         939     4998362          0  0.00%  0.00%  0.00%   0 hrpc -> response
+  72           0          19          0  0.00%  0.00%  0.00%   0 hrpc -> request
+  73         378     1668501          0  0.00%  0.00%  0.00%   0 hrpc <- response
+  74           0           1          0  0.00%  0.00%  0.00%   0 HRPC hcomp reque
+  75           0           3          0  0.00%  0.00%  0.00%   0 HULC Device Mana
+  76           0           3          0  0.00%  0.00%  0.00%   0 HRPC hdm non blo
+  77           0           2          0  0.00%  0.00%  0.00%   0 HRPC hdm blockin
+  78           0         238          0  0.00%  0.00%  0.00%   0 Hulc Port-Securi
+  79           0           1          0  0.00%  0.00%  0.00%   0 HRPC hpsecure re
+  80           0           1          0  0.00%  0.00%  0.00%   0 HRPC hlfm reques
+  81       31434   297883175          0  0.00%  0.00%  0.00%   0 HLFM address lea
+  82        1973     9954686          0  0.00%  0.00%  0.00%   0 HLFM aging proce
+  83       31573   298275724          0  0.00%  0.00%  0.00%   0 HLFM address ret
+  84           0           1          0  0.00%  0.00%  0.00%   0 HRPC hulc misc r
+  85      304881     1001573        304  0.00%  0.00%  0.00%   0 HULC Tcam Memory
+  86         450     3336928          0  0.00%  0.00%  0.00%   0 HVLAN main bkgrd
+  87           0           2          0  0.00%  0.00%  0.00%   0 HVLAN Mapped Vla
+  88           0           2          0  0.00%  0.00%  0.00%   0 Vlan shutdown Pr
+  89           0           3          0  0.00%  0.00%  0.00%   0 HRPC vlan reques
+  90           0           1          0  0.00%  0.00%  0.00%   0 HULC VLAN REF Ba
+  91           0           1          0  0.00%  0.00%  0.00%   0 HRPC ilp request
+  92           0           1          0  0.00%  0.00%  0.00%   0 HULC PM Vector P
+  93           0           1          0  0.00%  0.00%  0.00%   0 HPM Msg Retry Pr
+  94         100         137        729  0.00%  0.00%  0.00%   0 SpanTree Helper
+  95       30614    97778432          0  0.00%  0.00%  0.00%   0 hpm main process
+  96          51         220        231  0.00%  0.00%  0.00%   0 HPM Stack Sync P
+  97           0           1          0  0.00%  0.00%  0.00%   0 HRPC pm request
+  98        2236    10021431          0  0.00%  0.00%  0.00%   0 hpm counter proc
+  99           0           1          0  0.00%  0.00%  0.00%   0 HRPC pm-counters
+ 100           0           1          0  0.00%  0.00%  0.00%   0 hpm vp events ca
+ 101           0           1          0  0.00%  0.00%  0.00%   0 HRPC hcmp reques
+ 102           0           1          0  0.00%  0.00%  0.00%   0 HACL Queue Proce
+ 103           0           1          0  0.00%  0.00%  0.00%   0 HRPC acl request
+ 104           0          42          0  0.00%  0.00%  0.00%   0 HACL Acl Manager
+ 105           0           1          0  0.00%  0.00%  0.00%   0 HRPC cdp request
+ 106           0           1          0  0.00%  0.00%  0.00%   0 HULC CISP Proces
+ 107           0           1          0  0.00%  0.00%  0.00%   0 HRPC lldp reques
+ 108           0           1          0  0.00%  0.00%  0.00%   0 HRPC dot1x reque
+ 109           0           3          0  0.00%  0.00%  0.00%   0 HULC DOT1X Proce
+ 110           0           1          0  0.00%  0.00%  0.00%   0 HRPC system mtu
+ 111           0           1          0  0.00%  0.00%  0.00%   0 SMI MSG Retry Pr
+ 112           0           1          0  0.00%  0.00%  0.00%   0 HRPC Smart Insta
+ 113           0           1          0  0.00%  0.00%  0.00%   0 HRPC sdm request
+ 114        8968    49760436          0  0.00%  0.00%  0.00%   0 Hulc Storm Contr
+ 115           0           2          0  0.00%  0.00%  0.00%   0 HSTP Sync Proces
+ 116           0           1          0  0.00%  0.00%  0.00%   0 HRPC stp_cli req
+ 117           0           1          0  0.00%  0.00%  0.00%   0 HRPC stp_state_s
+  60       45173      334035        135  0.00%  0.00%  0.00%   0 EEM ED ND
+ 118           0           2          0  0.00%  0.00%  0.00%   0 S/W Bridge Proce
+ 120           0           1          0  0.00%  0.00%  0.00%   0 HRPC vqpc reques
+ 121           0           1          0  0.00%  0.00%  0.00%   0 HRPC aim request
+ 122           0           1          0  0.00%  0.00%  0.00%   0 HRPC hled reques
+ 123     1676053   250535272          6  0.00%  0.00%  0.00%   0 Hulc LED Process
+ 124           0           1          0  0.00%  0.00%  0.00%   0 HRPC dtp request
+ 125           0           1          0  0.00%  0.00%  0.00%   0 HRPC show_forwar
+ 126           0           1          0  0.00%  0.00%  0.00%   0 HRPC snmp reques
+ 127           0           1          0  0.00%  0.00%  0.00%   0 HULC SNMP Proces
+ 128     3690414     2001089       1844  0.00%  0.03%  0.01%   0 HQM Stack Proces
+ 129      179121     4002159         44  0.00%  0.00%  0.00%   0 HRPC qos request
+ 130           0           1          0  0.00%  0.00%  0.00%   0 HRPC span reques
+ 131           0           1          0  0.00%  0.00%  0.00%   0 HRPC system post
+ 132           0           1          0  0.00%  0.00%  0.00%   0 Hulc Reload Mana
+ 133           0           1          0  0.00%  0.00%  0.00%   0 HRPC hrcli-event
+ 134           0           2          0  0.00%  0.00%  0.00%   0 image mgr
+ 135       14022     9954683          1  0.00%  0.00%  0.00%   0 PI MATM Aging Pr
+ 136           8      167014          0  0.00%  0.00%  0.00%   0 MMN bkgrd proces
+ 137        3614     9737011          0  0.00%  0.00%  0.00%   0 Auth Manager
+ 138           0           2          0  0.00%  0.00%  0.00%   0 Dot1x Mgr Proces
+ 139        1499         180       8327  0.00%  0.00%  0.00%   0 802.1x switch
+ 140       41502      667780         62  0.00%  0.00%  0.00%   0 DTP Protocol
+ 141           0           1          0  0.00%  0.00%  0.00%   0 EAP Framework
+ 142           0           1          0  0.00%  0.00%  0.00%   0 EAP Test
+ 143           0           1          0  0.00%  0.00%  0.00%   0 HRPC ip device t
+ 144       42925   100214247          0  0.00%  0.00%  0.00%   0 UDLD
+ 145           8      334048          0  0.00%  0.00%  0.00%   0 Port-Security
+ 146           0           2          0  0.00%  0.00%  0.00%   0 IP Host Track Pr
+ 147          57          81        703  0.00%  0.00%  0.00%   0 VMATM Callback
+ 148          33         247        133  0.00%  0.00%  0.00%   0 AAA Server
+ 149           0           1          0  0.00%  0.00%  0.00%   0 AAA ACCT Proc
+ 150           0           1          0  0.00%  0.00%  0.00%   0 ACCT Periodic Pr
+ 151           0           1          0  0.00%  0.00%  0.00%   0 AAA System Acct
+ 152           0           1          0  0.00%  0.00%  0.00%   0 Auth-proxy AAA B
+ 153           0       33405          0  0.00%  0.00%  0.00%   0 IP Admin SM Proc
+ 154        1152     1189336          0  0.00%  0.00%  0.00%   0 CDP Protocol
+ 155          17       55675          0  0.00%  0.00%  0.00%   0 HCMP sync proces
+ 156           0           1          0  0.00%  0.00%  0.00%   0 Critical Auth
+ 157           0           2          0  0.00%  0.00%  0.00%   0 AAA Dictionary R
+ 158           0       83512          0  0.00%  0.00%  0.00%   0 DHCP Snooping
+ 159           0           1          0  0.00%  0.00%  0.00%   0 DHCP Snooping db
+ 160           0           3          0  0.00%  0.00%  0.00%   0 IP ARP Adjacency
+ 161       26051   297883256          0  0.00%  0.00%  0.00%   0 IP ARP Retry Age
+ 162       55787      412170        135  0.00%  0.00%  0.00%   0 IP Input
+ 163           0           1          0  0.00%  0.00%  0.00%   0 ICMP event handl
+ 164        1170    19342796          0  0.00%  0.00%  0.00%   0 IP ARP Track
+ 165           0           1          0  0.00%  0.00%  0.00%   0 IPv6 ping proces
+ 166          27          48        562  0.00%  0.00%  0.00%   0 SpanTree Flush
+ 167           9           1       9000  0.00%  0.00%  0.00%   0 SMI Director DB
+ 168           0           1          0  0.00%  0.00%  0.00%   0 SMI CDP Update H
+ 169           0           1          0  0.00%  0.00%  0.00%   0 SMI Backup Proce
+ 170           0           2          0  0.00%  0.00%  0.00%   0 SMI IBC server p
+ 171           0           1          0  0.00%  0.00%  0.00%   0 SMI IBC client p
+ 172           0           2          0  0.00%  0.00%  0.00%   0 SMI IBC Download
+ 173     4449161    46980941         94  0.00%  0.04%  0.00%   0 Spanning Tree
+ 174           0      167017          0  0.00%  0.00%  0.00%   0 Spanning Tree St
+ 175        1038     1001577          1  0.00%  0.00%  0.00%   0 Ethchnl
+ 176         252        5198         48  0.00%  0.00%  0.00%   0 TCP Timer
+ 177          52         211        246  0.00%  0.00%  0.00%   0 TCP Protocols
+ 178           0           1          0  0.00%  0.00%  0.00%   0 Socket Timers
+ 179          25       33432          0  0.00%  0.00%  0.00%   0 HTTP CORE
+ 180          16      125267          0  0.00%  0.00%  0.00%   0 Cluster L2
+ 181       22044     1001575         22  0.00%  0.00%  0.00%   0 Cluster RARP
+ 182         135     1252243          0  0.00%  0.00%  0.00%   0 Cluster Base
+ 183         253        2141        118  0.00%  0.00%  0.00%   0 RARP Input
+ 184           0           2          0  0.00%  0.00%  0.00%   0 Dot1x Supplicant
+ 185           0           2          0  0.00%  0.00%  0.00%   0 Dot1x Supplicant
+ 186           0           2          0  0.00%  0.00%  0.00%   0 Dot1x Supplicant
+ 187           0           1          0  0.00%  0.00%  0.00%   0 MAB Framework
+ 188           0           1          0  0.00%  0.00%  0.00%   0 HRPC dhcp snoopi
+ 189           0           4          0  0.00%  0.00%  0.00%   0 HULC DHCP Snoopi
+ 190          48          98        489  0.00%  0.00%  0.00%   0 IGMPSN L2MCM
+ 191       26383      166878        158  0.00%  0.00%  0.00%   0 IGMPSN MRD
+ 192      652825     2091473        312  0.00%  0.00%  0.00%   0 IGMPSN
+ 193           0           1          0  0.00%  0.00%  0.00%   0 IGMPQR
+ 194           0           3          0  0.00%  0.00%  0.00%   0 L2TRACE SERVER
+ 195         170          97       1752  0.00%  0.00%  0.00%   0 MLDSN L2MCM
+ 196           0           1          0  0.00%  0.00%  0.00%   0 MRD
+ 197           0           1          0  0.00%  0.00%  0.00%   0 MLD_SNOOP
+ 198           0           1          0  0.00%  0.00%  0.00%   0 IPv6 RIB Event H
+ 199      104341     1001575        104  0.00%  0.00%  0.00%   0 QoS stats proces
+ 200           0           3          0  0.00%  0.00%  0.00%   0 SNMP Timers
+ 201           0           2          0  0.00%  0.00%  0.00%   0 TPLUS
+ 202        3339        1386       2409  0.00%  0.00%  0.00%   1 SSH Process
+ 203           0           1          0  0.00%  0.00%  0.00%   0 EPM MAIN PROCESS
+ 204           0           2          0  0.00%  0.00%  0.00%   0 AAA Cached Serve
+ 205          59         247        238  0.00%  0.00%  0.00%   0 LOCAL AAA
+ 206           0           2          0  0.00%  0.00%  0.00%   0 ENABLE AAA
+ 207           0           2          0  0.00%  0.00%  0.00%   0 LINE AAA
+ 208           0           3          0  0.00%  0.00%  0.00%   0 LDAP process
+ 210           0           1          0  0.00%  0.00%  0.00%   0 HRPC hl2mcm igmp
+ 211           0           1          0  0.00%  0.00%  0.00%   0 HRPC hl2mcm mlds
+ 212         355        5570         63  0.00%  0.00%  0.00%   0 NIST rng proc
+ 213           0           1          0  0.00%  0.00%  0.00%   0 HRPC x_setup req
+ 214           0           2          0  0.00%  0.00%  0.00%   0 crypto engine pr
+ 215           0           1          0  0.00%  0.00%  0.00%   0 encrypt proc
+ 216         226           4      56500  0.00%  0.00%  0.00%   0 Crypto CA
+ 217           0           1          0  0.00%  0.00%  0.00%   0 Crypto PKI-CRL
+ 218           0          33          0  0.00%  0.00%  0.00%   0 VTP Trap Process
+ 219          50         657         76  0.00%  0.00%  0.00%   0 ASP Process Crea
+ 220           0           1          0  0.00%  0.00%  0.00%   0 HCD Process
+ 221           0           1          0  0.00%  0.00%  0.00%   0 HRPC cable diagn
+ 223        5639    27263266          0  0.00%  0.00%  0.00%   0 PM Callback
+ 224          52      801274          0  0.00%  0.00%  0.00%   0 dhcp snooping sw
+ 225           8         397         20  0.00%  0.00%  0.00%   0 AAA SEND STOP EV
+ 226           0           1          0  0.00%  0.00%  0.00%   0 Test AAA Client
+ 227           0           1          0  0.00%  0.00%  0.00%   0 Syslog Traps
+ 229           0         123          0  0.00%  0.00%  0.00%   0 Syslog
+ 230           0          14          0  0.00%  0.00%  0.00%   0 EEM Server
+ 231           0           2          0  0.00%  0.00%  0.00%   0 EEM Policy Direc
+ 233           0           2          0  0.00%  0.00%  0.00%   0 EEM ED OIR
+ 234          34      263947          0  0.00%  0.00%  0.00%   0 EEM ED Timer
+ 235           0           2          0  0.00%  0.00%  0.00%   0 STP FAST TRANSIT
+ 236           0           2          0  0.00%  0.00%  0.00%   0 CSRT RAPID TRANS
+ 237           8           5       1600  0.00%  0.00%  0.00%   0 VLAN Manager
+ 238           8        2786          2  0.00%  0.00%  0.00%   0 SSH Event handle
+ 119           0           1          0  0.00%  0.00%  0.00%   0 HRPC hudld reque
+ 242        7983    10071738          0  0.00%  0.00%  0.00%   0 NTP
+
+# show processes memory sorted
+
+Processor Pool Total:   27725276 Used:   15528788 Free:   12196488
+      I/O Pool Total:    4194304 Used:    1695732 Free:    2498572
+Driver te Pool Total:    1048576 Used:         40 Free:    1048536
+
+ PID TTY  Allocated      Freed    Holding    Getbufs    Retbufs Process
+   0   0   19836216    5683796   11429392          0          0 *Init*
+   0   0   62471948   61099736    1227796    3040175     254736 *Dead*
+ 240   0   78080092        232     474084          0          0 LLDP Protocol
+   0   0          0          0     394440          0          0 *MallocLite*
+  60   0     368228   77406228     377788          0          0 EEM ED ND
+  68   0     305296       9892     270428          0          0 Stack Mgr Notifi
+ 137   0     793304     776008     131172          0          0 Auth Manager
+   5   0 2615346440 2625617592     105688 2411028216 2412928104 Pool Manager
+ 202   1    1295144    1204968     102360          0          0 SSH Process
+   1   0      84756          0      91916          0          0 Chunk Manager
+ 230   0      61572          0      68732          0          0 EEM Server
+ 129   0 3412496800 3412496800      61160          0          0 HRPC qos request
+ 104   0        232       9200      61160          0          0 HACL Acl Manager
+  42   0      95348      84496      58056          0          0 IF-MGR control p
+ 140   0     152612       5976      57644      13260          0 DTP Protocol
+ 150   0      49352          0      56512          0          0 ACCT Periodic Pr
+ 216   0     221376     186300      48900          0          0 Crypto CA
+  12   0   39784372   39747672      43860          0          0 ARP Input
+ 161   0      33012          0      40172          0          0 IP ARP Retry Age
+  81   0   13842404        232      39976          0          0 HLFM address lea
+ 242   0      50836      19124      33192       2340        260 NTP
+ 167   0       3160          0      28320          0          0 SMI Director DB
+ 195   0      78844     168216      27564          0          0 MLDSN L2MCM
+ 169   0        680          0      25840          0          0 SMI Backup Proce
+ 190   0     210336     178180      25600          0          0 IGMPSN L2MCM
+  10   0          0          0      25160          0          0 Crash writer
+  97   0          0          0      25160          0          0 HRPC pm request
+ 219   0        232        232      25160          0          0 ASP Process Crea
+  16   0      23584     127624      23916          0      25996 Entity MIB API
+ 148   0      16816        232      23744          0          0 AAA Server
+ 179   0      29688      17828      22020          0          0 HTTP CORE
+ 128   0 3685970356 3685957504      20012          0          0 HQM Stack Proces
+  38   0      39248        412      18188          0          0 Net Background
+ 172   0       4884        232      17812          0          0 SMI IBC Download
+ 151   0      10044          0      17216          0          0 AAA System Acct
+ 231   0      11476       1720      16916          0          0 EEM Policy Direc
+ 192   0      17296       7624      16832          0          0 IGMPSN
+ 154   0       6216        384      16144          0          0 CDP Protocol
+ 173   0    9915524        232      16136    1751880          0 Spanning Tree
+ 238   0       8544          0      15696          0          0 SSH Event handle
+ 139   0    1873620    1748624      15376          0          0 802.1x switch
+ 177   0    1609068          0      15132          0          0 TCP Protocols
+ 237   0      98064      78444      15060       2340          0 VLAN Manager
+ 208   0       1936        232      14864          0          0 LDAP process
+  61   0       4556          0      14716          0          0 EEM ED Identity
+  62   0       4556          0      14716          0          0 EEM ED MAT
+ 234   0       4556          0      14716          0          0 EEM ED Timer
+ 233   0       4556          0      14716          0          0 EEM ED OIR
+ 162   0     139956      70620      14444          0          0 IP Input
+ 160   0       1104          0      14264          0          0 IP ARP Adjacency
+ 171   0        372          0      13532          0          0 SMI IBC client p
+  39   0          0          0      13160          0          0 IDB Work
+  40   0      35000        232      13160      20304          0 Logger
+  33   0        232        232      13160          0          0 XML Proxy Client
+ 229   0      53032      53032      13160          0          0 Syslog
+ 215   0          0          0      13160          0          0 encrypt proc
+ 176   0          0      24396      13160          0          0 TCP Timer
+ 217   0          0          0      13160          0          0 Crypto PKI-CRL
+  86   0          0          0      13160          0          0 HVLAN main bkgrd
+ 226   0          0          0      13160          0          0 Test AAA Client
+  15   0          0          0      13160          0          0 Policy Manager
+  67   0          0          0      13160          0          0 Stack Mgr
+  95   0    1787764    1695448      13084       1560          0 hpm main process
+  69   0       5304        232      12232          0          0 Fifo Error Detec
+ 109   0       5044          0      12204          0          0 HULC DOT1X Proce
+   0   0      12112    1637060      12112          0          0 *Sched*
+ 196   0       4652          0      11812          0          0 MRD
+ 218   0       4884        232      11812          0          0 VTP Trap Process
+ 194   0      14840        232      11736          0          0 L2TRACE SERVER
+   4   0       4684        232      11664          0          0 Check heaps
+ 223   0     167264     354660      11568          0          0 PM Callback
+ 170   0      69632        232      10820          0          0 SMI IBC server p
+ 164   0        232        232      10160          0          0 IP ARP Track
+ 198   0          0          0      10160          0          0 IPv6 RIB Event H
+ 134   0        232        232      10160          0          0 image mgr
+ 123   0        232        232      10160          0          0 Hulc LED Process
+ 146   0        232        232      10160          0          0 IP Host Track Pr
+  47   0      27456      27456      10160          0          0 Per-Second Jobs
+ 112   0          0          0      10160          0          0 HRPC Smart Insta
+   3   0          0          0      10032          0          0 Connection Mgr
+ 201   0       1936        232       8864          0          0 TPLUS
+  26   0       1688          0       8848          0          0 IPC Seat Manager
+ 212   0   77278872   77277496       8536          0          0 NIST rng proc
+  94   0     277352     174700       7972          0          0 SpanTree Helper
+  63   0       7784          0       7828          0          0 HL2MCM
+  64   0       7812          0       7812          0          0 HL2MCM
+   9   0     646828     738332       7696          0          0 crypto sw pk pro
+  11   0        340          0       7500          0          0 Exception contro
+ 182   0        540        232       7468          0          0 Cluster Base
+ 144   0        524        232       7452          0          0 UDLD
+ 185   0        448        232       7376          0          0 Dot1x Supplicant
+ 184   0        448        232       7376          0          0 Dot1x Supplicant
+ 145   0        216          0       7376          0          0 Port-Security
+ 186   0        448        232       7376          0          0 Dot1x Supplicant
+ 191   0       1268       1268       7268          0          0 IGMPSN MRD
+ 224   0        232        232       7200          0          0 dhcp snooping sw
+ 156   0          0          0       7176          0          0 Critical Auth
+  37   0          0          0       7176          0          0 Critical Bkgnd
+  83   0        232        232       7160          0          0 HLFM address ret
+  93   0          0          0       7160          0          0 HPM Msg Retry Pr
+  82   0        232        232       7160          0          0 HLFM aging proce
+  96   0        232        232       7160          0          0 HPM Stack Sync P
+  99   0          0          0       7160          0          0 HRPC pm-counters
+  14   0          0          0       7160          0          0 AAA_SERVER_DEADT
+ 101   0          0          0       7160          0          0 HRPC hcmp reques
+  98   0        232        232       7160          0          0 hpm counter proc
+ 100   0          0          0       7160          0          0 hpm vp events ca
+  13   0      18172      18172       7160          0          0 ARP Background
+  92   0          0          0       7160          0          0 HULC PM Vector P
+ 106   0          0          0       7160          0          0 HULC CISP Proces
+ 102   0          0          0       7160          0          0 HACL Queue Proce
+ 108   0          0          0       7160          0          0 HRPC dot1x reque
+  91   0          0          0       7160          0          0 HRPC ilp request
+  79   0          0          0       7160          0          0 HRPC hpsecure re
+ 111   0          0          0       7160          0          0 SMI MSG Retry Pr
+ 103   0          0          0       7160          0          0 HRPC acl request
+ 107   0          0          0       7160          0          0 HRPC lldp reques
+ 114   0        232        232       7160          0          0 Hulc Storm Contr
+ 115   0        232        232       7160          0          0 HSTP Sync Proces
+  90   0          0          0       7160          0          0 HULC VLAN REF Ba
+  77   0        176        176       7160          0          0 HRPC hdm blockin
+  76   0         68         68       7160          0          0 HRPC hdm non blo
+  89   0          0          0       7160          0          0 HRPC vlan reques
+  74   0          0          0       7160          0          0 HRPC hcomp reque
+ 105   0          0          0       7160          0          0 HRPC cdp request
+  80   0          0          0       7160          0          0 HRPC hlfm reques
+  72   0          0          0       7160          0          0 hrpc -> request
+ 124   0          0          0       7160          0          0 HRPC dtp request
+ 125   0          0          0       7160          0          0 HRPC show_forwar
+ 126   0          0          0       7160          0          0 HRPC snmp reques
+  71   0          0          0       7160          0          0 hrpc -> response
+  65   0          0          0       7160          0          0 HRPC asic-stats
+  59   0          0          0       7160          0          0 HULC QM Tcam Mem
+  78   0        232        232       7160          0          0 Hulc Port-Securi
+ 131   0          0          0       7160          0          0 HRPC system post
+ 132   0          0          0       7160          0          0 Hulc Reload Mana
+ 133   0          0          0       7160          0          0 HRPC hrcli-event
+  58   0          0          0       7160          0          0 PSP Timer
+  87   0        232        232       7160          0          0 HVLAN Mapped Vla
+ 113   0          0          0       7160          0          0 HRPC sdm request
+  57   0          0          0       7160          0          0 HRPC actual powe
+ 116   0          0          0       7160          0          0 HRPC stp_cli req
+  56   0          0          0       7160          0          0 HRPC EnergyWise
+  55   0        232        232       7160          0          0 HLPIP Sync Proce
+ 141   0          0          0       7160          0          0 EAP Framework
+ 142   0          0          0       7160          0          0 EAP Test
+ 143   0          0          0       7160          0          0 HRPC ip device t
+  84   0          0          0       7160          0          0 HRPC hulc misc r
+  75   0        560        232       7160          0          0 HULC Device Mana
+  54   0          0          0       7160          0          0 HRPC lpip reques
+ 147   0          0      15472       7160          0          0 VMATM Callback
+  53   0          0          0       7160          0          0 HULC ACL Tcam Me
+ 149   0          0          0       7160          0          0 AAA ACCT Proc
+   7   0        232        232       7160          0          0 Timers
+  73   0         68        396       7160          0          0 hrpc <- response
+ 152   0          0          0       7160          0          0 Auth-proxy AAA B
+ 153   0          0          0       7160          0          0 IP Admin SM Proc
+  51   0          0          0       7160          0          0 SFF8472
+  50   0          0          0       7160          0          0 HC Counter Timer
+ 130   0          0          0       7160          0          0 HRPC span reques
+ 157   0        232        232       7160          0          0 AAA Dictionary R
+ 158   0          0          0       7160          0          0 DHCP Snooping
+ 159   0          0          0       7160          0          0 DHCP Snooping db
+  49   0          0          0       7160          0          0 Transport Port A
+   6   0          0          0       7160          0          0 DiscardQ Backgro
+  48   0          0          0       7160          0          0 AggMgr Process
+ 163   0          0          0       7160          0          0 ICMP event handl
+  46   0          0       1052       7160          0          0 Per-minute Jobs
+ 165   0          0          0       7160          0          0 IPv6 ping proces
+  45   0        232        232       7160          0          0 Compute load avg
+  44   0          0          0       7160          0          0 Net Input
+ 168   0          0          0       7160          0          0 SMI CDP Update H
+  43   0          0          0       7160          0          0 IF-MGR event pro
+  17   0          0          0       7160          0          0 IFS Agent Manage
+  41   0      50968       1484       7160          0          0 TTY Background
+  88   0        232        232       7160          0          0 Vlan shutdown Pr
+  36   0        232        232       7160          0          0 GraphIt
+ 174   0          0          0       7160          0          0 Spanning Tree St
+ 175   0        232        232       7160          0          0 Ethchnl
+  35   0        232        232       7160          0          0 SMART
+  34   0          0          0       7160          0          0 ARP Snoop
+ 178   0          0          0       7160          0          0 Socket Timers
+  32   0        232        232       7160          0          0 PrstVbl
+ 180   0        232        232       7160          0          0 Cluster L2
+ 181   0          0          0       7160          0          0 Cluster RARP
+  85   0          0          0       7160          0          0 HULC Tcam Memory
+ 183   0          0          0       7160          0          0 RARP Input
+ 136   0          0          0       7160          0          0 MMN bkgrd proces
+ 135   0        232   13794116       7160          0          0 PI MATM Aging Pr
+ 138   0        232        232       7160          0          0 Dot1x Mgr Proces
+ 187   0          0          0       7160          0          0 MAB Framework
+ 188   0          0          0       7160          0          0 HRPC dhcp snoopi
+ 189   0          0          0       7160          0          0 HULC DHCP Snoopi
+  31   0          0          0       7160          0          0 IPC Loadometer
+  52   0        232        232       7160          0          0 DownWhenLooped
+  30   0          0          0       7160          0          0 IPC Keep Alive M
+ 193   0          0          0       7160          0          0 IGMPQR
+  29   0          0          0       7160          0          0 IPC Seat TX Cont
+  28   0          0          0       7160          0          0 IPC Seat RX Cont
+  27   0          0          0       7160          0          0 IPC Check Queue
+ 197   0          0          0       7160          0          0 MLD_SNOOP
+  25   0          0          0       7160          0          0 IPC Process leve
+ 199   0  101013684  101013684       7160          0          0 QoS stats proces
+ 200   0          0          0       7160          0          0 SNMP Timers
+  24   0          0          0       7160          0          0 IPC Deferred Por
+  23   0          0          0       7160          0          0 IPC Periodic Tim
+ 203   0          0          0       7160          0          0 EPM MAIN PROCESS
+ 204   0        232        232       7160          0          0 AAA Cached Serve
+ 205   0      18376      18376       7160          0          0 LOCAL AAA
+ 206   0        232        232       7160          0          0 ENABLE AAA
+ 207   0        232        232       7160          0          0 LINE AAA
+  22   0          0          0       7160          0          0 IPC Zone Manager
+ 210   0          0          0       7160          0          0 HRPC hl2mcm igmp
+ 211   0          0          0       7160          0          0 HRPC hl2mcm mlds
+  21   0          0          0       7160          0          0 IPC Session Serv
+ 213   0          0          0       7160          0          0 HRPC x_setup req
+ 214   0          0          0       7160          0          0 crypto engine pr
+  20   0          0          0       7160          0          0 IPC Dynamic Cach
+  19   0          0          0       7160          0          0 IPC Mcast Pendin
+  18   0          0          0       7160          0          0 IPC Event Notifi
+ 118   0        232        232       7160          0          0 S/W Bridge Proce
+ 119   0          0          0       7160          0          0 HRPC hudld reque
+ 220   0          0          0       7160          0          0 HCD Process
+ 221   0          0          0       7160          0          0 HRPC cable diagn
+ 120   0          0          0       7160          0          0 HRPC vqpc reques
+ 121   0          0          0       7160          0          0 HRPC aim request
+ 225   0        232     151148       7160          0          0 AAA SEND STOP EV
+ 122   0          0          0       7160          0          0 HRPC hled reques
+ 227   0          0          0       7160          0          0 Syslog Traps
+ 127   0          0          0       7160          0          0 HULC SNMP Proces
+ 117   0          0          0       7160          0          0 HRPC stp_state_s
+ 166   0          0      49600       7032          0          0 SpanTree Flush
+ 155   0          0          0       7032          0          0 HCMP sync proces
+   8   0          0          0       4160          0          0 WATCH_AFS
+   2   0        232        232       4160          0          0 Load Meter
+ 235   0        232        232       4160          0          0 STP FAST TRANSIT
+ 110   0          0          0       4160          0          0 HRPC system mtu
+  70   0        880        880       4160          0          0 Adjust Regions
+  66   0          0          0       4160          0          0 HRPC hsm request
+ 236   0        232        232       4160          0          0 CSRT RAPID TRANS
+                                 17222120 Total
+
+# show dot1x all
+
+Sysauthcontrol             Disabled
+Dot1x Protocol Version            3
+
+# show etherchannel protocol
+
+		Channel-group listing:
+		----------------------
+
+# show ip arp
+
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  10.31.69.1              0   48d5.39f3.16a5  ARPA   Vlan3169
+Internet  10.31.69.202            -   e8ed.f3f8.8f45  ARPA   Vlan3169
+Internet  10.31.179.1             4   48d5.39f3.16aa  ARPA   Vlan3279
+Internet  10.31.179.11            -   e8ed.f3f8.8f46  ARPA   Vlan3279
+
+# show ip arp inspection
+
+Translating "inspection"
+                                         ^
+% Invalid input detected at '^' marker.
+
+# show ip arp inspection interfaces
+
+                                         ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp community
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp vpnv4 all
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp vpnv4 all community
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip bgp vpnv4 all neighbors
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip dhcp snooping
+
+Switch DHCP snooping is disabled
+DHCP snooping is configured on following VLANs:
+none
+DHCP snooping is operational on following VLANs:
+none
+DHCP snooping is configured on the following L3 Interfaces:
+
+Insertion of option 82 is enabled
+   circuit-id default format: vlan-mod-port
+   remote-id: e8ed.f3f8.8f00 (MAC)
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Verification of giaddr field is enabled
+DHCP snooping trust/rate is configured on the following Interfaces:
+
+Interface                  Trusted    Allow option    Rate limit (pps)
+-----------------------    -------    ------------    ----------------
+
+# show ip ospf
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf database
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf database network
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip ospf interface brief
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip protocols summary
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip rip database
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip vrf
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show ip vrf interfaces
+
+                                   ^
+% Invalid input detected at '^' marker.
+
+# show l2tun
+
+                                  ^
+% Invalid input detected at '^' marker.
+
+# show lldp neighbors detail
+
+------------------------------------------------
+Chassis id: 0001.0002.0003
+Port id: GigabitEthernet0/0/48
+Port Description: GigabitEthernet0/0/48
+System Name: demo01-615a.csr.jet.msk.su
+
+System Description:
+Huawei Switch S5720-52X-PWR-SI-AC
+Huawei Versatile Routing Platform Software
+VRP (R) software, Version 5.170 (S5720 V200R019C10SPC500)
+Copyright (C) 2000-2020 HUAWEI TECH Co., Ltd.
+
+Time remaining: 109 seconds
+System Capabilities: B,R
+Enabled Capabilities: B,R
+Management Addresses:
+    IP: 10.1.128.251
+    OID:
+        0.6.15.43.6.1.4.1.2011.5.25.41.1.2.1.1.1.
+Auto Negotiation - supported, enabled
+Physical media capabilities:
+    1000baseT(FD)
+    1000baseX(FD)
+    100base-TX(FD)
+    100base-TX(HD)
+    100base-T4
+    10base-T(FD)
+    10base-T(HD)
+Media Attachment Unit type: 30
+Vlan ID: 1
+
+
+Total entries displayed: 1
+
+# show mpls ldp discovery
+
+                                 ^
+% Invalid input detected at '^' marker.
+
+# show mpls ldp neighbor
+
+                                 ^
+% Invalid input detected at '^' marker.
+
+# show port-security
+
+Secure Port  MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action
+                (Count)       (Count)          (Count)
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 8192
+
+# show radius server-group all
+
+Server group radius
+    Sharecount = 1  sg_unconfigured = FALSE
+    Type = standard  Memlocks = 1
+
+# show spanning-tree summary
+
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0128, VLAN0843, VLAN1094, VLAN2001-VLAN2010
+  VLAN3168-VLAN3170, VLAN3279
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0128                     0         0        0          1          1
+VLAN0843                     0         0        0          1          1
+VLAN1094                     0         0        0          1          1
+VLAN2001                     0         0        0          1          1
+VLAN2002                     0         0        0          1          1
+VLAN2003                     0         0        0          1          1
+VLAN2004                     0         0        0          1          1
+VLAN2005                     0         0        0          1          1
+VLAN2006                     0         0        0          1          1
+VLAN2007                     0         0        0          1          1
+VLAN2008                     0         0        0          1          1
+VLAN2009                     0         0        0          1          1
+VLAN2010                     0         0        0          1          1
+VLAN3168                     0         0        0          1          1
+VLAN3169                     0         0        0          1          1
+VLAN3170                     0         0        0          1          1
+VLAN3171                     0         0        0          2          2
+VLAN3172                     0         0        0          2          2
+VLAN3173                     0         0        0          1          1
+VLAN3174                     0         0        0          1          1
+VLAN3177                     0         0        0          1          1
+VLAN3279                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+22 vlans                     0         0        0         24         24
+
+# show standby
+
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0128, VLAN0843, VLAN1094, VLAN2001-VLAN2010
+  VLAN3168-VLAN3170, VLAN3279
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0128                     0         0        0          1          1
+VLAN0843                     0         0        0          1          1
+VLAN1094                     0         0        0          1          1
+VLAN2001                     0         0        0          1          1
+VLAN2002                     0         0        0          1          1
+VLAN2003                     0         0        0          1          1
+VLAN2004                     0         0        0          1          1
+VLAN2005                     0         0        0          1          1
+VLAN2006                     0         0        0          1          1
+VLAN2007                     0         0        0          1          1
+VLAN2008                     0         0        0          1          1
+VLAN2009                     0         0        0          1          1
+VLAN2010                     0         0        0          1          1
+VLAN3168                     0         0        0          1          1
+VLAN3169                     0         0        0          1          1
+VLAN3170                     0         0        0          1          1
+VLAN3171                     0         0        0          2          2
+VLAN3172                     0         0        0          2          2
+VLAN3173                     0         0        0          1          1
+VLAN3174                     0         0        0          1          1
+VLAN3177                     0         0        0          1          1
+VLAN3279                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+22 vlans                     0         0        0         24         24
+
+# show standby brief
+
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0128, VLAN0843, VLAN1094, VLAN2001-VLAN2010
+  VLAN3168-VLAN3170, VLAN3279
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0128                     0         0        0          1          1
+VLAN0843                     0         0        0          1          1
+VLAN1094                     0         0        0          1          1
+VLAN2001                     0         0        0          1          1
+VLAN2002                     0         0        0          1          1
+VLAN2003                     0         0        0          1          1
+VLAN2004                     0         0        0          1          1
+VLAN2005                     0         0        0          1          1
+VLAN2006                     0         0        0          1          1
+VLAN2007                     0         0        0          1          1
+VLAN2008                     0         0        0          1          1
+VLAN2009                     0         0        0          1          1
+VLAN2010                     0         0        0          1          1
+VLAN3168                     0         0        0          1          1
+VLAN3169                     0         0        0          1          1
+VLAN3170                     0         0        0          1          1
+VLAN3171                     0         0        0          2          2
+VLAN3172                     0         0        0          2          2
+VLAN3173                     0         0        0          1          1
+VLAN3174                     0         0        0          1          1
+VLAN3177                     0         0        0          1          1
+VLAN3279                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+22 vlans                     0         0        0         24         24
+
+# show tacacs
+
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0128, VLAN0843, VLAN1094, VLAN2001-VLAN2010
+  VLAN3168-VLAN3170, VLAN3279
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is enabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0128                     0         0        0          1          1
+VLAN0843                     0         0        0          1          1
+VLAN1094                     0         0        0          1          1
+VLAN2001                     0         0        0          1          1
+VLAN2002                     0         0        0          1          1
+VLAN2003                     0         0        0          1          1
+VLAN2004                     0         0        0          1          1
+VLAN2005                     0         0        0          1          1
+VLAN2006                     0         0        0          1          1
+VLAN2007                     0         0        0          1          1
+VLAN2008                     0         0        0          1          1
+VLAN2009                     0         0        0          1          1
+VLAN2010                     0         0        0          1          1
+VLAN3168                     0         0        0          1          1
+VLAN3169                     0         0        0          1          1
+VLAN3170                     0         0        0          1          1
+VLAN3171                     0         0        0          2          2
+VLAN3172                     0         0        0          2          2
+VLAN3173                     0         0        0          1          1
+VLAN3174                     0         0        0          1          1
+VLAN3177                     0         0        0          1          1
+VLAN3279                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+22 vlans                     0         0        0         24         24
+
+# show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/11, Fa0/12, Gi0/2
+34   NTP_for_iMaster                  active
+128  iMaster-Int-mgmt                 active    Fa0/13
+843  iMaster-Int-Comm                 active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+1094 iMaster-Ext-mgmt                 active
+2001 -=TanderSWAP=-                   active
+2002 -=TanderSWAP-2002=-              active
+2003 -=TanderSWAP-2003=-              active
+2004 -=TanderSWAP-2004=-              active
+2005 -=TanderSWAP-2005=-              active
+2006 -=TanderSWAP-2006=-              active
+2007 -=TanderSWAP-2007=-              active
+2008 -=TanderSWAP-2008=-              active
+2009 -=TanderSWAP-2009=-              active
+2010 -=TanderSWAP-2010=-              active
+3168 VLAN_wtih_DHCP                   active    Fa0/21, Fa0/22
+3169 VLAN_MGMT3169                    active
+3170 VLAN3170                         active
+3171 VLAN3171                         active    Fa0/3, Fa0/5, Fa0/9, Fa0/24
+3172 VLAN3172                         active    Fa0/1, Fa0/2, Fa0/4, Fa0/6, Fa0/23
+3173 VLAN3173                         active    Fa0/7, Fa0/8, Fa0/10, Fa0/14, Fa0/15, Fa0/16, Fa0/17, Fa0/18, Fa0/19, Fa0/20
+3174 VLAN3174                         active
+3177 VLAN3177                         active
+3179 VLAN3179                         active
+3279 VLAN3279                         active
+
+# show vlan internal usage
+
+VLAN Usage
+---- --------------------
+
+# show vlan private-vlan
+
+                                     ^
+% Invalid input detected at '^' marker.
+
+# show vlan-switch
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show power inline
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show ip route vrf *
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show mpls interfaces detail
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show mpls forwarding
+
+                                    ^
+% Invalid input detected at '^' marker.
+
+# show vpc
+
+                                 ^
+% Invalid input detected at '^' marker.
+
+# show vpc consistency-parameters global
+                                 ^
+% Invalid input detected at '^' marker.

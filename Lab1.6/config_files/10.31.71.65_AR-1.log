@@ -1,0 +1,2786 @@
+
+# display current-configuration all
+
+[V200R009C00SPC500]
+#
+ sysname AR-1
+#
+ board add 0/5 6E&M
+#
+ drop illegal-mac alarm
+#
+ clock timezone Moscow add 03:00:00
+#
+ l2tp enable
+#
+vlan batch 333
+#
+ ipsec authentication sha2 compatible enable
+ observe-port interface GigabitEthernet0/0/2
+#
+authentication-profile name default_authen_profile
+authentication-profile name dot1x_authen_profile
+authentication-profile name mac_authen_profile
+authentication-profile name portal_authen_profile
+authentication-profile name dot1xmac_authen_profile
+authentication-profile name multi_authen_profile
+#
+ lldp enable
+#
+dhcp enable
+#
+rsa peer-public-key 10.31.71.1
+ public-key-code begin
+  30820109
+    02820100
+      C82AA3AE 4B31FB84 ED7F1421 4F355F95 2E47DACD 05DBA1F4 023B6612 EEB88879
+      26A47245 4E1D6732 A2ACF4FD 70E685D4 A135D4B0 A57B999A 82F635C8 8B701C84
+      6B62D8AA 935DAF78 07EAF76A 26E9FA02 4F8C18B0 ADC1BE04 3F7E5472 BB0083EF
+      F7A81912 F1C41C61 61A935C5 EB6F661A 645EFAB7 6AD5B3F5 2C54E22C 8DFB76D0
+      74FAD078 A2E48A51 F5744981 25244FCE EC0A6F59 B3AE32FC D069460D 16389D27
+      8DC56A08 A7677D01 136C8A71 2C7FF75A CCCAF379 417B6E82 9E4C2C86 6F99BADE
+      87C37034 3E5CC048 8956B27F 2DB4B1C0 FFF62E34 A8B984C0 20F47129 F22C2194
+      8F78A846 6A95B084 A72BFE45 FB50C71D 24206E6C EEBAD5D2 0DC378AC 558439B1
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+rsa peer-public-key 10.31.73.207
+ public-key-code begin
+  30820109
+    02820100
+      D6DA5EEB 0ECAE029 A0D8471B 3773827C 761005A6 E158504C 60503F18 147F2336
+      2747FD36 35DA3141 3409D39C 20AAD085 38F2B49D 900FEC81 226505A2 0FEFE9E5
+      B102D383 2B599E1F 04603288 FC3ACB43 7C78396A 6A49D6D0 3D164FED A7ECF31C
+      609E12B7 C9C5608C 447000AD 4622573D AA2C2265 C459FC81 522890D7 BF11DDAB
+      A2614483 7F865365 6C68595A 5A386323 D2D71C49 9549B9C1 418484A6 E5A3F9D3
+      F2AE86E1 42B2B2FB 31E07994 4455D9B2 F90C8D99 724ACE87 A66EDD1E D9AA6817
+      3737B0E2 70F2195F 78AAF29C 5E19994B 589712BD 076C7657 DFEAF911 8809C238
+      7FE7587D D057951C B17FEC95 535A3D77 176B8AD3 8C66CBE3 5EEA374C 3CB43921
+    0203
+      010001
+ public-key-code end
+peer-public-key end
+#
+ ecc peer-public-key 5.5.5.5 encoding-type der
+  public-key-code begin
+    0400EBDC B0D46296 4EEBD5D1 5971817E B8445544 29A1B9F2 E55BE407 EC7DA6A6
+    3434DCD5 8CC0F53C 02E2FA08 107F1050 758F3CC6 C05859C8 DAD7BBA2 E1247E58
+    0DE68901 5FF91911 BFA96287 8323DF3D 96866854 F1E4880A BC0F4D13 039085F5
+    AB0492A5 ED1988F5 A85D77EA B9B3B5D4 310A03B9 8D2C8E23 834AC25F A651B2BA
+    D56387F8 CC
+  public-key-code end
+ peer-public-key end
+#
+ip vpn-instance 200
+ ipv4-family
+  route-distinguisher 200:200
+#
+ip vpn-instance 300
+ ipv4-family
+  route-distinguisher 200:300
+#
+ip vpn-instance 400
+ ipv4-family
+  route-distinguisher 200:400
+#
+ip vpn-instance 800
+ ipv4-family
+  route-distinguisher 200:800
+#
+ip vpn-instance DC1
+ ipv4-family
+  route-distinguisher 100:100
+#
+ip vpn-instance DC2
+ ipv4-family
+  route-distinguisher 100:101
+#
+ip vpn-instance L2tp1
+ ipv4-family
+  route-distinguisher 11:11
+#
+ip vpn-instance L2tp2
+ ipv4-family
+  route-distinguisher 11:12
+#
+ip vpn-instance MGMT
+ ipv4-family
+  route-distinguisher 1:1
+#
+ip vpn-instance WAN
+ ipv4-family
+  route-distinguisher 55:55
+#
+ip vpn-instance dc11
+ ipv4-family
+  route-distinguisher 200:1011
+#
+ip vpn-instance dc12
+ ipv4-family
+  route-distinguisher 200:1012
+#
+ip vpn-instance dc21
+ ipv4-family
+  route-distinguisher 200:1021
+#
+ip vpn-instance dc22
+ ipv4-family
+  route-distinguisher 200:1022
+#
+ip vpn-instance q
+ ipv4-family
+  route-distinguisher 12:12
+#
+ip vpn-instance q2
+ ipv4-family
+  route-distinguisher 111:222
+#
+bridge 1
+bridge 2
+bridge 3
+bridge 4
+#
+radius-server template default
+#
+bfd
+#
+pki realm default
+#
+ssl policy default_policy type server
+ pki-realm default
+ version tls1.0 tls1.1
+  cipher XXX
+#
+acl number 3000
+ rule 10 permit ip
+#
+ipsec proposal proposal_ASR
+ esp authentication-algorithm sha2-256
+ esp encryption-algorithm aes-128
+ipsec proposal l2tp
+ encapsulation-mode transport
+ esp authentication-algorithm sha1
+ esp encryption-algorithm aes-256
+ipsec proposal voek-l2tp
+ encapsulation-mode transport
+ esp authentication-algorithm sha2-256
+ esp encryption-algorithm aes-256
+ipsec proposal 10
+ esp authentication-algorithm sha2-256
+ esp encryption-algorithm aes-256
+#
+ike proposal default
+ encryption-algorithm aes-256
+ dh group14
+ authentication-algorithm sha2-256
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256
+ prf hmac-sha2-256
+ike proposal 1
+ encryption-algorithm aes-128
+ dh group14
+ authentication-algorithm sha2-512
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256
+ prf hmac-sha2-256
+ike proposal 5
+ encryption-algorithm aes-128
+ dh group19
+ authentication-algorithm sha2-256
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256
+ prf hmac-sha2-256
+ike proposal 10
+ encryption-algorithm aes-128
+ dh group2
+ authentication-algorithm sha1
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256
+ prf hmac-sha2-256
+ike proposal 12
+ encryption-algorithm aes-256
+ dh group14
+ authentication-algorithm sha2-256
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256
+ prf hmac-sha2-256
+#
+ike peer peer_ASR
+ pre-shared-key XXX
+ ike-proposal 5
+ike peer l2tp
+ pre-shared-key cipher XXX
+ ike-proposal 10
+ike peer voek-l2tp
+ undo version 2
+ pre-shared-key cipher XXX
+ ike-proposal 1
+ dpd type periodic
+ dpd idle-time 120
+ dpd retry-limit 5
+ike peer ASR
+#
+ipsec policy-template l2tp 10
+ ike-peer l2tp
+ proposal l2tp
+ipsec policy-template pttPC8g92VmVl8 1
+ pfs dh-group2
+ ike-peer voek-l2tp
+ proposal voek-l2tp
+ qos pre-classify
+ sa duration traffic-based 0
+#
+ipsec policy l2tpipsec 10 isakmp template l2tp
+ipsec policy l2tpipsec2 20 isakmp template l2tp
+ipsec policy voek-l2tp 1 isakmp template pttPC8g92VmVl8
+#
+ipsec profile profile_ASR
+ ike-peer peer_ASR
+ proposal proposal_ASR
+#
+qos queue-profile qqq
+#
+traffic classifier any operator or
+ if-match any
+traffic classifier q operator or
+#
+traffic behavior q
+ car cir 8 cbs 1504 pbs 2504 mode color-blind green pass yellow pass red discard
+#
+traffic policy q
+ classifier any behavior q precedence 5
+#
+free-rule-template name default_free_rule
+#
+portal-access-profile name portal_access_profile
+#
+ip pool 1
+ gateway-list 10.1.1.1
+ network 10.1.1.0 mask 255.255.255.0
+#
+ip pool 2
+ vpn-instance L2tp2
+ gateway-list 10.207.0.1
+ network 10.207.0.0 mask 255.255.255.0
+#
+ip pool Remote251
+ vpn-instance WAN
+ gateway-list 192.168.251.1
+ network 192.168.251.0 mask 255.255.255.0
+#
+aaa
+ authentication-scheme default
+ authentication-scheme radius
+  authentication-mode radius
+ authorization-scheme default
+ accounting-scheme default
+ domain default
+  authentication-scheme default
+ domain default_admin
+  authentication-scheme default
+ domain elset
+  authentication-scheme default
+  radius-server default
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+ local-user XXX
+#
+firewall zone Local
+#
+nat alg dns enable
+#
+nat static global 12.2.3.0 inside 22.2.2.0 netmask 255.255.255.0 description @for Sergei@
+#
+interface Serial5/0/0
+ link-protocol tdm
+ em passthrough enable
+#
+interface Serial5/0/1
+ link-protocol tdm
+ em passthrough enable
+#
+interface Serial5/0/2
+ link-protocol tdm
+ em passthrough enable
+#
+interface Serial5/0/3
+ link-protocol tdm
+#
+interface Serial5/0/4
+ link-protocol tdm
+#
+interface Serial5/0/5
+ link-protocol tdm
+#
+interface Virtual-Template1
+ ppp authentication-mode chap
+ remote address pool 1
+ ip address 10.1.1.1 255.255.255.0
+#
+interface GigabitEthernet0/0/0
+ mtu 2150
+ description ** to ASR 01 COLO **
+ ip address 10.31.71.65 255.255.255.0
+ ip address 172.19.2.2 255.255.255.0 sub
+ arp-proxy enable
+#
+interface GigabitEthernet0/0/0.54
+ description L2tp_test
+ shutdown
+ dot1q termination vid 54
+ nat outbound 3000
+ ipsec policy l2tpipsec
+#
+interface GigabitEthernet0/0/1
+ description ** to AR-2 bgw04 **
+ ip binding vpn-instance DC1
+ ip address 10.2.2.2 255.255.255.0
+#
+interface GigabitEthernet0/0/1.100
+ dot1q termination vid 100
+ ip address 1.1.1.1 255.255.255.0
+#
+interface GigabitEthernet0/0/1.102
+ bridge 1
+ dot1q termination vid 102
+ ip address 20.1.1.2 255.255.255.0
+#
+interface GigabitEthernet0/0/1.200
+ dot1q termination vid 200
+ ip address 2.2.2.1 255.255.255.0
+#
+interface GigabitEthernet0/0/1.202
+ bridge 2
+ dot1q termination vid 202
+ ip binding vpn-instance q
+ ip address 30.1.1.2 255.255.255.0
+#
+interface GigabitEthernet0/0/1.205
+ dot1q termination vid 205
+ ip binding vpn-instance 200
+ ip address 192.168.200.5 255.255.255.252
+#
+interface GigabitEthernet0/0/1.300
+ dot1q termination vid 300
+ ip binding vpn-instance 300
+ ip address 172.16.1.1 255.255.255.252
+#
+interface GigabitEthernet0/0/1.302
+ bridge 3
+ dot1q termination vid 302
+ ip address 40.1.1.2 255.255.255.0
+#
+interface GigabitEthernet0/0/1.306
+ dot1q termination vid 306
+ ip binding vpn-instance 300
+ ip address 172.16.1.5 255.255.255.252
+#
+interface GigabitEthernet0/0/1.400
+ dot1q termination vid 400
+ ip binding vpn-instance 400
+ ip address 192.168.4.1 255.255.255.252
+ qos gts cir 8 cbs 1500
+#
+interface GigabitEthernet0/0/1.402
+ bridge 4
+ dot1q termination vid 402
+#
+interface GigabitEthernet0/0/1.407
+ dot1q termination vid 407
+ ip binding vpn-instance 400
+ ip address 192.168.4.5 255.255.255.252
+#
+interface GigabitEthernet0/0/1.500
+ dot1q termination vid 508
+ ip binding vpn-instance 800
+ ip address 192.168.5.1 255.255.255.252
+#
+interface GigabitEthernet0/0/1.600
+ dot1q termination vid 608
+ ip binding vpn-instance 800
+ ip address 192.168.6.1 255.255.255.252
+#
+interface GigabitEthernet0/0/1.700
+ dot1q termination vid 708
+ ip binding vpn-instance 800
+ ip address 192.168.7.1 255.255.255.252
+#
+interface GigabitEthernet0/0/2
+ ip address 10.2.2.1 255.255.255.0
+ ospf network-type p2p
+#
+interface GigabitEthernet0/0/2.10
+ description ** to DC10 **
+ ip binding vpn-instance DC1
+#
+interface GigabitEthernet0/0/2.100
+ dot1q termination vid 100
+ ip binding vpn-instance L2tp2
+ ip address 1.1.1.2 255.255.255.0
+ ip address 10.31.71.66 255.255.255.0 sub
+ nat static protocol udp global current-interface 500 inside 192.168.223.251 500 netmask 255.255.255.255
+#
+interface GigabitEthernet0/0/2.101
+ bridge 1
+ dot1q termination vid 101
+ ip binding vpn-instance q
+ ip address 10.1.1.254 255.255.255.0
+#
+interface GigabitEthernet0/0/2.102
+ dot1q termination vid 102
+#
+interface GigabitEthernet0/0/2.111
+ bridge 1
+ shutdown
+ dot1q termination vid 111
+ ip binding vpn-instance q2
+ ip address 10.1.1.254 255.255.255.0
+#
+interface GigabitEthernet0/0/2.200
+ dot1q termination vid 200
+ ip binding vpn-instance L2tp1
+ ip address 2.2.2.2 255.255.255.0
+ ip address 10.31.71.67 255.255.255.0 sub
+#
+interface GigabitEthernet0/0/2.201
+ bridge 2
+ dot1q termination vid 201
+ ip address 30.1.1.2 255.255.255.0
+#
+interface GigabitEthernet0/0/2.301
+ bridge 3
+ dot1q termination vid 301
+ ip binding vpn-instance q
+ ip address 40.1.1.2 255.255.255.0
+#
+interface GigabitEthernet0/0/2.401
+ bridge 4
+ dot1q termination vid 401
+#
+interface GigabitEthernet0/0/2.1011
+ dot1q termination vid 1011
+ ip binding vpn-instance dc11
+ ip address 10.0.11.2 255.255.255.252
+#
+interface GigabitEthernet0/0/3
+ description VirtualPort
+ ip address 4.4.4.4 255.255.255.0
+#
+interface Cellular0/0/0
+#
+interface Cellular0/0/1
+#
+interface Tunnel-Template0
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 172.17.100.200 255.255.255.255
+ ospf enable 1 area 0.0.0.0
+#
+interface LoopBack8
+ ip binding vpn-instance 800
+ ip address 8.8.8.8 255.255.255.255
+#
+interface LoopBack81
+ ip binding vpn-instance 800
+ ip address 8.8.8.1 255.255.255.255
+#
+interface LoopBack82
+ ip binding vpn-instance 800
+ ip address 8.8.8.2 255.255.255.255
+#
+interface LoopBack83
+ ip binding vpn-instance 800
+ ip address 8.8.8.3 255.255.255.255
+#
+interface LoopBack84
+ ip binding vpn-instance 800
+ ip address 8.8.8.4 255.255.255.255
+#
+interface LoopBack85
+ ip binding vpn-instance 800
+ ip address 8.8.8.5 255.255.255.255
+#
+interface LoopBack86
+ ip binding vpn-instance 800
+ ip address 8.8.8.6 255.255.255.255
+#
+interface LoopBack89
+ ip binding vpn-instance 800
+ ip address 8.8.8.9 255.255.255.255
+#
+interface LoopBack200
+ ip binding vpn-instance 200
+ ip address 2.2.2.2 255.255.255.255
+#
+interface LoopBack300
+ ip binding vpn-instance 300
+ ip address 3.3.3.3 255.255.255.255
+#
+interface LoopBack400
+ ip binding vpn-instance 400
+ ip address 4.4.4.4 255.255.255.255
+#
+interface Tunnel0/0/0
+ ip address 1.2.3.4 255.255.255.0
+ tunnel-protocol gre
+ source 10.31.71.65
+ destination 1.1.1.1
+ traffic-policy q outbound
+ ospf cost 20000
+ ospf enable 1 area 0.0.0.0
+#
+interface Tunnel0/0/1
+ ip address 5.5.5.1 255.255.255.0
+ tunnel-protocol gre
+ source 10.31.71.65
+ destination 10.31.73.207
+#
+interface Tunnel0/0/11
+ ip binding vpn-instance dc11
+ ip address 10.0.1.2 255.255.255.252
+ tunnel-protocol gre
+ source GigabitEthernet0/0/2.1011
+ destination vpn-instance dc11 10.0.11.1
+#
+l2tp-group 1
+ mandatory-chap
+ undo tunnel authentication
+ allow l2tp virtual-template 1
+#
+bgp 2
+ #
+ ipv4-family unicast
+  undo synchronization
+  dampening
+ #
+ ipv4-family vpn-instance 200
+  router-id 2.2.2.2
+  network 2.2.2.2 255.255.255.255
+  import-route direct
+  peer 192.168.200.2 as-number 100
+  peer 192.168.200.2 fake-as 200
+  peer 192.168.200.6 as-number 500
+  peer 192.168.200.6 fake-as 200
+ #
+ ipv4-family vpn-instance 300
+  router-id 3.3.3.3
+  network 3.3.3.3 255.255.255.255
+  import-route direct
+  peer 172.16.1.2 as-number 100
+  peer 172.16.1.2 fake-as 300
+  peer 172.16.1.6 as-number 600
+  peer 172.16.1.6 fake-as 300
+ #
+ ipv4-family vpn-instance 400
+  router-id 4.4.4.4
+  network 4.4.4.4 255.255.255.255
+  import-route direct
+  peer 192.168.4.2 as-number 100
+  peer 192.168.4.2 fake-as 400
+  peer 192.168.4.6 as-number 700
+  peer 192.168.4.6 fake-as 400
+ #
+ ipv4-family vpn-instance 800
+  network 8.8.8.1 255.255.255.255
+  network 8.8.8.2 255.255.255.255
+  network 8.8.8.3 255.255.255.255
+  network 8.8.8.4 255.255.255.255
+  network 8.8.8.5 255.255.255.255
+  network 8.8.8.6 255.255.255.255
+  network 8.8.8.7 255.255.255.255
+  network 8.8.8.8 255.255.255.255
+  network 8.8.8.9 255.255.255.255
+  peer 192.168.5.2 as-number 500
+  peer 192.168.5.2 fake-as 800
+  peer 192.168.6.2 as-number 600
+  peer 192.168.6.2 fake-as 800
+  peer 192.168.7.2 as-number 700
+  peer 192.168.7.2 fake-as 800
+#
+ospf 1 router-id 172.17.100.200
+ bfd all-interfaces enable
+ bfd all-interfaces min-tx-interval 250 min-rx-interval 250
+ area 0.0.0.0
+#
+cpu-defend policy qqq
+#
+ ftp server enable
+#
+ snmp-agent local-engineid 800007DB03105172F14E50
+#
+ ssh client 10.31.71.1 assign rsa-key 10.31.71.1
+ ssh client 10.31.73.207 assign rsa-key 10.31.73.207
+ ssh client 5.5.5.5 assign ecc-key 5.5.5.5
+ ssh client first-time enable
+ stelnet server enable
+ telnet server enable
+#
+ http secure-server ssl-policy default_policy
+ http server enable
+ http secure-server enable
+ http server permit interface GigabitEthernet0/0/0
+#
+ip route-static 0.0.0.0 0.0.0.0 10.31.71.1
+ip route-static 10.31.71.66 255.255.255.255 1.1.1.2
+ip route-static 10.31.71.67 255.255.255.255 2.2.2.2
+ip route-static 10.31.73.208 255.255.255.255 5.5.5.2
+ip route-static 93.159.234.211 255.255.255.255 193.203.100.193
+ip route-static vpn-instance L2tp1 0.0.0.0 0.0.0.0 2.2.2.1
+ip route-static vpn-instance L2tp2 0.0.0.0 0.0.0.0 1.1.1.1
+ip route-static vpn-instance MGMT 0.0.0.0 0.0.0.0 10.31.71.1
+#
+fib regularly-refresh disable
+#
+user-interface con 0
+ authentication-mode aaa
+user-interface vty 0
+ authentication-mode aaa
+ user privilege level 15
+ protocol inbound telnet
+user-interface vty 1 4
+ authentication-mode aaa
+ protocol inbound ssh
+#
+hsb-group 0
+ hsb enable
+#
+wlan ac
+ traffic-profile name default
+ security-profile name default
+ security-profile name default-wds
+  security wpa2 psk pass-phrase %^%#Rq0IM%dNiO\ya~*Wx&j9UaF!E7F<TX(ackSGI6_0%^%# aes
+ ssid-profile name default
+ vap-profile name default
+ wds-profile name default
+ regulatory-domain-profile name default
+ air-scan-profile name default
+ rrm-profile name default
+ radio-2g-profile name default
+ radio-5g-profile name default
+ wids-spoof-profile name default
+ wids-profile name default
+ ap-system-profile name default
+ port-link-profile name default
+ wired-port-profile name default
+ ap-group name default
+#
+dot1x-access-profile name dot1x_access_profile
+#
+mac-access-profile name mac_access_profile
+#
+voice
+ #
+ enterprise default
+ #
+ diagnose
+#
+ops
+ script-assistant python shell6.py
+#
+autostart
+#
+secelog
+#
+return
+
+# display version
+
+Huawei Versatile Routing Platform Software
+VRP (R) software, Version 5.170 (AR2200 V200R009C00SPC500)
+Copyright (C) 2011-2018 HUAWEI TECH CO., LTD
+Huawei AR2220 Router uptime is 2 weeks, 0 day, 22 hours, 33 minutes
+BKP 0 version information:
+1. PCB      Version  : AR01BAK2A VER.A
+2. If Supporting PoE : No
+3. Board    Type     : AR2220
+4. MPU Slot Quantity : 1
+5. LPU Slot Quantity : 6
+
+MPU 0(Master) : uptime is 2 weeks, 0 day, 22 hours, 31 minutes
+SDRAM Memory Size    : 2048    M bytes
+Flash 0 Memory Size  : 16      M bytes
+NVRAM Memory Size    : 512     K bytes
+SD Card1 Memory Size : 1915    M bytes
+MPU version information :
+1. PCB      Version  : AR01SRU2A VER.B
+2. MAB      Version  : 0
+3. Board    Type     : AR2220
+4. CPLD0    Version  : 104
+5. BootROM  Version  : 963
+SubBoard[1]:
+1. PCB      Version  : AR01DD128A VER.B
+2. Board    Type     : DSP-16
+
+LPU 5 : uptime is 2 weeks, 0 day, 22 hours, 28 minutes
+SDRAM Memory Size    : 240     K bytes
+Flash 0 Memory Size  : 320     K bytes
+LPU version information :
+1. PCB      Version  : AR-6EM-W VER.A
+2. MAB      Version  : 0
+3. Board    Type     : 6E&M
+4. FPGA     Version  : 100
+5. BootROM  Version  : 6
+
+# display device
+
+AR2220's Device status:
+Slot  Sub Type             Online   Power     Register      Alarm        Primary
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5     -   6E&M             Present  PowerOn   Registered    Normal       NA
+0     -   AR2220           Present  PowerOn   Registered    Normal       Master
+7     -   PWR150A          Present  PowerOn   Registered    Normal       NA
+
+# display device manufacture-info
+
+                     ^
+Error:Too many parameters found at '^' position.
+
+# display device power
+
+                     ^
+Error:Too many parameters found at '^' position.
+
+# display power
+
+--------------------------------------------------------------------------
+ PowerNo  Present  Mode   State      Current(A)   Voltage(V)   Power(W)
+--------------------------------------------------------------------------
+   7       YES     AC     Supply     N/A          12           150
+
+# display device temperature all
+
+                     ^
+Error:Too many parameters found at '^' position.
+
+# display interface brief
+
+PHY: Physical
+*down: administratively down
+(l): loopback
+(s): spoofing
+(b): BFD down
+^down: standby
+(e): ETHOAM down
+(v): VirtualPort
+InUti/OutUti: input utility/output utility
+Interface                   PHY   Protocol  InUti OutUti   inErrors  outErrors
+Cellular0/0/0               down  down         0%     0%          0          0
+Cellular0/0/1               down  down         0%     0%          0          0
+GigabitEthernet0/0/0        up    up        0.01%  0.04%          0          0
+GigabitEthernet0/0/0.54     *down down         0%     0%          0          0
+GigabitEthernet0/0/1        down  down         0%     0%          0          0
+GigabitEthernet0/0/1.100    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.102    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.200    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.202    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.205    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.300    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.302    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.306    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.400    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.402    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.407    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.500    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.600    down  down         0%     0%          0          0
+GigabitEthernet0/0/1.700    down  down         0%     0%          0          0
+GigabitEthernet0/0/2        down  down         0%     0%          0          0
+GigabitEthernet0/0/2.10     down  down         0%     0%          0          0
+GigabitEthernet0/0/2.100    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.101    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.102    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.111    *down down         0%     0%          0          0
+GigabitEthernet0/0/2.200    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.201    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.301    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.401    down  down         0%     0%          0          0
+GigabitEthernet0/0/2.1011   down  down         0%     0%          0          0
+GigabitEthernet0/0/3(v)     up    up           0%     0%          0          0
+LoopBack0                   up    up(s)        0%     0%          0          0
+LoopBack8                   up    up(s)        0%     0%          0          0
+LoopBack81                  up    up(s)        0%     0%          0          0
+LoopBack82                  up    up(s)        0%     0%          0          0
+LoopBack83                  up    up(s)        0%     0%          0          0
+LoopBack84                  up    up(s)        0%     0%          0          0
+LoopBack85                  up    up(s)        0%     0%          0          0
+LoopBack86                  up    up(s)        0%     0%          0          0
+LoopBack89                  up    up(s)        0%     0%          0          0
+LoopBack200                 up    up(s)        0%     0%          0          0
+LoopBack300                 up    up(s)        0%     0%          0          0
+LoopBack400                 up    up(s)        0%     0%          0          0
+NULL0                       up    up(s)        0%     0%          0          0
+Serial5/0/0                 up    up           0%     0%          0          0
+Serial5/0/1                 up    up           0%     0%          0          0
+Serial5/0/2                 up    up           0%     0%          0          0
+Serial5/0/3                 up    up           0%     0%          0          0
+Serial5/0/4                 up    up           0%     0%          0          0
+Serial5/0/5                 up    up           0%     0%          0          0
+Tunnel-Template0            up    down         --     --          0          0
+Tunnel0/0/0                 up    up           --     --          0          0
+Tunnel0/0/1                 up    up           --     --          0          0
+Tunnel0/0/11                up    down         --     --          0          0
+Virtual-Template1           up    down         0%     0%          0          0
+
+# display interface description
+
+PHY: Physical
+*down: administratively down
+(l): loopback
+(s): spoofing
+(b): BFD down
+^down: standby
+(e): ETHOAM down
+(v): VirtualPort
+Interface                     PHY     Protocol Description
+Cell0/0/0                     down    down     HUAWEI, AR Series, Cellular0/0/0
+                                               Interface
+Cell0/0/1                     down    down     HUAWEI, AR Series, Cellular0/0/1
+                                               Interface
+GE0/0/0                       up      up       ** to ASR 01 COLO **
+GE0/0/0.54                    *down   down     L2tp_test
+GE0/0/1                       down    down     ** to AR-2 bgw04 **
+GE0/0/1.100                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.100 Interface
+GE0/0/1.102                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.102 Interface
+GE0/0/1.200                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.200 Interface
+GE0/0/1.202                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.202 Interface
+GE0/0/1.205                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.205 Interface
+GE0/0/1.300                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.300 Interface
+GE0/0/1.302                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.302 Interface
+GE0/0/1.306                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.306 Interface
+GE0/0/1.400                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.400 Interface
+GE0/0/1.402                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.402 Interface
+GE0/0/1.407                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.407 Interface
+GE0/0/1.500                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.500 Interface
+GE0/0/1.600                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.600 Interface
+GE0/0/1.700                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/1.700 Interface
+GE0/0/2                       down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2 Interface
+GE0/0/2.10                    down    down     ** to DC10 **
+GE0/0/2.100                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.100 Interface
+GE0/0/2.101                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.101 Interface
+GE0/0/2.102                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.102 Interface
+GE0/0/2.111                   *down   down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.111 Interface
+GE0/0/2.200                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.200 Interface
+GE0/0/2.201                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.201 Interface
+GE0/0/2.301                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.301 Interface
+GE0/0/2.401                   down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.401 Interface
+GE0/0/2.1011                  down    down     HUAWEI, AR Series, GigabitEtherne
+                                               t0/0/2.1011 Interface
+GE0/0/3(v)                    up      up       VirtualPort
+Loop0                         up      up(s)    HUAWEI, AR Series, LoopBack0 Inte
+                                               rface
+Loop8                         up      up(s)    HUAWEI, AR Series, LoopBack8 Inte
+                                               rface
+Loop81                        up      up(s)    HUAWEI, AR Series, LoopBack81 Int
+                                               erface
+Loop82                        up      up(s)    HUAWEI, AR Series, LoopBack82 Int
+                                               erface
+Loop83                        up      up(s)    HUAWEI, AR Series, LoopBack83 Int
+                                               erface
+Loop84                        up      up(s)    HUAWEI, AR Series, LoopBack84 Int
+                                               erface
+Loop85                        up      up(s)    HUAWEI, AR Series, LoopBack85 Int
+                                               erface
+Loop86                        up      up(s)    HUAWEI, AR Series, LoopBack86 Int
+                                               erface
+Loop89                        up      up(s)    HUAWEI, AR Series, LoopBack89 Int
+                                               erface
+Loop200                       up      up(s)    HUAWEI, AR Series, LoopBack200 In
+                                               terface
+Loop300                       up      up(s)    HUAWEI, AR Series, LoopBack300 In
+                                               terface
+Loop400                       up      up(s)    HUAWEI, AR Series, LoopBack400 In
+                                               terface
+NULL0                         up      up(s)    HUAWEI, AR Series, NULL0 Interfac
+                                               e
+S5/0/0                        up      up       HUAWEI, AR Series, Serial5/0/0 In
+                                               terface
+S5/0/1                        up      up       HUAWEI, AR Series, Serial5/0/1 In
+                                               terface
+S5/0/2                        up      up       HUAWEI, AR Series, Serial5/0/2 In
+                                               terface
+S5/0/3                        up      up       HUAWEI, AR Series, Serial5/0/3 In
+                                               terface
+S5/0/4                        up      up       HUAWEI, AR Series, Serial5/0/4 In
+                                               terface
+S5/0/5                        up      up       HUAWEI, AR Series, Serial5/0/5 In
+                                               terface
+TT0                           up      down     HUAWEI, AR Series, Tunnel-Templat
+                                               e0 Interface
+Tun0/0/0                      up      up       HUAWEI, AR Series, Tunnel0/0/0 In
+                                               terface
+Tun0/0/1                      up      up       HUAWEI, AR Series, Tunnel0/0/1 In
+                                               terface
+Tun0/0/11                     up      down     HUAWEI, AR Series, Tunnel0/0/11 I
+                                               nterface
+VT1                           up      down     HUAWEI, AR Series, Virtual-Templa
+                                               te1 Interface
+
+# display interface transceiver
+
+                        ^
+Error: Unrecognized command found at '^' position.
+
+# display interface troubleshooting
+
+                        ^
+Error: Unrecognized command found at '^' position.
+
+# display transceiver
+
+                        ^
+Error: Unrecognized command found at '^' position.
+
+# display interface transceiver
+
+                        ^
+Error: Unrecognized command found at '^' position.
+
+# display stp active
+
+-------[CIST Global Info][Mode MSTP]-------
+CIST Bridge         :32768.1051-72f1-4e50
+Config Times        :Hello 2s MaxAge 20s FwDly 15s MaxHop 20
+Active Times        :Hello 2s MaxAge 20s FwDly 15s MaxHop 20
+CIST Root/ERPC      :32768.1051-72f1-4e50 / 0 (This bridge is the root)
+CIST RegRoot/IRPC   :32768.1051-72f1-4e50 / 0 (This bridge is the root)
+CIST RootPortId     :0.0
+BPDU-Protection     :Disabled
+TC or TCN received  :0
+TC count per hello  :0
+STP Converge Mode   :Normal
+Time since last TC  :0 days 0h:0m:0s
+Number of TC        :0
+
+# display stp brief
+
+ MSTID   Port                        Role  STP State     Protection
+
+# display stp global
+
+Protocol Status            : Enabled
+Bpdu-filter default        : Disabled
+Tc-protection              : Enabled
+Tc-protection threshold    : 1
+Tc-protection interval     : 2s
+Edged port default         : Disabled
+Pathcost-standard          : Dot1t
+Timer-factor               : 3
+Transmit-limit             : 6
+Bridge-diameter            : 7
+-------[CIST Global Info][Mode MSTP]-------
+CIST Bridge         :32768.1051-72f1-4e50
+Config Times        :Hello 2s MaxAge 20s FwDly 15s MaxHop 20
+Active Times        :Hello 2s MaxAge 20s FwDly 15s MaxHop 20
+CIST Root/ERPC      :32768.1051-72f1-4e50 / 0 (This bridge is the root)
+CIST RegRoot/IRPC   :32768.1051-72f1-4e50 / 0 (This bridge is the root)
+CIST RootPortId     :0.0
+BPDU-Protection     :Disabled
+TC or TCN received  :0
+TC count per hello  :0
+STP Converge Mode   :Normal
+Time since last TC  :0 days 0h:0m:0s
+Number of TC        :0
+
+# display stp bridge local
+
+MSTID            Bridge ID Hello Max Forward Protocol
+                            Time Age   Delay
+----- -------------------- ----- --- ------- ---------------------------
+    0 32768.1051-72f1-4e50     2  20      15 MSTP
+
+# display stp bridge root
+
+MSTID              Root ID  Root Cost Hello Max Forward Root Port
+                                       Time Age   Delay
+----- -------------------- ---------- ----- --- ------- -----------------
+    0 32768.1051-72f1-4e50          0     2  20      15
+
+# display port-group all
+
+MSTID              Root ID  Root Cost Hello Max Forward Root Port
+                                       Time Age   Delay
+----- -------------------- ---------- ----- --- ------- -----------------
+    0 32768.1051-72f1-4e50          0     2  20      15
+
+# dis eth-trunk
+
+Info: No valid trunk in the system.
+
+# display eth-trunk troubleshooting
+
+                        ^
+Error: Unrecognized command found at '^' position.
+
+# display eth-trunk brief
+
+                        ^
+Error: Unrecognized command found at '^' position.
+
+# display lacp brief
+
+System Priority: 32768
+System ID      : 1051-72f1-4e50
+
+# display mac-address
+
+-------------------------------------------------------------------------------
+MAC Address       VLAN/Bridge/VSI         Learned-From               Type
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Total items displayed = 0
+
+# display arp all
+
+IP ADDRESS      MAC ADDRESS     EXPIRE(M) TYPE        INTERFACE   VPN-INSTANCE
+                                          VLAN/CEVLAN PVC
+------------------------------------------------------------------------------
+10.31.71.65     1051-72f1-4e51            I -         GE0/0/0
+172.19.2.2      1051-72f1-4e51            I -         GE0/0/0
+10.31.71.1      48d5-39f3-16a7  20        D-0         GE0/0/0
+10.31.71.41     0050-5684-a05a  20        D-0         GE0/0/0
+10.2.2.2        1051-72f1-4e52            I -         GE0/0/1        DC1
+10.2.2.1        1051-72f1-4e53            I -         GE0/0/2
+4.4.4.4         1051-72f1-4e54            I -         GE0/0/3
+1.1.1.1         1051-72f1-4e52            I -         GE0/0/1.100
+20.1.1.2        1051-72f1-4e52            I -         GE0/0/1.102
+2.2.2.1         1051-72f1-4e52            I -         GE0/0/1.200
+30.1.1.2        1051-72f1-4e52            I -         GE0/0/1.202    q
+192.168.200.5   1051-72f1-4e52            I -         GE0/0/1.205    200
+172.16.1.1      1051-72f1-4e52            I -         GE0/0/1.300    300
+40.1.1.2        1051-72f1-4e52            I -         GE0/0/1.302
+172.16.1.5      1051-72f1-4e52            I -         GE0/0/1.306    300
+192.168.4.1     1051-72f1-4e52            I -         GE0/0/1.400    400
+192.168.4.5     1051-72f1-4e52            I -         GE0/0/1.407    400
+192.168.5.1     1051-72f1-4e52            I -         GE0/0/1.500    800
+192.168.6.1     1051-72f1-4e52            I -         GE0/0/1.600    800
+192.168.7.1     1051-72f1-4e52            I -         GE0/0/1.700    800
+1.1.1.2         1051-72f1-4e53            I -         GE0/0/2.100    L2tp2
+10.31.71.66     1051-72f1-4e53            I -         GE0/0/2.100    L2tp2
+10.1.1.254      1051-72f1-4e53            I -         GE0/0/2.101    q
+10.1.1.254      1051-72f1-4e53            I -         GE0/0/2.111    q2
+2.2.2.2         1051-72f1-4e53            I -         GE0/0/2.200    L2tp1
+10.31.71.67     1051-72f1-4e53            I -         GE0/0/2.200    L2tp1
+30.1.1.2        1051-72f1-4e53            I -         GE0/0/2.201
+40.1.1.2        1051-72f1-4e53            I -         GE0/0/2.301    q
+10.0.11.2       1051-72f1-4e53            I -         GE0/0/2.1011   dc11
+------------------------------------------------------------------------------
+Total:29        Dynamic:2       Static:0     Interface:27
+
+# display arp snooping all
+
+                  ^
+Error:Too many parameters found at '^' position.
+
+# display vrrp brief
+
+Info: No VRRP backup group is configured with a virtual IPv4 address.
+
+# display vrrp verbose
+
+                   ^
+Error: Unrecognized command found at '^' position.
+
+# display ip interface brief
+
+*down: administratively down
+^down: standby
+(l): loopback
+(s): spoofing
+(E): E-Trunk down
+The number of interface that is UP in Physical is 20
+The number of interface that is DOWN in Physical is 29
+The number of interface that is UP in Protocol is 17
+The number of interface that is DOWN in Protocol is 32
+
+Interface                         IP Address/Mask      Physical   Protocol
+Cellular0/0/0                     unassigned           down       down
+Cellular0/0/1                     unassigned           down       down
+GigabitEthernet0/0/0              10.31.71.65/24       up         up
+GigabitEthernet0/0/0.54           unassigned           *down      down
+GigabitEthernet0/0/1              10.2.2.2/24          down       down
+GigabitEthernet0/0/1.100          1.1.1.1/24           down       down
+GigabitEthernet0/0/1.102          20.1.1.2/24          down       down
+GigabitEthernet0/0/1.200          2.2.2.1/24           down       down
+GigabitEthernet0/0/1.202          30.1.1.2/24          down       down
+GigabitEthernet0/0/1.205          192.168.200.5/30     down       down
+GigabitEthernet0/0/1.300          172.16.1.1/30        down       down
+GigabitEthernet0/0/1.302          40.1.1.2/24          down       down
+GigabitEthernet0/0/1.306          172.16.1.5/30        down       down
+GigabitEthernet0/0/1.400          192.168.4.1/30       down       down
+GigabitEthernet0/0/1.402          unassigned           down       down
+GigabitEthernet0/0/1.407          192.168.4.5/30       down       down
+GigabitEthernet0/0/1.500          192.168.5.1/30       down       down
+GigabitEthernet0/0/1.600          192.168.6.1/30       down       down
+GigabitEthernet0/0/1.700          192.168.7.1/30       down       down
+GigabitEthernet0/0/2              10.2.2.1/24          down       down
+GigabitEthernet0/0/2.10           unassigned           down       down
+GigabitEthernet0/0/2.100          1.1.1.2/24           down       down
+GigabitEthernet0/0/2.101          10.1.1.254/24        down       down
+GigabitEthernet0/0/2.102          unassigned           down       down
+GigabitEthernet0/0/2.111          10.1.1.254/24        *down      down
+GigabitEthernet0/0/2.200          2.2.2.2/24           down       down
+GigabitEthernet0/0/2.201          30.1.1.2/24          down       down
+GigabitEthernet0/0/2.301          40.1.1.2/24          down       down
+GigabitEthernet0/0/2.401          unassigned           down       down
+GigabitEthernet0/0/2.1011         10.0.11.2/30         down       down
+GigabitEthernet0/0/3              4.4.4.4/24           up         up
+LoopBack0                         172.17.100.200/32    up         up(s)
+LoopBack8                         8.8.8.8/32           up         up(s)
+LoopBack81                        8.8.8.1/32           up         up(s)
+LoopBack82                        8.8.8.2/32           up         up(s)
+LoopBack83                        8.8.8.3/32           up         up(s)
+LoopBack84                        8.8.8.4/32           up         up(s)
+LoopBack85                        8.8.8.5/32           up         up(s)
+LoopBack86                        8.8.8.6/32           up         up(s)
+LoopBack89                        8.8.8.9/32           up         up(s)
+LoopBack200                       2.2.2.2/32           up         up(s)
+LoopBack300                       3.3.3.3/32           up         up(s)
+LoopBack400                       4.4.4.4/32           up         up(s)
+NULL0                             unassigned           up         up(s)
+Tunnel-Template0                  unassigned           up         down
+Tunnel0/0/0                       1.2.3.4/24           up         up
+Tunnel0/0/1                       5.5.5.1/24           up         up
+Tunnel0/0/11                      10.0.1.2/30          up         down
+Virtual-Template1                 10.1.1.1/24          up         down
+
+# display lldp neighbor
+
+GigabitEthernet0/0/0 has 1 neighbors:
+
+
+Neighbor index : 1
+Chassis type   :macAddress
+Chassis ID     :c81f-be0d-59f0
+Port ID type   :interfaceName
+Port ID        :Ethernet0/0/1
+Port description    :Stand for RSA (ma.sverdlikov)
+System name         :demo03-615a.csr.jet.msk.su
+System description  :S3700-28TP-EI-AC
+Huawei Versatile Routing Platform Software
+ VRP (R) software,Version 5.70 (S3700 V100R006C05)
+ Copyright (C) 2003-2013 Huawei Technologies Co., Ltd.
+System capabilities supported   :bridge
+System capabilities enabled     :bridge
+Management address type  :ipV4
+Management address       : 10.31.69.203
+Expired time   :100s
+
+
+Port VLAN ID(PVID)  :3171
+VLAN name of VLAN  3171: VLAN3171
+Protocol identity   :
+
+Auto-negotiation supported    :Yes
+Auto-negotiation enabled      :Yes
+OperMau   :speed(100)/duplex(Full)
+
+Power port class         :PD
+PSE power supported      :No
+PSE power enabled        :No
+PSE pairs control ability:No
+Power pairs              :Unknown
+Port power classification:Unknown
+
+Link aggregation supported:Yes
+Link aggregation enabled :No
+Aggregation port ID      :0
+Maximum frame Size       :1600
+
+MED Device information
+Device class   :Network Connectivity
+
+HardwareRev       :VER B
+FirmwareRev       :NA
+SoftwareRev       :Version 5.70 V100R006C05
+SerialNum         :NA
+Manufacturer name :HUAWEI TECH CO., LTD
+Model name        :NA
+Asset tracking identifier :NA
+
+Power Type               :Unknown
+PoE PSE power source     :Unknown
+Port PSE Priority        :Unknown
+Port Available power value:2
+GigabitEthernet0/0/1 has 0 neighbors
+
+GigabitEthernet0/0/2 has 0 neighbors
+
+GigabitEthernet0/0/3 has 0 neighbors
+
+# display lldp neighbor brief
+
+Local Intf   Neighbor Dev             Neighbor Intf             Exptime
+GE0/0/0      demo03-615a.csr.jet.m... Eth0/0/1                  100
+
+# display dhcp snooping
+
+ DHCP snooping global running information :
+ DHCP snooping                            : Disable  (default)
+
+# display logbuffer
+
+Logging buffer configuration and contents: enabled
+Allowed max buffer size: 1024
+Actual buffer size: 512
+Channel number: 4, Channel name: logbuffer
+Dropped messages: 0
+Overwritten messages: 0
+Current messages: 61
+
+Mar  9 2023 17:21:02+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[0]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=3).
+Mar  9 2023 17:21:02+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[1]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=2).
+Mar  9 2023 17:21:02+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[2]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=1).
+Mar  9 2023 17:20:38+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[3]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=3).
+Mar  9 2023 17:20:38+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[4]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=2).
+Mar  9 2023 17:20:38+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[5]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=1).
+Mar  9 2023 17:20:21+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[6]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=3).
+Mar  9 2023 17:20:21+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[7]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=2).
+Mar  9 2023 17:20:21+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[8]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=mark, Times=1).
+Mar  9 2023 17:19:54+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[9]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=admin, Times=3).
+Mar  9 2023 17:19:54+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[10]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=admin, Times=2).
+Mar  9 2023 17:19:53+03:00 AR-1 %%01SSH/4/SSH_FAIL(l)[11]:Failed to log in through SSH. (Ip=10.31.233.230, UserName=admin, Times=1).
+Mar  9 2023 14:16:45+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[12]:The line protocol IP on the interface Tunnel0/0/1 has entered the UP state.
+Mar  9 2023 14:16:45+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[13]:The line protocol IP on the interface Tunnel0/0/0 has entered the UP state.
+Mar  9 2023 14:16:41+03:00 AR-1 %%01RM/4/IPV4_DEFT_RT_CHG(l)[14]:IPV4 default Route is changed. (ChangeType=Add, InstanceId=0, Protocol=Static, ExitIf=GigabitEthernet0/0/0, Nexthop=10.31.71.1, Neighbour=0.0.0.0, Preference=60, Label=NULL, Metric=0)
+Mar  9 2023 14:16:41+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[15]:The line protocol IP on the interface GigabitEthernet0/0/0 has entered the UP state.
+Mar  9 2023 14:16:41+03:00 AR-1 %%01IFPDT/4/IF_STATE(l)[16]:Interface GigabitEthernet0/0/0 has turned into UP state.
+Mar  9 2023 14:16:37+03:00 AR-1 %%01RM/4/IPV4_DEFT_RT_CHG(l)[17]:IPV4 default Route is changed. (ChangeType=Delete, InstanceId=0, Protocol=Static, ExitIf=Unknown, Nexthop=10.31.71.1, Neighbour=0.0.0.0, Preference=60, Label=NULL, Metric=0)
+Mar  9 2023 14:16:37+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[18]:The line protocol IP on the interface Tunnel0/0/0 has entered the DOWN state.
+Mar  9 2023 14:16:37+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[19]:The line protocol IP on the interface Tunnel0/0/1 has entered the DOWN state.
+Mar  9 2023 14:16:37+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[20]:The line protocol IP on the interface GigabitEthernet0/0/0 has entered the DOWN state.
+Mar  9 2023 14:16:37+03:00 AR-1 %%01IFPDT/4/IF_STATE(l)[21]:Interface GigabitEthernet0/0/0 has turned into DOWN state.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/IF_ENABLE(l)[22]:Interface Serial5/0/5 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/IF_ENABLE(l)[23]:Interface Serial5/0/4 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/IF_ENABLE(l)[24]:Interface Serial5/0/3 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/IF_ENABLE(l)[25]:Interface Serial5/0/2 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/IF_ENABLE(l)[26]:Interface Serial5/0/1 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/IF_ENABLE(l)[27]:Interface Serial5/0/0 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/BOARD_ENABLE(l)[28]:Board 5 has been available.
+Mar  9 2023 14:11:03+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[29]:The line protocol IP on the interface Serial5/0/5 has entered the UP state.
+Mar  9 2023 14:10:55+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[30]:The line protocol IP on the interface Serial5/0/4 has entered the UP state.
+Mar  9 2023 14:10:48+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[31]:The line protocol IP on the interface Serial5/0/3 has entered the UP state.
+Mar  9 2023 14:10:40+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[32]:The line protocol IP on the interface Serial5/0/2 has entered the UP state.
+Mar  9 2023 14:10:33+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[33]:The line protocol IP on the interface Serial5/0/1 has entered the UP state.
+Mar  9 2023 14:10:25+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[34]:The line protocol IP on the interface Serial5/0/0 has entered the UP state.
+Mar  9 2023 14:10:22+03:00 AR-1 %%01DEV/4/ENTUP(l)[35]:6E&M board[5] register success.
+Mar  9 2023 14:07:44+03:00 AR-1 %%01DEV/4/ENTUP(l)[36]:AR2220 board[0] register success.
+Mar  9 2023 14:07:44+03:00 AR-1 %%01DEV/4/ENTPOWERON(l)[37]:Board[5] is power on.
+Mar  9 2023 14:07:44+03:00 AR-1 %%01ENVMON/4/POWERON_SUCCESS(l)[38]:Power on slot [5] successfully.
+Mar  9 2023 14:07:43+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[39]:The line protocol IP on the interface Tunnel0/0/1 has entered the UP state.
+Mar  9 2023 14:07:43+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[40]:The line protocol IP on the interface Tunnel0/0/0 has entered the UP state.
+Mar  9 2023 14:07:38+03:00 AR-1 %%01RM/4/IPV4_DEFT_RT_CHG(l)[41]:IPV4 default Route is changed. (ChangeType=Add, InstanceId=0, Protocol=Static, ExitIf=GigabitEthernet0/0/0, Nexthop=10.31.71.1, Neighbour=0.0.0.0, Preference=60, Label=NULL, Metric=0)
+Mar  9 2023 14:07:38+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[42]:The line protocol IP on the interface GigabitEthernet0/0/0 has entered the UP state.
+Mar  9 2023 14:07:38+03:00 AR-1 %%01IFPDT/4/IF_STATE(l)[43]:Interface GigabitEthernet0/0/0 has turned into UP state.
+Mar  9 2023 14:07:35+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[44]:The line protocol IP on the interface GigabitEthernet0/0/3 has entered the UP state.
+Mar  9 2023 14:07:35+03:00 AR-1 %%01IFPDT/4/IF_STATE(l)[45]:Interface GigabitEthernet0/0/3 has turned into UP state.
+Mar  9 2023 14:07:12+03:00 AR-1 %%01RM/4/ROUTERID_CHANGE(l)[46]:The router ID is 10.1.1.1. (InstanceID=0)
+Mar  9 2023 14:07:06+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[47]:The line protocol IP on the interface LoopBack400 has entered the UP state.
+Mar  9 2023 14:07:06+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[48]:The line protocol IP on the interface LoopBack300 has entered the UP state.
+Mar  9 2023 14:07:05+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[49]:The line protocol IP on the interface LoopBack200 has entered the UP state.
+Mar  9 2023 14:07:05+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[50]:The line protocol IP on the interface LoopBack89 has entered the UP state.
+Mar  9 2023 14:07:05+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[51]:The line protocol IP on the interface LoopBack86 has entered the UP state.
+Mar  9 2023 14:07:05+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[52]:The line protocol IP on the interface LoopBack85 has entered the UP state.
+Mar  9 2023 14:07:04+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[53]:The line protocol IP on the interface LoopBack84 has entered the UP state.
+Mar  9 2023 14:07:04+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[54]:The line protocol IP on the interface LoopBack83 has entered the UP state.
+Mar  9 2023 14:07:04+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[55]:The line protocol IP on the interface LoopBack82 has entered the UP state.
+Mar  9 2023 14:07:04+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[56]:The line protocol IP on the interface LoopBack81 has entered the UP state.
+Mar  9 2023 14:07:03+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[57]:The line protocol IP on the interface LoopBack8 has entered the UP state.
+Mar  9 2023 14:07:03+03:00 AR-1 %%01IFNET/4/LINK_STATE(l)[58]:The line protocol IP on the interface LoopBack0 has entered the UP state.
+Mar  9 2023 14:06:16+03:00 AR-1 %%01IFPDT/4/IF_STATE(l)[59]:Interface Virtual-Template1 has turned into UP state.
+Mar  9 2023 11:04:08+00:00 AR-1 %%01GTL/4/STATECHANGED(l)[60]:License state changed from NULL to Default.
+
+# display vlan
+
+* : management-vlan
+---------------------
+The total number of vlans is : 2
+VLAN ID Type         Status   MAC Learning Broadcast/Multicast/Unicast Property
+--------------------------------------------------------------------------------
+1       common       enable   enable       forward   forward   forward default
+333     common       enable   enable       forward   forward   forward default
+
+# display vlan summary
+
+static vlan:
+Total 2 static vlan exist(s).
+1 333
+dynamic vlan:
+Total 0 dynamic vlan exist(s).
+reserved vlan:
+Total 0 reserved vlan exist(s).
+
+# display ip routing-table
+
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : 278      Routes : 278
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+        0.0.0.0/0   Static  60   0          RD   10.31.71.1      GigabitEthernet0/0/0
+        1.2.3.0/24  Direct  0    0           D   1.2.3.4         Tunnel0/0/0
+        1.2.3.4/32  Direct  0    0           D   127.0.0.1       Tunnel0/0/0
+      1.2.3.255/32  Direct  0    0           D   127.0.0.1       Tunnel0/0/0
+        4.4.4.0/24  Direct  0    0           D   4.4.4.4         GigabitEthernet0/0/3
+        4.4.4.4/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/3
+      4.4.4.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/3
+        5.5.5.0/24  Direct  0    0           D   5.5.5.1         Tunnel0/0/1
+        5.5.5.1/32  Direct  0    0           D   127.0.0.1       Tunnel0/0/1
+      5.5.5.255/32  Direct  0    0           D   127.0.0.1       Tunnel0/0/1
+     10.31.71.0/24  Direct  0    0           D   10.31.71.65     GigabitEthernet0/0/0
+    10.31.71.65/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+   10.31.71.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+   10.31.73.208/32  Static  60   0          RD   5.5.5.2         Tunnel0/0/1
+       12.2.3.0/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.1/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.2/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.3/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.4/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.5/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.6/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.7/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.8/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+       12.2.3.9/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.10/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.11/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.12/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.13/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.14/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.15/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.16/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.17/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.18/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.19/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.20/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.21/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.22/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.23/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.24/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.25/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.26/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.27/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.28/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.29/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.30/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.31/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.32/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.33/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.34/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.35/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.36/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.37/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.38/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.39/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.40/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.41/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.42/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.43/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.44/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.45/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.46/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.47/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.48/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.49/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.50/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.51/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.52/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.53/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.54/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.55/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.56/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.57/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.58/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.59/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.60/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.61/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.62/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.63/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.64/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.65/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.66/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.67/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.68/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.69/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.70/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.71/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.72/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.73/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.74/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.75/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.76/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.77/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.78/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.79/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.80/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.81/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.82/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.83/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.84/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.85/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.86/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.87/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.88/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.89/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.90/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.91/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.92/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.93/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.94/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.95/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.96/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.97/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.98/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      12.2.3.99/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.100/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.101/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.102/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.103/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.104/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.105/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.106/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.107/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.108/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.109/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.110/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.111/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.112/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.113/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.114/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.115/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.116/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.117/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.118/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.119/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.120/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.121/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.122/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.123/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.124/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.125/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.126/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.127/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.128/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.129/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.130/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.131/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.132/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.133/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.134/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.135/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.136/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.137/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.138/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.139/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.140/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.141/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.142/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.143/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.144/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.145/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.146/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.147/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.148/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.149/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.150/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.151/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.152/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.153/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.154/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.155/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.156/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.157/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.158/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.159/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.160/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.161/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.162/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.163/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.164/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.165/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.166/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.167/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.168/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.169/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.170/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.171/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.172/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.173/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.174/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.175/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.176/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.177/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.178/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.179/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.180/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.181/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.182/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.183/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.184/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.185/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.186/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.187/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.188/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.189/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.190/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.191/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.192/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.193/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.194/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.195/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.196/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.197/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.198/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.199/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.200/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.201/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.202/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.203/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.204/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.205/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.206/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.207/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.208/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.209/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.210/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.211/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.212/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.213/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.214/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.215/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.216/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.217/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.218/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.219/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.220/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.221/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.222/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.223/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.224/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.225/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.226/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.227/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.228/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.229/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.230/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.231/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.232/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.233/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.234/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.235/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.236/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.237/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.238/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.239/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.240/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.241/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.242/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.243/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.244/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.245/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.246/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.247/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.248/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.249/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.250/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.251/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.252/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.253/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.254/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+     12.2.3.255/32  Unr     64   0           D   127.0.0.1       InLoopBack0
+      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
+      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+127.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+ 172.17.100.200/32  Direct  0    0           D   127.0.0.1       LoopBack0
+     172.19.2.0/24  Direct  0    0           D   172.19.2.2      GigabitEthernet0/0/0
+     172.19.2.2/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+   172.19.2.255/32  Direct  0    0           D   127.0.0.1       GigabitEthernet0/0/0
+255.255.255.255/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+
+# display ip routing-table all-routes
+
+                               ^
+Error: Unrecognized command found at '^' position.
+
+# display ip routing-table all-vpn-instance
+
+                                                ^
+Error:Incomplete command found at '^' position.
+
+# display ip routing-table all-vpn-instance statistics
+
+Summary Prefixes : 30
+Proto     total      active      added        deleted      freed
+          routes     routes      routes       routes       routes
+DIRECT    27         27          27           0            0
+STATIC    3          0           3            0            0
+RIP       0          0           0            0            0
+OSPF      0          0           0            0            0
+IS-IS     0          0           0            0            0
+BGP       0          0           0            0            0
+UNR       0          0           0            0            0
+Total     30         27          30           0            0
+
+# display ospf brief
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+		 OSPF Protocol Information
+
+ RouterID: 172.17.100.200   Border Router:
+ Multi-VPN-Instance is not enabled
+ Global DS-TE Mode: Non-Standard IETF Mode
+ Graceful-restart capability: disabled
+ Helper support capability  : not configured
+ Applications Supported: MPLS Traffic-Engineering
+ Spf-schedule-interval: max 10000ms, start 500ms, hold 1000ms
+ Default ASE parameters: Metric: 1 Tag: 1 Type: 2
+ Route Preference: 10
+ ASE Route Preference: 150
+ SPF Computation Count: 4
+ RFC 1583 Compatible
+ Retransmission limitation is disabled
+ bfd enabled
+ BFD Timers: Tx-Interval 250 , Rx-Interval 250 , Multiplier 3
+ Area Count: 1   Nssa Area Count: 0
+ ExChange/Loading Neighbors: 0
+ Process total up interface count: 2
+ Process valid up interface count: 1
+ Flush protect mode: false
+
+ Area: 0.0.0.0          (MPLS TE not enabled)
+ Authtype: None   Area flag: Normal
+ SPF scheduled Count: 4
+ ExChange/Loading Neighbors: 0
+ Router ID conflict state: Normal
+ Area interface up count: 2
+
+ Interface: 172.17.100.200 (LoopBack0)
+ Cost: 0       State: P-2-P     Type: P2P       MTU: 1500
+ Timers: Hello 10 , Dead 40 , Poll  120 , Retransmit 5 , Transmit Delay 1
+
+ Interface: 1.2.3.4 (Tunnel0/0/0)
+ Cost: 20000   State: P-2-P     Type: P2P       MTU: 1500
+ Timers: Hello 10 , Dead 40 , Poll  120 , Retransmit 5 , Transmit Delay 1
+
+# display ospf global-statistics brief
+
+  Neighbor cumulative data (OSPF total statistics):
+  ----------------------------------------------------------
+  Down:        0 Init:         0 Attempt:     0 2-Way:     0
+  Exstart:     0 Exchange:     0 Loading:     0 Full:      0
+  Instance Numer:            1  Process Number:            1
+  HighSocketExpire:          0  HighSocketEmpty:           0
+  Total Neighbor Number:                   0
+  Total Press:   LOW
+
+# display ospf peer
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+
+# display ospf peer brief
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+		  Peer Statistic Information
+ ----------------------------------------------------------------------------
+ Area Id          Interface                        Neighbor id      State
+ ----------------------------------------------------------------------------
+ Total Peer(s):     0
+
+# display ospf interface all
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+		 Interfaces
+
+ Area: 0.0.0.0          (MPLS TE not enabled)
+
+ Interface: 172.17.100.200 (LoopBack0)
+ Cost: 0       State: P-2-P     Type: P2P       MTU: 1500
+ Timers: Hello 10 , Dead 40 , Poll  120 , Retransmit 5 , Transmit Delay 1
+
+ Interface: 1.2.3.4 (Tunnel0/0/0)
+ Cost: 20000   State: P-2-P     Type: P2P       MTU: 1500
+ Timers: Hello 10 , Dead 40 , Poll  120 , Retransmit 5 , Transmit Delay 1
+
+# display ospf asbr-summary
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+
+# display ospf nexthop
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+		 Routing Nexthop information
+
+  Next hops:
+  Address         Type       Refcount  IntfAddr        Intf Name
+ ----------------------------------------------------------------
+  172.17.100.200  Local      1         172.17.100.200  LoopBack0
+  1.2.3.4         Local      1         1.2.3.4         Tunnel0/0/0
+
+# display ospf routing
+
+	 OSPF Process 1 with Router ID 172.17.100.200
+		  Routing Tables
+
+ Routing for Network
+ Destination        Cost  Type       NextHop         AdvRouter       Area
+ 1.2.3.0/24         20000 Stub       1.2.3.4         172.17.100.200  0.0.0.0
+ 172.17.100.200/32  0     Stub       172.17.100.200  172.17.100.200  0.0.0.0
+
+ Total Nets: 2
+ Intra Area: 2  Inter Area: 0  ASE: 0  NSSA: 0
+
+# display bgp peer verbose
+
+Info: No peer exists.
+
+# display bgp group
+
+Info: No peer exists.
+
+# display bgp network
+
+Info: No peer exists.
+
+# display bgp routing-table
+
+Info: No peer exists.
+
+# display bgp routing-table verbose
+
+                                ^
+Error: Unrecognized command found at '^' position.
+
+# display bgp vpnv4 all brief
+
+VPNv4:
+  RD Num              Peer Num            Route Num
+    4                   0                   14
+
+VPN-Instance(IPv4-family):
+  VPN-Instance Name   Peer Num            Route Num
+    200                 2                   2
+    300                 2                   2
+    400                 2                   2
+    800                 3                   8
+    DC1                 0                   0
+    DC2                 0                   0
+    L2tp1               0                   0
+    L2tp2               0                   0
+    MGMT                0                   0
+    WAN                 0                   0
+    dc11                0                   0
+    dc12                0                   0
+    dc21                0                   0
+    dc22                0                   0
+    q                   0                   0
+    q2                  0                   0
+
+# display bgp vpnv4 all routing-table
+
+ BGP Local router ID is 10.1.1.1
+ Status codes: * - valid, > - best, d - damped,
+               h - history,  i - internal, s - suppressed, S - Stale
+               Origin : i - IGP, e - EGP, ? - incomplete
+
+
+
+ Total number of routes from all PE: 14
+ Route Distinguisher: 200:200
+
+
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   2.2.2.2/32         0.0.0.0         0                     0      i
+ *                       0.0.0.0         0                     0      ?
+
+ Route Distinguisher: 200:300
+
+
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   3.3.3.3/32         0.0.0.0         0                     0      i
+ *                       0.0.0.0         0                     0      ?
+
+ Route Distinguisher: 200:400
+
+
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   4.4.4.4/32         0.0.0.0         0                     0      i
+ *                       0.0.0.0         0                     0      ?
+
+ Route Distinguisher: 200:800
+
+
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   8.8.8.1/32         0.0.0.0         0                     0      i
+ *>   8.8.8.2/32         0.0.0.0         0                     0      i
+ *>   8.8.8.3/32         0.0.0.0         0                     0      i
+ *>   8.8.8.4/32         0.0.0.0         0                     0      i
+ *>   8.8.8.5/32         0.0.0.0         0                     0      i
+ *>   8.8.8.6/32         0.0.0.0         0                     0      i
+ *>   8.8.8.8/32         0.0.0.0         0                     0      i
+ *>   8.8.8.9/32         0.0.0.0         0                     0      i
+
+ VPN-Instance 200, Router ID 2.2.2.2:
+
+ Total Number of Routes: 2
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   2.2.2.2/32         0.0.0.0         0                     0      i
+ *                       0.0.0.0         0                     0      ?
+
+ VPN-Instance 300, Router ID 3.3.3.3:
+
+ Total Number of Routes: 2
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   3.3.3.3/32         0.0.0.0         0                     0      i
+ *                       0.0.0.0         0                     0      ?
+
+ VPN-Instance 400, Router ID 4.4.4.4:
+
+ Total Number of Routes: 2
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   4.4.4.4/32         0.0.0.0         0                     0      i
+ *                       0.0.0.0         0                     0      ?
+
+ VPN-Instance 800, Router ID 10.1.1.1:
+
+ Total Number of Routes: 8
+      Network            NextHop        MED        LocPrf    PrefVal Path/Ogn
+
+ *>   8.8.8.1/32         0.0.0.0         0                     0      i
+ *>   8.8.8.2/32         0.0.0.0         0                     0      i
+ *>   8.8.8.3/32         0.0.0.0         0                     0      i
+ *>   8.8.8.4/32         0.0.0.0         0                     0      i
+ *>   8.8.8.5/32         0.0.0.0         0                     0      i
+ *>   8.8.8.6/32         0.0.0.0         0                     0      i
+ *>   8.8.8.8/32         0.0.0.0         0                     0      i
+ *>   8.8.8.9/32         0.0.0.0         0                     0      i
+
+# display bgp vpnv4 all peer
+
+ Status codes: * - Dynamic
+
+ BGP local router ID : 10.1.1.1
+ Local AS number : 2
+ Total number of peers : 9		  Peers in established state : 0
+ Total number of dynamic peers : 0
+
+  Peer            V          AS  MsgRcvd  MsgSent  OutQ  Up/Down       State PrefRcv
+
+
+  Peer of IPv4-family for vpn instance :
+
+ VPN-Instance 200, Router ID 2.2.2.2:
+  192.168.200.2   4         100        0        0     0 0358h32m        Idle       0
+  192.168.200.6   4         500        0        0     0 0358h32m        Idle       0
+
+ VPN-Instance 300, Router ID 3.3.3.3:
+  172.16.1.2      4         100        0        0     0 0358h32m        Idle       0
+  172.16.1.6      4         600        0        0     0 0358h32m        Idle       0
+
+ VPN-Instance 400, Router ID 4.4.4.4:
+  192.168.4.2     4         100        0        0     0 0358h32m        Idle       0
+  192.168.4.6     4         700        0        0     0 0358h32m        Idle       0
+
+ VPN-Instance 800, Router ID 10.1.1.1:
+  192.168.5.2     4         500        0        0     0 0358h32m        Idle       0
+  192.168.6.2     4         600        0        0     0 0358h32m        Idle       0
+  192.168.7.2     4         700        0        0     0 0358h32m        Idle       0
+
+# display bgp vpnv4 all paths
+
+ Total number of routes from all PE: 14
+ Total Number of Paths: 2
+
+    Address       Refcount  MED         Path/Origin
+    0x5C0925A8    11        0            i
+    0x5C0926A8    3         0            ?
+
+ Total number of routes of IPv4-family for vpn-instance 200: 2
+ Total Number of Paths: 2
+
+    Address       Refcount  MED         Path/Origin
+    0x5C092528    1         0            i
+    0x5C092628    1         0            ?
+
+ Total number of routes of IPv4-family for vpn-instance 300: 2
+ Total Number of Paths: 2
+
+    Address       Refcount  MED         Path/Origin
+    0x5C092728    1         0            i
+    0x5C0927A8    1         0            ?
+
+ Total number of routes of IPv4-family for vpn-instance 400: 2
+ Total Number of Paths: 2
+
+    Address       Refcount  MED         Path/Origin
+    0x5C092828    1         0            i
+    0x5C0928A8    1         0            ?
+
+ Total number of routes of IPv4-family for vpn-instance 800: 8
+ Total Number of Paths: 1
+
+    Address       Refcount  MED         Path/Origin
+    0x5C092928    8         0            i
+
+ Total number of routes of IPv4-family for vpn-instance DC1: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance DC2: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance L2tp1: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance L2tp2: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance MGMT: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance WAN: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance dc11: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance dc12: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance dc21: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance dc22: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance q: 0
+ Total Number of Paths: 0
+
+ Total number of routes of IPv4-family for vpn-instance q2: 0
+ Total Number of Paths: 0
+
+# display ntp-service status
+
+ clock status: unsynchronized
+ clock stratum: 16
+ reference clock ID: none
+ nominal frequency: 100.0000 Hz
+ actual frequency: 100.0000 Hz
+ clock precision: 2^18
+ clock offset: 0.0000 ms
+ root delay: 0.00 ms
+ root dispersion: 0.00 ms
+ peer dispersion: 0.00 ms
+ reference time: 00:00:00.000 UTC Jan 1 1900(00000000.00000000)
+
+# display ntp-service trace
+
+ Local host:	*Not Synchronized*
+
+# display cpu-usage
+
+CPU   Usage Stat. Cycle: 10 (Second)
+CPU   Usage Stat. Time : 2023-03-24  12:39:28
+Control Plane
+    CPU Usage: 35.9%   Max: 100%
+    User: 28.6%   System:  5.6%   SoftIrq:  0.3%   HardIrq:  1.2%   Idle: 64.1%
+    CPU utilization for ten seconds: 35.9%  one minute:  33.0%  five minutes:  18.0% .
+Data    Plane
+    CPU Usage:  0.8%   Max:  2.5%
+    CPU utilization for ten seconds:  0.8%  one minute:   0.7%  five minutes:   0.6% .
+
+PID   ProcessName         CPU%     CoreIndex      Runtime     State
+341   cap32               0.2%      CPU2           129109891   R
+340   cap32               2.1%      CPU1           129109873   R
+342   cap32               0.2%      CPU3           129109824   R
+338   main_task          35.6%      CPU0           40915330    S
+4     ksoftirqd/0         0.1%      CPU0           557546      S
+319   redis-server        0.0%      CPU0           290428      S
+326   devm                0.0%      CPU0           76512       S
+337   cap32               0.0%      CPU0           222913      S
+23    bdi-default         0.0%      CPU0           6145        S
+343   confd               0.0%      CPU0           29691       S
+334   monitor             0.0%      CPU0           16833       S
+48    sdcard_demond1      0.0%      CPU0           8691        S
+336   netopeer-server     0.0%      CPU0           7425        S
+330   udhcpc              0.0%      CPU0           6531        S
+15    events/0            0.0%      CPU0           3107        S
+239   k3gdevd             0.0%      CPU0           1195        D
+22    sync_supers         0.0%      CPU0           761         S
+325   inspect_registe     0.0%      CPU0           415         S
+33    khungtaskd          0.0%      CPU0           354         S
+1     init                0.0%      CPU0           303         S
+118   VFDS                0.0%      CPU0           218         S
+318   init                0.0%      CPU0           126         S
+104   loop0               0.0%      CPU0           89          S
+54    mtdblock4           0.0%      CPU0           43          S
+327   sysm                0.0%      CPU0           19          S
+5     watchdog/0          0.0%      CPU0           18          S
+324   appm                0.0%      CPU0           12          S
+24    kblockd/0           0.0%      CPU0           2           S
+2     kthreadd            0.0%      CPU0           0           S
+3     migration/0         0.0%      CPU0           0           S
+6     migration/1         0.0%      CPU1           0           S
+7     ksoftirqd/1         0.0%      CPU1           0           S
+8     watchdog/1          0.0%      CPU1           0           S
+9     migration/2         0.0%      CPU2           0           S
+10    ksoftirqd/2         0.0%      CPU2           0           S
+11    watchdog/2          0.0%      CPU2           0           S
+12    migration/3         0.0%      CPU3           0           S
+13    ksoftirqd/3         0.0%      CPU3           0           S
+14    watchdog/3          0.0%      CPU3           0           S
+16    events/1            0.0%      CPU1           0           R
+17    events/2            0.0%      CPU2           0           R
+18    events/3            0.0%      CPU3           0           R
+19    cpuset              0.0%      CPU0           0           S
+20    khelper             0.0%      CPU0           0           S
+21    async/mgr           0.0%      CPU0           0           S
+25    kblockd/1           0.0%      CPU1           0           S
+26    kblockd/2           0.0%      CPU2           0           S
+27    kblockd/3           0.0%      CPU3           0           S
+28    khubd               0.0%      CPU0           0           S
+34    kswapd0             0.0%      CPU0           0           S
+35    aio/0               0.0%      CPU0           0           S
+36    aio/1               0.0%      CPU1           0           S
+37    aio/2               0.0%      CPU2           0           S
+38    aio/3               0.0%      CPU3           0           S
+39    crypto/0            0.0%      CPU0           0           S
+40    crypto/1            0.0%      CPU1           0           S
+41    crypto/2            0.0%      CPU2           0           S
+42    crypto/3            0.0%      CPU3           0           S
+49    sdcardqueue         0.0%      CPU0           0           S
+50    mtdblock0           0.0%      CPU0           0           S
+51    mtdblock1           0.0%      CPU0           0           S
+52    mtdblock2           0.0%      CPU0           0           S
+53    mtdblock3           0.0%      CPU0           0           S
+55    mtdblock5           0.0%      CPU0           0           S
+240   k3gtxd              0.0%      CPU0           0           S
+241   k3gndistxd          0.0%      CPU0           0           S
+301   udpsvd              0.0%      CPU0           0           S
+304   syslogd             0.0%      CPU0           0           S
+767   loop1               0.0%      CPU0           0           S
+787   loop4               0.0%      CPU0           0           S
+20456 sleep               0.0%      CPU0           0           S
+
+# display memory-usage
+
+ Memory utilization statistics at 2023-03-24 12:39:29 250 ms
+ System Total Memory Is: 1737302016 bytes
+ Total Memory Used Is: 437755904 bytes
+ Memory Using Percentage Is: 25%
+
+# display dot1x
+
+  Max users: 512
+  Current users: 0
+  Global default domain is default
+  Quiet function is Enabled
+  Mc-trigger port-up-send is Disabled
+  Parameter set:Quiet Period                  60s   Quiet-times         10
+                Tx Period                     30s   Mac-By-Pass Delay   30s
+  dot1x URL: Not configed.
+
+# display dot1x statistics
+
+  Max users: 512
+  Current users: 0
+  Global default domain is default
+  Quiet function is Enabled
+  Mc-trigger port-up-send is Disabled
+  Parameter set:Quiet Period                  60s   Quiet-times         10
+                Tx Period                     30s   Mac-By-Pass Delay   30s
+  dot1x URL: Not configed.
+
+# display dhcp snooping
+
+ DHCP snooping global running information :
+ DHCP snooping                            : Disable  (default)
+
+# display dhcp server configuration
+
+                          ^
+Error: Unrecognized command found at '^' position.
+
+# display dhcp relay configuration
+
+                         ^
+Error: Unrecognized command found at '^' position.
+
+# display dhcp relay all
+
+                         ^
+Error: Unrecognized command found at '^' position.
+
+# display rip
+
+                         ^
+Error: Unrecognized command found at '^' position.
+
+# display ripng
+
+                         ^
+Error: Unrecognized command found at '^' position.
+
+# display ip vpn-instance
+
+ Total VPN-Instances configured      : 16
+ Total IPv4 VPN-Instances configured : 16
+ Total IPv6 VPN-Instances configured : 0
+
+  VPN-Instance Name               RD                    Address-family
+  200                             200:200               IPv4
+  300                             200:300               IPv4
+  400                             200:400               IPv4
+  800                             200:800               IPv4
+  DC1                             100:100               IPv4
+  DC2                             100:101               IPv4
+  L2tp1                           11:11                 IPv4
+  L2tp2                           11:12                 IPv4
+  MGMT                            1:1                   IPv4
+  WAN                             55:55                 IPv4
+  dc11                            200:1011              IPv4
+  dc12                            200:1012              IPv4
+  dc21                            200:1021              IPv4
+  dc22                            200:1022              IPv4
+  q                               12:12                 IPv4
+  q2                              111:222               IPv4
+
+# display ip vpn-instance interface
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display mpls ldp all
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display mpls ldp interface all
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display mpls ldp peer all
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display mpls ldp adjacency all
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display mpls interface verbose
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display mpls lsp verbose
+
+ Total VPN-Instances configured      : 16
+
+ VPN-Instance Name and ID : 200, 1
+  Interface Number : 2
+  Interface list : LoopBack200,
+                   GigabitEthernet0/0/1.205
+
+ VPN-Instance Name and ID : 300, 2
+  Interface Number : 3
+  Interface list : LoopBack300,
+                   GigabitEthernet0/0/1.300,
+                   GigabitEthernet0/0/1.306
+
+ VPN-Instance Name and ID : 400, 3
+  Interface Number : 3
+  Interface list : LoopBack400,
+                   GigabitEthernet0/0/1.400,
+                   GigabitEthernet0/0/1.407
+
+ VPN-Instance Name and ID : 800, 4
+  Interface Number : 11
+  Interface list : LoopBack8,
+                   GigabitEthernet0/0/1.500,
+                   GigabitEthernet0/0/1.600,
+                   GigabitEthernet0/0/1.700,
+                   LoopBack85,
+                   LoopBack89,
+                   LoopBack81,
+                   LoopBack82,
+                   LoopBack83,
+                   LoopBack84,
+                   LoopBack86
+
+ VPN-Instance Name and ID : DC1, 5
+  Interface Number : 2
+  Interface list : GigabitEthernet0/0/1,
+                   GigabitEthernet0/0/2.10
+
+ VPN-Instance Name and ID : DC2, 6
+  Interface Number : 0
+
+ VPN-Instance Name and ID : L2tp1, 7
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.200
+
+ VPN-Instance Name and ID : L2tp2, 8
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.100
+
+ VPN-Instance Name and ID : MGMT, 9
+  Interface Number : 0
+
+ VPN-Instance Name and ID : WAN, 10
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc11, 11
+  Interface Number : 2
+  Interface list : Tunnel0/0/11,
+                   GigabitEthernet0/0/2.1011
+
+ VPN-Instance Name and ID : dc12, 12
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc21, 13
+  Interface Number : 0
+
+ VPN-Instance Name and ID : dc22, 14
+  Interface Number : 0
+
+ VPN-Instance Name and ID : q, 15
+  Interface Number : 3
+  Interface list : GigabitEthernet0/0/2.101,
+                   GigabitEthernet0/0/1.202,
+                   GigabitEthernet0/0/2.301
+
+ VPN-Instance Name and ID : q2, 16
+  Interface Number : 1
+  Interface list : GigabitEthernet0/0/2.111
+
+# display m-lag troubleshooting current
+
+              ^
+Error: Unrecognized command found at '^' position.
+
+# display port-security
+
+              ^
+Error: Unrecognized command found at '^' position.
+
+# display radius current-status
+                     ^
+Error:Too many parameters found at '^' position.
